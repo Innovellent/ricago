@@ -37,6 +37,7 @@ TR=[];
 
 
 
+
    }
 
 
@@ -57,6 +58,27 @@ export class ObjNgForNew implements PipeTransform {
    }
 
 
+}
+@Pipe({ name: 'objngforvalues' })
+export class ObjNgForValues implements PipeTransform {
+TR=[];
+//transform(value, args:string[]) : any {
+  //  let keys = [];
+  //  for (let key in value) {
+  //    keys.push({key: key, value: value[key]});
+  //  }
+  //  return keys;
+
+ //return` ${value.toString().split('=')[0]}`;
+
+ //}
+ transform(value, args:string[]) : any {
+     let keys = [];
+     for (let key in value) {
+       keys.push({key: key, value: value[key]});
+     }
+     return keys;
+   }
 }
 
 @Component({
@@ -84,6 +106,8 @@ todos:Array<any>=[{
  //   'key3': 'Jain',
  // }
 tg=[];
+tgv=[];
+arr = [];
 get_white_label:Array<any>=[];
 updatedetails:FormGroup;
 profile_update={};
@@ -100,6 +124,8 @@ company_name: Array<any> = [];
 getDepositorycondition:any = [];
 getsharelistedcondition:any = [];
 getsharesDemandcondition:any = [];
+getChoice1:any=[];
+getChoice2:any=[];
   addCompanyName: string = "";
   addCompanyCIN: string = "";
   addCompanyType: any = {};
@@ -180,17 +206,11 @@ getsharesDemandcondition:any = [];
   stockExchanges: any = ["Select Stock Exchange on Listed shares", "NSE", "BSE"];
 
 //  Drop Downs Finished
-
+  //
   @ViewChild('addModal') public addModal: ModalDirective;
   @ViewChild('editModal') public editModal: ModalDirective;
 
   constructor(private formBuilder: FormBuilder,private dataServices: CompanyService, private toasterService: ToasterService) {
-
-    this.updateIDForCompanyData = "";
-    this.toasterService = toasterService;
-    this.addShareListing = this.shareListings[0];
-    this.addStockExchange = this.stockExchanges[0];
-    this.addDematShareListing = this.shareListingsInDemat[0];
 
   }
 
@@ -230,135 +250,135 @@ getsharesDemandcondition:any = [];
   }
 
 
-
-  addCompanyForm() {
-    let params: URLSearchParams = new URLSearchParams();
-    params.set('CompanyType', this.addCompanyType.ConfigValue);
-    params.set('CompanyName', this.addCompanyName);
-    params.set('CompanyCIN', this.addCompanyCIN);
-
-    params.set('Currency', currency);
-    params.set('AuthCapital', this.addAuthorizedSharedCapital);
-    params.set('PaidupCapital', this.addPaidUpSharedCapital);
-
-    params.set('SharesListed', this.addShareListing.ConfigValue);
-    params.set('SecretaryName', this.addCompanySecretaryName);
-    params.set('SecretaryEmail', this.addCompanySecretaryEmail);
-
-    params.set('SysAdminEmail', this.addAdminEmail);
-    params.set('EmailDomains', emailDomains);
-    params.set('ModifiedBy', modifiedBy);
-
-    params.set('SysAdminName', this.addAdminName);
-    params.set('SecurityName', this.addSecurityName);
-    params.set('SysAdminPhone', this.addAdminNumber);
-
-    params.set('SharesInDemat', this.addDematShareListing.ConfigValue);
-    params.set('CompanyISIN', this.addCompanyISIN);
-    params.set('SecretaryPhone', this.addCompanySecretaryNumber);
-
-    params.set('Depository', this.addDepository.ConfigValue);
-
-    this.dataServices.saveCompanyData(params).subscribe(
-        (saveCompanyData) => {
-          this.toasterService.pop('success', 'Company Record Created Successfully');
-          this.getAllAPIData();
-          this.addModal.hide();
-        },
-        (saveCompanyError) => {
-          this.toasterService.pop('error', 'Company Record Creation Failed');
-          this.addModal.hide();
-        }
-    );
-  }
-
-  resetAddCompanyForm() {
-    this.addCompanyName = "";
-    this.addCompanyCIN = "";
-    this.addCompanyType = this.companyType[0];
-    this.addAuthorizedSharedCapital = "";
-    this.addPaidUpSharedCapital = "";
-    this.addCompanyISIN = "";
-    this.addSecurityName = "";
-    this.addCompanySecretaryName = "";
-    this.addCompanySecretaryEmail = "";
-    this.addCompanySecretaryNumber = "";
-    this.addAdminName = "";
-    this.addAdminEmail = "";
-    this.addAdminNumber = "";
-    this.addDepository = this.depository[0];
-    this.addShareListing = this.shareListings[0];
-    this.addStockExchange = this.stockExchanges[0];
-    this.addDematShareListing = this.shareListingsInDemat[0];
-    this.addStockExchange = "";
-  }
-
-  resetEditCompanyForm() {
-    this.editCompanyName = "";
-    this.editCompanyCIN = "";
-    this.editCompanyType = this.companyType[0];
-    this.editAuthorizedSharedCapital = "";
-    this.editPaidUpSharedCapital = "";
-    this.editCompanyISIN = "";
-    this.editSecurityName = "";
-    this.editCompanySecretaryName = "";
-    this.editCompanySecretaryEmail = "";
-    this.editCompanySecretaryNumber = "";
-    this.editAdminName = "";
-    this.editAdminEmail = "";
-    this.editAdminNumber = "";
-    this.editDepository = this.depository[0];
-    this.editShareListing = this.shareListings[0];
-    this.editStockExchange = this.stockExchanges[0];
-    this.editDematShareListing = this.shareListingsInDemat[0];
-    this.editStockExchange = "";
-  }
-
-
-
-  UpdateCompanyData(){
-    if(this.updateIDForCompanyData && this.updateIDForCompanyData !== ""){
-      let params: URLSearchParams = new URLSearchParams();
-      params.set('CompanyType', this.editCompanyType.ConfigValue);
-      params.set('CompanyName', this.editCompanyName);
-      params.set('CompanyCIN', this.editCompanyCIN);
-
-      params.set('Currency', currency);
-      params.set('AuthCapital', this.editAuthorizedSharedCapital);
-      params.set('PaidupCapital', this.editPaidUpSharedCapital);
-
-      params.set('SharesListed', this.editShareListing.ConfigValue);
-      params.set('SecretaryName', this.editCompanySecretaryName);
-      params.set('SecretaryEmail', this.editCompanySecretaryEmail);
-
-      params.set('SysAdminEmail', this.editAdminEmail);
-      params.set('EmailDomains', emailDomains);
-      params.set('ModifiedBy', modifiedBy);
-
-      params.set('SysAdminName', this.editAdminName);
-      params.set('SecurityName', this.editSecurityName);
-      params.set('SysAdminPhone', this.editAdminNumber);
-
-      params.set('SharesInDemat', this.editDematShareListing.ConfigValue);
-      params.set('CompanyISIN', this.editCompanyISIN);
-      params.set('SecretaryPhone', this.editCompanySecretaryNumber);
-
-      params.set('Depository', this.editDepository.ConfigValue);
-
-      this.dataServices.updateSingleData(this.updateIDForCompanyData, params).subscribe(
-          (updateCompanyData) => {
-            this.toasterService.pop('success', 'Company Record Updated Successfully');
-            this.getAllAPIData();
-            this.editModal.hide();
-          },
-          (UpdateCompanyError) => {
-            this.toasterService.pop('error', 'Company Record Updation Failed');
-            this.editModal.hide();
-          }
-      );
-
-    }
-  }
+  //
+  // addCompanyForm() {
+  //   let params: URLSearchParams = new URLSearchParams();
+  //   params.set('CompanyType', this.addCompanyType.ConfigValue);
+  //   params.set('CompanyName', this.addCompanyName);
+  //   params.set('CompanyCIN', this.addCompanyCIN);
+  //
+  //   params.set('Currency', currency);
+  //   params.set('AuthCapital', this.addAuthorizedSharedCapital);
+  //   params.set('PaidupCapital', this.addPaidUpSharedCapital);
+  //
+  //   params.set('SharesListed', this.addShareListing.ConfigValue);
+  //   params.set('SecretaryName', this.addCompanySecretaryName);
+  //   params.set('SecretaryEmail', this.addCompanySecretaryEmail);
+  //
+  //   params.set('SysAdminEmail', this.addAdminEmail);
+  //   params.set('EmailDomains', emailDomains);
+  //   params.set('ModifiedBy', modifiedBy);
+  //
+  //   params.set('SysAdminName', this.addAdminName);
+  //   params.set('SecurityName', this.addSecurityName);
+  //   params.set('SysAdminPhone', this.addAdminNumber);
+  //
+  //   params.set('SharesInDemat', this.addDematShareListing.ConfigValue);
+  //   params.set('CompanyISIN', this.addCompanyISIN);
+  //   params.set('SecretaryPhone', this.addCompanySecretaryNumber);
+  //
+  //   params.set('Depository', this.addDepository.ConfigValue);
+  //
+  //   this.dataServices.saveCompanyData(params).subscribe(
+  //       (saveCompanyData) => {
+  //         this.toasterService.pop('success', 'Company Record Created Successfully');
+  //         this.getAllAPIData();
+  //         this.addModal.hide();
+  //       },
+  //       (saveCompanyError) => {
+  //         this.toasterService.pop('error', 'Company Record Creation Failed');
+  //         this.addModal.hide();
+  //       }
+  //   );
+  // }
+  //
+  // resetAddCompanyForm() {
+  //   this.addCompanyName = "";
+  //   this.addCompanyCIN = "";
+  //   this.addCompanyType = this.companyType[0];
+  //   this.addAuthorizedSharedCapital = "";
+  //   this.addPaidUpSharedCapital = "";
+  //   this.addCompanyISIN = "";
+  //   this.addSecurityName = "";
+  //   this.addCompanySecretaryName = "";
+  //   this.addCompanySecretaryEmail = "";
+  //   this.addCompanySecretaryNumber = "";
+  //   this.addAdminName = "";
+  //   this.addAdminEmail = "";
+  //   this.addAdminNumber = "";
+  //   this.addDepository = this.depository[0];
+  //   this.addShareListing = this.shareListings[0];
+  //   this.addStockExchange = this.stockExchanges[0];
+  //   this.addDematShareListing = this.shareListingsInDemat[0];
+  //   this.addStockExchange = "";
+  // }
+  //
+  // resetEditCompanyForm() {
+  //   this.editCompanyName = "";
+  //   this.editCompanyCIN = "";
+  //   this.editCompanyType = this.companyType[0];
+  //   this.editAuthorizedSharedCapital = "";
+  //   this.editPaidUpSharedCapital = "";
+  //   this.editCompanyISIN = "";
+  //   this.editSecurityName = "";
+  //   this.editCompanySecretaryName = "";
+  //   this.editCompanySecretaryEmail = "";
+  //   this.editCompanySecretaryNumber = "";
+  //   this.editAdminName = "";
+  //   this.editAdminEmail = "";
+  //   this.editAdminNumber = "";
+  //   this.editDepository = this.depository[0];
+  //   this.editShareListing = this.shareListings[0];
+  //   this.editStockExchange = this.stockExchanges[0];
+  //   this.editDematShareListing = this.shareListingsInDemat[0];
+  //   this.editStockExchange = "";
+  // }
+  //
+  //
+  //
+  // UpdateCompanyData(){
+  //   if(this.updateIDForCompanyData && this.updateIDForCompanyData !== ""){
+  //     let params: URLSearchParams = new URLSearchParams();
+  //     params.set('CompanyType', this.editCompanyType.ConfigValue);
+  //     params.set('CompanyName', this.editCompanyName);
+  //     params.set('CompanyCIN', this.editCompanyCIN);
+  //
+  //     params.set('Currency', currency);
+  //     params.set('AuthCapital', this.editAuthorizedSharedCapital);
+  //     params.set('PaidupCapital', this.editPaidUpSharedCapital);
+  //
+  //     params.set('SharesListed', this.editShareListing.ConfigValue);
+  //     params.set('SecretaryName', this.editCompanySecretaryName);
+  //     params.set('SecretaryEmail', this.editCompanySecretaryEmail);
+  //
+  //     params.set('SysAdminEmail', this.editAdminEmail);
+  //     params.set('EmailDomains', emailDomains);
+  //     params.set('ModifiedBy', modifiedBy);
+  //
+  //     params.set('SysAdminName', this.editAdminName);
+  //     params.set('SecurityName', this.editSecurityName);
+  //     params.set('SysAdminPhone', this.editAdminNumber);
+  //
+  //     params.set('SharesInDemat', this.editDematShareListing.ConfigValue);
+  //     params.set('CompanyISIN', this.editCompanyISIN);
+  //     params.set('SecretaryPhone', this.editCompanySecretaryNumber);
+  //
+  //     params.set('Depository', this.editDepository.ConfigValue);
+  //
+  //     this.dataServices.updateSingleData(this.updateIDForCompanyData, params).subscribe(
+  //         (updateCompanyData) => {
+  //           this.toasterService.pop('success', 'Company Record Updated Successfully');
+  //           this.getAllAPIData();
+  //           this.editModal.hide();
+  //         },
+  //         (UpdateCompanyError) => {
+  //           this.toasterService.pop('error', 'Company Record Updation Failed');
+  //           this.editModal.hide();
+  //         }
+  //     );
+  //
+  //   }
+  // }
 
   getObjectFromArray(value: string, dataArray: any): any{
     for(let count = 0; count < dataArray.length; count++){
@@ -385,42 +405,14 @@ getsharesDemandcondition:any = [];
     params.set('grant_type', 'password');
     this.getAPIAccessToken(params);
 
-     $(function () {
-
-    $('#Grant').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": true
-    });
-  });
-
-
-    $('input[type=text]').focus(function () {
-    let placeholder = $(this).attr('placeholder');
-    if(placeholder != undefined){
-      $(this).parent().prepend('<span class="input-placeholder">'+placeholder+'</span>');
-    $(this).removeAttr('placeholder');
-    }
-  });
-  $('input').blur(function(){
-  //  alert($(this).parent().find('.input-placeholder'));
-  //$(this).attr('placeholder',placeholder);
-    $(this).parent().find('.input-placeholder').remove();
-
-  });
-
-
 
 this.dataServices.getcompany().subscribe((data: Array<Object>)=> {
 
        this.company_name = data;
-
+  console.log("this.company_name");
         console.log(this.company_name);
 
-
+  console.log("this.company_name");
 
         });
 
@@ -462,7 +454,24 @@ this.dataServices.getcompany().subscribe((data: Array<Object>)=> {
                                         console.log("this.getsharesDemandcondition");
                                         });
 
+                                        this.dataServices.getChoice1().subscribe((data: Array<Object>)=> {
 
+                                               this.getChoice1 = data;
+
+                                               console.log("this.getChoice1");
+                                                console.log(this.getChoice1);
+
+                                                console.log("this.getChoice1");
+                                                });
+                                                this.dataServices.getChoice2().subscribe((data: Array<Object>)=> {
+
+                                                       this.getChoice2 = data;
+
+                                                       console.log("this.getChoice2");
+                                                        console.log(this.getChoice2);
+
+                                                        console.log("this.getChoice2");
+                                                        });
 
 
 
@@ -485,7 +494,14 @@ this.dataServices.getcompany().subscribe((data: Array<Object>)=> {
                  SysAdminEmail:'',
                     SysAdminPhone:'',
                     EmailDomains: "yahoo.com",
-                    ModifiedBy: 11
+                    ModifiedBy: 11,
+                    additionaltext1:'',
+                    additionaltext2:'',
+                    additionaldate1:'',
+                    additionaldate2:'',
+                    additionalchoice1:'',
+                    additionalchoice2:'',
+
 
     });
 
@@ -494,13 +510,13 @@ this.updatedetails = this.formBuilder.group({
       CompanyName:'',
       //  CompanyName: new Control(this.updatedetails.CompanyName.value),
     //  CompanyName: this.updatedetails.controls.CompanyName,
-      CompanyCIN: '',
+      CompanyCIN:'',
       AuthCapital: '',
       PaidupCapital: '',
-      SharesListed: '',
-      SharesInDemat: '',
-      CompanyISIN: '',
-      Depository: '',
+      SharesListed:'',
+      SharesInDemat:'',
+      CompanyISIN:'',
+      Depository:'',
         CompanyType: "PR",
         Currency: "INR",
         SecurityName:'',
@@ -511,7 +527,13 @@ this.updatedetails = this.formBuilder.group({
                  SysAdminEmail:'',
                     SysAdminPhone:'',
                     EmailDomains: "yahoo.com",
-                    ModifiedBy: 11
+                    ModifiedBy: 11,
+                    additionaltext1:'',
+                    additionaltext2:'',
+                    additionaldate1:'',
+                    additionaldate2:'',
+                    additionalchoice1:'',
+                    additionalchoice2:''
 
     });
 
@@ -598,30 +620,31 @@ let json_post_data=JSON.stringify(this.postdata.value);
 
   }
 
-  editCompany(update_id){
+  editCompanyDetails(update_id){
 localStorage.setItem('updateid',update_id);
 
     this.dataServices.getUser_id(update_id).subscribe((data: Array<Object>)=> {
 
        this.profile_id = data;
 
-        console.log("test");
-        console.log(this.profile_id);
+        console.log("profile_id");
+        //console.log(this.profile_id);
 
 
 
         });
 
-   $('#Editcompany').modal('show');
-console.log(update_id);
+   $('#edit').modal('show');
+//console.log(update_id);
 
 }
 
 
- onUpdatePost(CompanyID)
+ onUpdatePost()
   {
- let updateid= localStorage.getItem('updateid');
 
+ let updateid= localStorage.getItem('updateid');
+//alert(updateid);
 let json_post_data=JSON.stringify(this.updatedetails.value);
      console.log(json_post_data);
 
@@ -655,31 +678,79 @@ let json_post_data=JSON.stringify(this.updatedetails.value);
         }));
 
 this.tg.push(Object.keys(obj).map((key)=>{ return `${obj[key].toString().split('#')[1]}`}));
-console.log("testt : " +this.tg);
+//console.log("testt : " +this.tg);
   return Object.keys(obj).map((key)=>{return obj[key]});
 
 
   }
 
   generateArrayC(obj){
+console.log("obj");
+console.log(obj);
+  console.log(Object.keys(obj).forEach((key) => {(obj[key] == null)
+     && delete obj[key];
+      return  [`${parseInt(obj[key]).toString().split('#')[1]}`,`${parseInt(obj[key]).toString().split('#')[0]}`]}));
+//console.log(Object.keys(obj).map((key)=>{!obj[key] !== null ; return [`${obj[key].toString().split('#')[1]}`,`${obj[key].toString().split('#')[0]}`] }));
+this.tgv.push(Object.keys(obj).map((key)=>{!obj[key] !== null ; return `${obj[key].toString().split('#')[1]}` }));
 
-  console.log(Object.keys(obj).forEach((key) => {(obj[key] == null)  && delete obj[key]; return  `${parseInt(obj[key]).toString().split('#')[1]}`}));
-
-      return Object.keys(obj).map((key)=>{!obj[key] !== null ; return `${obj[key].toString().split('#')[1]}` });
+      return Object.keys(obj).map((key)=>{!obj[key] !== null ; return [`${obj[key].toString().split('#')[0]}`,`${obj[key].toString().split('#')[1]}`].join(",") });
 
 
   }
-
+  // generateArrayCE(obj){
+  //   console.log("obj");
+  //   console.log(obj);
+  //     console.log("obj");
+  //
+  //         return Object.keys(obj).map((key)=>{!obj[key] !== null ; return `${obj[key].toString().split('#')[1]}` });
+  //
+  // //     var arr = $.map(this.tg, function(el) {return el; })
+  // //
+  // //     var unique = arr.filter(function(elem, index, self) {
+  // //
+  // //       return index == self.indexOf(elem);
+  // //
+  // //
+  // //     });
+  // //
+  // //     var arraytoobject={}
+  // //     unique.forEach(function(keyarr) {
+  // //       Object.keys(obj).map((key)=>{
+  // //         if(keyarr == key) {
+  // //           var keys=key;
+  // //           var value=obj[key];
+  // //           arraytoobject[keys]=value;
+  // //           //console.log(arraytoobject[keys]+"="+value);
+  // //           console.log(keys+"="+value);
+  // //
+  // //           return arraytoobject;
+  // //         }
+  // //       });
+  // //
+  // //     });
+  // //
+  // // console.log(arraytoobject);
+  // //
+  // //     console.log(Object.keys(arraytoobject).map((key)=>{  var keys=key;return arraytoobject[key]}));
+  // //         //  console.log(Object.keys(arraytoobject).map((key)=>{  var keys=key;return [arraytoobject[key],keys]}));
+  // //       // return [keys,vals];
+  // //
+  // // return Object.keys(arraytoobject).map((key)=>{
+  // //   var keys=key;
+  // //   var value=arraytoobject[key];
+  // //   return value});
+  //
+  // }
 
 
 
   generateArrayTR(obj){
-    console.log(typeof this.tg);
+    //console.log(typeof this.tg);
 
     var arr = $.map(this.tg, function(el) {return el; })
 
-    console.log(arr);
-    console.log(typeof arr);
+    // console.log(arr);
+    // console.log(typeof arr);
     var unique = arr.filter(function(elem, index, self) {
 
       return index == self.indexOf(elem);
@@ -687,15 +758,6 @@ console.log("testt : " +this.tg);
 
     });
 
-    console.log("new_obj    --+result");
-
-    console.log(unique);
-    console.log(typeof unique);
-
-    console.log(unique.shift());
-    console.log(unique);
-    console.log(obj);
-    console.log("obj");
     var arraytoobject={}
     unique.forEach(function(keyarr) {
       Object.keys(obj).map((key)=>{
@@ -711,29 +773,90 @@ console.log("testt : " +this.tg);
       });
 
     });
-    console.log("arraytoobject");
-    console.log(arraytoobject);
 
-    // console.log(arr_obj);
-    //
-    //
-    // console.log(typeof arr_obj);
-
-    console.log(Object.keys(arraytoobject).forEach((key) => {
-
-      if (arraytoobject[key] === null || key == "CompanyID" || key == "CompanyISIN" || key =="CompanyType"|| key =="Currency"|| key =="EmailDomains"
-      || key =="SecretaryPhone" || key =="SharesInDemat" || key =="SharesListed"  )
-      delete arraytoobject[key];
-
-    }));
-
-    //console.log("testtt");
 
     return Object.keys(arraytoobject).map((key)=>{return arraytoobject[key]});
 
 
   }
 
+
+
+    generateArrayTRE(obj){
+      //console.log(typeof this.tg);
+
+      var arr = $.map(this.tgv, function(el) {return el; })
+console.log("obj");
+       console.log(obj);
+      // console.log(typeof arr);
+      var unique = arr.filter(function(elem, index, self) {
+
+        return index == self.indexOf(elem);
+
+
+      });
+
+      var arraytoobject={}
+      unique.forEach(function(keyarr) {
+        Object.keys(obj).map((key)=>{
+          if(keyarr == key) {
+            var keys=key;
+            var value=obj[key];
+            arraytoobject[keys]=value;
+            //console.log(arraytoobject[keys]+"="+value);
+            console.log(keys+"="+value);
+
+            return arraytoobject;
+          }
+        });
+
+      });
+      console.log("arraytoobject");
+console.log(arraytoobject);
+
+// for (var prop in arraytoobject) {
+//     arr.push(arraytoobject[prop]);
+// }JSON.parse(arraytoobject.json())
+      return [arraytoobject];
+
+
+    }
+
+    generateArrayTREV(obj){
+      //console.log(typeof this.tg);
+      var arr = $.map(this.tgv, function(el) {return el; })
+    console.log("objQQ");
+       console.log(obj);
+      // console.log(typeof arr);
+      var unique = arr.filter(function(elem, index, self) {
+
+        return index == self.indexOf(elem);
+
+
+      });
+
+      var arraytoobject={}
+      unique.forEach(function(keyarr) {
+        Object.keys(obj).map((key)=>{
+          if(keyarr == key) {
+            var keys=key;
+            var value=obj[key];
+            arraytoobject[keys]=value;
+            //arraytoobject[keys]=keys+"="+value;
+            //console.log(arraytoobject[keys]+"="+value);
+            console.log(keys+"="+value);
+
+            return arraytoobject;
+          }
+        });
+
+      });
+    console.log("arraytoobject");
+  console.log(Object.keys(arraytoobject).map((key)=>{ var keys=key; return [keys,arraytoobject[key] ].join(",")   }));
+      return Object.keys(arraytoobject).map((key)=>{ var keys=key; return [keys,arraytoobject[key] ].join(",")   });
+
+
+    }
 
 
 

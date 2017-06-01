@@ -128,7 +128,7 @@ let headers = new Headers();
 
 
  updatedetail(update_data,updateid) {
-   alert("sd");
+  //  alert("sd");
 let headers = new Headers();
   headers.append('Content-Type',
      'application/json; charset=utf-8');
@@ -169,5 +169,24 @@ console.log(update_data);
     return this.http.get(this.base_url + "/api/configs/getall/SHDM", {headers:headers})
     .map((res:Response) => JSON.parse(res.json()));
   }
+  getChoice1(){
+
+  let headers = new Headers();
+  headers.append('Content-Type',
+     'application/json');
+  this.createAuthorizationHeader(headers);
+    return this.http.get(this.base_url + "/api/configs/getall/CAC1", {headers:headers})
+    .map((res:Response) => JSON.parse(res.json()));
+  }
+  getChoice2(){
+
+  let headers = new Headers();
+  headers.append('Content-Type',
+     'application/json');
+  this.createAuthorizationHeader(headers);
+    return this.http.get(this.base_url + "/api/configs/getall/CAC2", {headers:headers})
+    .map((res:Response) => JSON.parse(res.json()));
+  }
+
 
 }

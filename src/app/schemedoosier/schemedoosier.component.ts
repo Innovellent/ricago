@@ -23,7 +23,7 @@ const modifiedBy: string = "11";
 export class ObjNgForValue implements PipeTransform {
 
   transform(v, args) {
-
+return 1;
 
    }
 
@@ -257,7 +257,7 @@ this.postshemedetails = this.formBuilder.group({
   // file_upload:'test',
   ModifiedBy:'11'
    });
-let transfervalue= localStorage.getItem('transfervalue');
+
 
    this.postplandetails = this.formBuilder.group({
 
@@ -299,6 +299,7 @@ let transfervalue= localStorage.getItem('transfervalue');
        //  SchemeType: '',
        //  SchemeName: '',
         // file_upload:'test',this.edit_data.controls['NoofOptionsAvailable']
+
         "SchemeDossierID":2,"SchemeID":new FormControl(),
         "NoofOptionsAvailable":new FormControl(),
         "TimeZone":new FormControl(),
@@ -315,7 +316,7 @@ let transfervalue= localStorage.getItem('transfervalue');
         "VestingCondition2":"","VestingCondition3":"","VestingCondition4":"",
         "VestingCondition5":"","VestingCondition6":"","ExercisePrice":"",
         "ExerciseCurrency":"2/2/2009","ExercisePaymentOptions":0,"ExercisePeriod":"","ExerciseWithinOfVesting":0,
-        "EmpTransfer":"","EmpTransferVestingWithin":new FormControl(),"EmpTransferExerciseWithin":0,"EmpResignation":"",
+        "EmpTransfer":"","EmpTransferVestingWithin":new FormControl(''),"EmpTransferExerciseWithin":0,"EmpResignation":"",
         "EmpResignationVestingWithin":0,"EmpResignationExerciseWithin":"","EmpTermination":"",
         "EmpTerminationVestingWithin":"",
         "EmpTerminationExerciseWithin":0,"EmpSuperannuation":"","EmpSuperannuationVestingWithin":0,
@@ -325,11 +326,39 @@ let transfervalue= localStorage.getItem('transfervalue');
         "EmpDeathExerciseWithin":"","ModifiedBy":0,"ModifiedOn":0,"ClosureRemark":0,
         "Status":0
          });
+
+          // var logo1 = (<HTMLInputElement>document.getElementById("EmpT")).value;
+
+         let transfervalue= localStorage.getItem('transfervalue');
+        //  (<FormControl>this.edit_data.controls['EmpTransferVestingWithin'])
+        //             .setValue("logo1", { onlySelf: true });
+
+
+
+        //  this.edit_data.EmpTransferVestingWithin.subscribe(value => {
+        //    this.EmpTransferVestingWithin="ds";
+        //        console.log("value");
+        //         console.log(value);
+        //    });
+  // this.edit_data.valueChanges.subscribe(data => {
+  //   console.log('Form changes', data);
+  //
+  // })
+  //          const nameControl = this.edit_data.controls["EmpTransferVestingWithin"];
+  //             nameControl.valueChanges.subscribe(value => {
+  //             value="asda";
+  //             });
+
+
+
+
+
         //  this.edit_data.valueChanges.subscribe(data => {
         //      console.log('Form changes', data)
         //      this.output = data;
         //      console.log(this.output);
         //    })
+
 
         $(function() {
               $("#file_upload").uploadifive({
@@ -523,10 +552,12 @@ let transfervalue= localStorage.getItem('transfervalue');
 
 
 //
+ngAfterViewInit() {
+       setTimeout(() => {
+         this.edit_data['controls']['EmpTransferVestingWithin'].setValue('bars');
+       });
+   }
 
-ngAfterViewInit(){
-    
-  }
 
 
 private getAPIAccessToken(params: URLSearchParams) {
@@ -547,6 +578,10 @@ private getAPIAccessToken(params: URLSearchParams) {
 
 onSubmitPost()
 {
+
+  setTimeout(() => {
+    this.edit_data['controls']['EmpTransferVestingWithin'].setValue('bar');
+  });
 let json_post_data=JSON.stringify(this.postshemedetails.value);
    console.log(json_post_data);
 
@@ -603,10 +638,9 @@ let json_post_data=JSON.stringify(this.postplandetails.value);
 onSubmitEdit()
 {
 
-
-  // localStorage.getItem('SchemeDossierID',SchemeDossierID);
-
 let SchemeDossierID= localStorage.getItem('SchemeDossierID');
+
+
   console.log("SchemeDossierID");
   console.log(SchemeDossierID);
     console.log("SchemeDossierID");
@@ -721,6 +755,7 @@ this.SchemedoosierService.getschemewizard(getschemewizard).subscribe((data: Arra
 EmpTransferVestingWithin(transfervalue:any){
 console.log("transfervalue");
 console.log(transfervalue);
+
 // let year = document.getElementById('EmpTransferVestingWithin_year');
 // let month = document.getElementById('EmpTransferVestingWithin_month');
 // let day = document.getElementById('EmpTransferVestingWithin_day');
@@ -742,6 +777,8 @@ document.getElementById('EmpTransferValue').innerHTML += total.toString();
 // console.log(year);
 // console.log(month);
 // console.log(day);
+
+
 console.log(total);
 
 }
@@ -756,8 +793,12 @@ EmpTransferVestingWithin_onfocus(transfervalue:any){
 
   (<HTMLInputElement>document.getElementById('EmpT')).value = total.toString();
 
-    (<HTMLInputElement>document.getElementById("EmpT")).focus();
+   (<HTMLInputElement>document.getElementById("EmpT")).focus();
+console.log(this.output);
 
+this.output=total;
+console.log("output");
+console.log(this.output);
   transfervalue=total;
   localStorage.setItem('transfervalue',transfervalue);
     console.log("transfervalue");
@@ -767,13 +808,5 @@ EmpTransferVestingWithin_onfocus(transfervalue:any){
 
 
 
-
-// private getAllCompanyTypes() {
-//   this.SchemedoosierService.getAllScheme().subscribe(
-//       (serviceData: Response) => {
-//          this.getallscheme = JSON.parse(serviceData.json()).Results;
-// console.log(this.getallscheme);
-//       });
-// }
 
 }
