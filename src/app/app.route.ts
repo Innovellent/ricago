@@ -18,6 +18,8 @@ import { CompanyDivisionComponent } from './company-division/company-division.co
 import { CompanyBankComponent } from './company-bank/company-bank.component';
 import { CompanyRoleComponent } from './company-role/company-role.component';
 import { CompanyDetailsComponent } from './company-details/company-details.component';
+import { UserComponent } from './user/user.component';
+import { ManageGranteeComponent } from './manage-grantee/manage-grantee.component';
 
 export const AppRoutes:Routes = [
 
@@ -38,4 +40,7 @@ export const AppRoutes:Routes = [
 { path: 'company_role', component: CompanyRoleComponent },
 
 { path: 'company', component: CompanyDetailsComponent },
+
+{ path: 'user', component: UserComponent },
+{ path: 'manage_grantee', component: ManageGranteeComponent },
 ];

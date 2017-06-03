@@ -1,0 +1,454 @@
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+ <div class="content-wrapper">
+
+    <section class="content-header">
+      <h1>
+    <!--      Dashboard -->
+       &nbsp;
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Company Details</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="col-md-12">
+          <!-- MAP & BOX PANE -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">Company Details</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+        <i class="fa fa-minus"></i>
+                </button>
+            <!--    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <div class="row no-gutter">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="pad col-lg-10 col-lg-offset-1">
+                    <!-- form will be created here -->
+           <div class="col-lg-2"><br></div>
+               <div class="row">
+                          <div class="col-lg-12">
+                        <!--     <div class="col-md-12 pull-right">
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Addcompany">
+              <i class="fa fa-plus-circle"></i> ADD COMPANY</button>
+                           </div> -->
+                           <div class="col-md-12 pull-right">
+    <button type="button" class="btn btn-primary"data-toggle="modal"data-target="#Addcompany">
+        <i class="fa fa-plus-circle">
+        </i> ADD COMPANY
+    </button>
+</div>
+                         </div>
+                    </div>
+                          <div class="col-lg-12">
+                            <div class="table-responsive">
+
+               <table class="table table-bordered" id="Grant">
+          <thead>
+
+
+<tr *ngFor="let value of get_white_label.Results  " >
+
+<ng-template  [ngIf]="value.DisplayType=='G'">
+  <!-- <div  "value | objngfordelete "> -->
+ <th class="th"  *ngFor="let v of generateArray(value)| slice:1">
+   {{ v | objngfor }}
+
+  </th>
+  <th class="th" >Action
+  </th>
+<!-- </div> -->
+</ng-template>
+</tr>
+
+
+         </thead>
+<tbody>
+
+
+  <tr *ngFor="let v of company_name.Results">
+   <td class="td" *ngFor="let tr of generateArrayTR(v)" >
+
+     {{ tr }}
+</td>
+<button type="button" class="btn btn-primary" (click)="editCompanyDetails(v.CompanyID);">
+    <i class="fa fa-edit">
+    </i>Edit
+</button>
+<button type="submit" class="btn btn-danger" (click)="removeCompany(v.CompanyID);">
+    <i class="fa fa-remove">
+    </i>Delete
+</button>
+     </tr>
+
+
+   </tbody>
+       </table>
+
+
+              </div>
+                          </div>
+          </div>
+                </div>
+                <!-- /.col -->
+
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+          <!-- /.row -->
+
+          <!-- /.box -->
+        </div>
+    </div>
+    <!-- /.content -->
+  </div>
+
+<app-footer></app-footer>
+
+
+<!--add company-->
+<div id="Addcompany" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><i class="fa  fa-plus-square"></i> Add Company Details</h4>
+      </div>
+
+      <div class="modal-body ">
+      <div class="row">
+       <form class=""role="form" [formGroup]="postdata" (ngSubmit)="onSubmitPost()">
+
+
+<div  *ngFor="let value of get_white_label.Results">
+  <ng-template  [ngIf]="value.DisplayType=='C' ">
+    <label></label>
+    <div class="form-group col-lg-6" *ngFor="let name  of (generateArrayC(value) ) ">
+
+
+      <!-- <input [(ngModel)]="v | whitelabelkey"/> -->
+      <!-- let name =new WhitelabelkeyPipe().transform(v); -->
+      <!-- {{name}} -->
+      <ng-template  [ngIf]="name.toString().split(',')[1]=='CompanyName'">
+
+        <div class="form-group col-lg-12">
+          <label></label>
+          <select class="form-control" formControlName="{{name.toString().split(',')[1]}}" >
+            <option [selected]="CompanyName" >CompanyName</option>
+            <option *ngFor="let v of company_name.Results" value={{v.CompanyID}}>
+              {{v.CompanyName}}
+
+            </option>
+          </select>
+        </div>
+
+      </ng-template>
+      <ng-template  [ngIf]="name.toString().split(',')[1]=='Depository'">
+
+        <div class="form-group col-lg-12">
+          <label></label>
+          <select class="form-control" formControlName="{{name.toString().split(',')[1]}}" >
+            <option>Depository</option>
+            <option *ngFor="let getDepositorycondition of getDepositorycondition.Results" value={{getDepositorycondition.ConfigCode}}>
+            {{getDepositorycondition.ConfigValue}}
+            </option>
+          </select>
+        </div>
+
+      </ng-template>
+
+      <ng-template  [ngIf]="name.toString().split(',')[1]=='SharesListed'">
+
+        <div class="form-group col-lg-12">
+          <label></label>
+          <select class="form-control" formControlName="{{name.toString().split(',')[1]}}" >
+            <option selected>Select Whether Shares Are Listed</option>
+            <option *ngFor="let getsharelistedcondition of getsharelistedcondition.Results" value={{getsharelistedcondition.ConfigCode}}>
+            {{getsharelistedcondition.ConfigValue}}
+            </option>
+          </select>
+        </div>
+
+      </ng-template>
+      <ng-template  [ngIf]="name.toString().split(',')[1]=='SharesInDemat'">
+
+        <div class="form-group col-lg-12">
+          <label></label>
+          <select class="form-control" width="80%" formControlName="{{name.toString().split(',')[1]}}" >
+            <option>Shares in Demat Account</option>
+            <option *ngFor="let getsharesDemandcondition of getsharesDemandcondition.Results" value={{getsharesDemandcondition.ConfigCode}}>
+            {{getsharesDemandcondition.ConfigValue}}
+            </option>
+          </select>
+        </div>
+
+      </ng-template>
+      <ng-template  [ngIf]="name.toString().split(',')[1]=='additionalchoice1'">
+        <div class="form-group col-lg-12">
+          <label></label>
+          <select class="form-control" width="80%"formControlName="{{name.toString().split(',')[1]}}">
+            <option >additionalchoice1</option>
+            <option *ngFor="let additionalchoice1 of getChoice1.Results" value={{additionalchoice1.ConfigCode}}>
+            {{additionalchoice1.ConfigValue}}
+            </option>
+          </select>
+        </div>
+      </ng-template>
+      <ng-template  [ngIf]="name.toString().split(',')[1]=='additionalchoice2'">
+        <div class="form-group col-lg-12">
+          <label></label>
+          <select class="form-control" width="80%"formControlName="{{name.toString().split(',')[1]}}">
+            <option >additionalchoice2</option>
+            <option *ngFor="let additionalchoice2 of getChoice2.Results" value={{additionalchoice2.ConfigCode}}>
+            {{additionalchoice2.ConfigValue}}
+            </option>
+          </select>
+        </div>
+      </ng-template>
+      <ng-template  [ngIf]="name.toString().split(',')[1]=='additionaldate1'">
+        <div class="form-group col-lg-12">
+          <label></label>
+          <!-- <input type="date" name="" formControlName={{name}} class="form-control" id="" value="" placeholder={{name}} title={{name}}> -->
+          <input type="date" name="" formControlName="{{name.toString().split(',')[1]}}" class="form-control" id="" value="" placeholder="{{name.toString().split(',')[0]}}" title="{{name.toString().split(',')[1]}}">
+
+        </div>
+      </ng-template>
+      <ng-template  [ngIf]="name.toString().split(',')[1]=='additionaldate2'">
+        <div class="form-group col-lg-12">
+          <label></label>
+          <!-- <input type="date" name="" formControlName="{{name.toString().split(',')[1]}}" class="form-control" id="" value="" placeholder={{name}} title={{name}}> -->
+          <input type="date" name="" formControlName="{{name.toString().split(',')[1]}}" class="form-control" id="" value="" placeholder="{{name.toString().split(',')[0]}}" title="{{name.toString().split(',')[1]}}">
+
+        </div>
+      </ng-template>
+
+
+      <ng-template  [ngIf]="(name.toString().split(',')[1]!='SharesListed')&&(name.toString().split(',')[1]!='CompanyName')&&(name.toString().split(',')[1]!='undefined')&&(name.toString().split(',')[1]!='SharesInDemat')&&(name.toString().split(',')[1]!='Depository')
+      &&(name.toString().split(',')[1]!='additionalchoice1')
+      &&(name.toString().split(',')[1]!='additionalchoice2')&&(name.toString().split(',')[1]!='additionaldate1')&&(name.toString().split(',')[1]!='additionaldate2')">
+
+        <input type="text" name="" formControlName="{{name.toString().split(',')[1]}}" class="form-control" id="" value="" placeholder="{{name.toString().split(',')[0]}}" title="{{name.toString().split(',')[1]}}">
+      </ng-template>
+
+      </div>
+  </ng-template>
+</div>
+
+     <div class="col-lg-2"><br></div>
+       <button type="submit" class="btn btn-primary" >Save</button>
+     <button type="button" class="btn btn-default" data-dismiss="modal">Reset</button>
+    </form >
+        </div>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+<!--Modal Template for the Edit Company Modal Starts-->
+
+<div id="edit" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><i class="fa  fa-plus-square"></i> Edit Company Details</h4>
+      </div>
+
+      <div class="modal-body ">
+      <div class="row" *ngFor="let v1 of profile_id.Results">
+
+       <form class=""role="form" [formGroup]="updatedetails" (ngSubmit)="onUpdatePost()">
+
+
+
+         <!-- <div class="form-group col-lg-6" *ngFor="let name of generateArrayTRE(v1)" > -->
+
+           <div class="form-group col-lg-6" *ngFor="let name of generateArrayTREV(v1) " >
+
+<!-- <div >
+<input  type="text" class="form-control input-sm" formControlName="{{name.toString().split(',')[0]}}" [(ngModel)]="name.toString().split(',')[1]"value="{{name.toString().split(',')[1]}}">
+
+</div> -->
+
+<ng-template  [ngIf]="(name.toString().split(',')[0]=='CompanyName')">
+
+  <div class="form-group col-lg-12">
+    <label></label>
+    <select class="form-control" [(ngModel)]="name.toString().split(',')[1]"  formControlName="{{name.toString().split(',')[0]}}" >
+      <option [selected]="name.toString().split(',')[0]" >{{name.toString().split(',')[0]}}</option>
+      <option *ngFor="let v of company_name.Results" value={{v.CompanyID}}>
+        {{v.CompanyName}}
+      </option>
+    </select>
+  </div>
+
+</ng-template>
+
+           <ng-template  [ngIf]="name.toString().split(',')[0]=='Depository'">
+
+             <div class="form-group col-lg-12">
+               <label></label>
+               <select class="form-control" [(ngModel)]="name.toString().split(',')[1]" formControlName="{{name.toString().split(',')[0]}}" >
+
+                 <option>Depository</option>
+                 <option *ngFor="let getDepositorycondition of getDepositorycondition.Results" value={{getDepositorycondition.ConfigCode}}>
+                 {{getDepositorycondition.ConfigValue}}
+                 </option>
+               </select>
+             </div>
+
+           </ng-template>
+
+           <ng-template  [ngIf]="name.toString().split(',')[0]=='SharesListed'">
+
+             <div class="form-group col-lg-12">
+               <label></label>
+               <select class="form-control" [(ngModel)]="name.toString().split(',')[1]" formControlName="{{name.toString().split(',')[0]}}" >
+
+                 <option  [selected]="name" >{{name.toString().split(',')[1]}}</option>
+                 <option>Select Whether Shares Are Listed</option>
+                 <option *ngFor="let getsharelistedcondition of getsharelistedcondition.Results" value={{getsharelistedcondition.ConfigCode}}>
+                 {{getsharelistedcondition.ConfigValue}}
+                 </option>
+               </select>
+             </div>
+
+           </ng-template>
+           <ng-template  [ngIf]="name.toString().split(',')[0]=='SharesInDemat'">
+
+             <div class="form-group col-lg-12">
+               <label></label>
+               <select class="form-control" [(ngModel)]="name.toString().split(',')[1]" width="80%" formControlName="{{name.toString().split(',')[0]}}" >
+                 <option>Shares in Demat Account</option>
+
+                 <option  [selected]="name" >{{name.toString().split(',')[1]}}</option>
+                 <option *ngFor="let getsharesDemandcondition of getsharesDemandcondition.Results" value={{getsharesDemandcondition.ConfigCode}}>
+                 {{getsharesDemandcondition.ConfigValue}}
+                 </option>
+               </select>
+             </div>
+
+           </ng-template>
+           <ng-template  [ngIf]="name.toString().split(',')[0]=='additionalchoice1'">
+             <div class="form-group col-lg-12">
+               <label></label>
+               <select class="form-control" [(ngModel)]="name.toString().split(',')[1]"  width="80%"formControlName="{{name.toString().split(',')[0]}}" >
+                 <option >additionalchoice1</option>
+
+                 <option  [selected]="name.toString().split(',')[0]" >{{name.toString().split(',')[1]}}</option>
+                 <option *ngFor="let additionalchoice1 of getChoice1.Results" value={{additionalchoice1.ConfigCode}}>
+                 {{additionalchoice1.ConfigValue}}
+                 </option>
+               </select>
+             </div>
+           </ng-template>
+           <ng-template  [ngIf]="name.toString().split(',')[0]=='additionalchoice2'">
+             <div class="form-group col-lg-12">
+               <label></label>
+               <select class="form-control" [(ngModel)]="name.toString().split(',')[1]"  width="80%"formControlName="{{name.toString().split(',')[0]}}">
+                 <option >additionalchoice2</option>
+                 <option *ngFor="let additionalchoice2 of getChoice2.Results" value={{additionalchoice2.ConfigCode}}>
+                 {{additionalchoice2.ConfigValue}}
+                 </option>
+               </select>
+             </div>
+           </ng-template>
+           <ng-template  [ngIf]="name.toString().split(',')[0]=='additionaldate1'">
+             <div class="form-group col-lg-12">
+               <label></label>
+
+               <input  type="text" class="form-control input-sm" formControlName="{{name.toString().split(',')[0]}}" [(ngModel)]="name.toString().split(',')[1]"value="{{name.toString().split(',')[1]}}">
+
+             </div>
+           </ng-template>
+           <ng-template  [ngIf]="name.toString().split(',')[0]=='additionaldate2'">
+             <div class="form-group col-lg-12">
+               <label></label>
+
+               <input  type="text" class="form-control input-sm" formControlName="{{name.toString().split(',')[0]}}" [(ngModel)]="name.toString().split(',')[1]"value="{{name.toString().split(',')[1]}}">
+
+             </div>
+           </ng-template>
+
+ <ng-template  [ngIf]="(name.toString().split(',')[0]!='SharesListed')&&(name.toString().split(',')[0]!='CompanyName')&&(name.toString().split(',')[0]!='SharesInDemat')&&(name.toString().split(',')[0]!='Depository')
+           &&(name.toString().split(',')[0]!='additionalchoice1')
+           &&(name.toString().split(',')[0]!='additionalchoice2')&&(name.toString().split(',')[0]!='additionaldate1')&&(name.toString().split(',')[0]!='additionaldate2')">
+
+             <!-- <input type="text" name="" formControlName={{(name.key)}} class="form-control input-sm" [(ngModel)]="name.value"> -->
+
+             <input  type="text" class="form-control input-sm" formControlName="{{name.toString().split(',')[0]}}" [(ngModel)]="name.toString().split(',')[1]"value="{{name.toString().split(',')[1]}}">
+
+    </ng-template>
+       </div>
+<!-- </div> -->
+     <div class="col-lg-2"><br></div>
+       <button type="submit" class="btn btn-primary" >Save</button>
+     <button type="button" class="btn btn-default" data-dismiss="modal">Reset</button>
+    </form >
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+</div>
+<!--edit-->
+<!-- Calendar Modal -->
+
+
+<div id="Calendar" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><i class="fa  fa-calendar"></i> Calendar</h4>
+      </div>
+
+      <div class="modal-body box box-solid bg-green-gradient">
+     <div class="box-body no-padding">
+    <div id="calendar" style="width: 100%"><div class="datepicker datepicker-inline"><div class="datepicker-days" style="display: block;"><table class="table table-condensed"><thead><tr><th class="prev" style="visibility: visible;">«</th><th colspan="5" class="datepicker-switch">November 2016</th><th class="next" style="visibility: visible;">»</th></tr><tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr></thead><tbody><tr><td class="old day">30</td><td class="old day">31</td><td class="day">1</td><td class="day">2</td><td class="day">3</td><td class="day">4</td><td class="day">5</td></tr><tr><td class="day">6</td><td class="day">7</td><td class="day">8</td><td class="day">9</td><td class="day">10</td><td class="day">11</td><td class="day">12</td></tr><tr><td class="day">13</td><td class="day">14</td><td class="day">15</td><td class="day">16</td><td class="day">17</td><td class="day">18</td><td class="day">19</td></tr><tr><td class="day">20</td><td class="day">21</td><td class="day">22</td><td class="day">23</td><td class="day">24</td><td class="day">25</td><td class="day">26</td></tr><tr><td class="day">27</td><td class="day">28</td><td class="day">29</td><td class="day">30</td><td class="new day">1</td><td class="new day">2</td><td class="new day">3</td></tr><tr><td class="new day">4</td><td class="new day">5</td><td class="new day">6</td><td class="new day">7</td><td class="new day">8</td><td class="new day">9</td><td class="new day">10</td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-months" style="display: none;"><table class="table table-condensed"><thead><tr><th class="prev" style="visibility: visible;">«</th><th colspan="5" class="datepicker-switch">2016</th><th class="next" style="visibility: visible;">»</th></tr></thead><tbody><tr><td colspan="7"><span class="month">Jan</span><span class="month">Feb</span><span class="month">Mar</span><span class="month">Apr</span><span class="month">May</span><span class="month">Jun</span><span class="month">Jul</span><span class="month">Aug</span><span class="month">Sep</span><span class="month">Oct</span><span class="month">Nov</span><span class="month">Dec</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-years" style="display: none;"><table class="table table-condensed"><thead><tr><th class="prev" style="visibility: visible;">«</th><th colspan="5" class="datepicker-switch">2010-2019</th><th class="next" style="visibility: visible;">»</th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year">2012</span><span class="year">2013</span><span class="year">2014</span><span class="year">2015</span><span class="year">2016</span><span class="year">2017</span><span class="year">2018</span><span class="year">2019</span><span class="year new">2020</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div></div></div>
+      </div>
+
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-primary" data-dismiss="modal">Add new event</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Reset</button>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+</div>
+</body>

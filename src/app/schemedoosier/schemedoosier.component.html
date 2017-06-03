@@ -589,7 +589,7 @@
                             </option>
                           </select>
                           <input type="text"  id="EmpTransferValue"
-                         (focus)="EmpTransferVestingWithin_onfocus(wizard_data.EmpTransferVestingWithin)">
+                         (focus)="EmpTransferVestingWithin_onfocus(wizard_data.EmpTransferVestingWithin)" value="">
 
 
                           <input type="text"  id="EmpT" >
@@ -1580,7 +1580,7 @@
 
 
                   <button type="button" class="btn btn-default" id="back1">Back</button>
-                  <button type="submit" class="btn btn-primary" id="show">Save</button>
+                  <button type="submit"(click)="joiningdate($event.target.value)" class="btn btn-primary" id="show">Save</button>
                   <button type="button" class="btn btn-danger" id="close">Freeze</button>
 
                 </div>
@@ -1677,7 +1677,7 @@
 
 
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary" >Add</button>
+        <button type="submit"   class="btn btn-primary" >Add</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
 

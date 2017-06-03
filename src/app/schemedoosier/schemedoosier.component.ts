@@ -552,11 +552,11 @@ this.postshemedetails = this.formBuilder.group({
 
 
 //
-ngAfterViewInit() {
-       setTimeout(() => {
-         this.edit_data['controls']['EmpTransferVestingWithin'].setValue('bars');
-       });
-   }
+// ngAfterViewInit() {
+//        setTimeout(() => {
+//          this.edit_data['controls']['EmpTransferVestingWithin'].setValue('bars');
+//        });
+//    }
 
 
 
@@ -805,7 +805,15 @@ console.log(this.output);
   console.log(transfervalue);
 
 }
-
+joiningdate(value): any {
+  console.log("Ds");
+  console.log(value);
+  //console.log((<HTMLInputElement>document.getElementById('txtBoardApprovalDate')).value);
+//  console.log( $("#txtBoardApprovalDate").datepicker({ dateFormat: 'dd,MM,yyyy' }).val());
+    //return (<HTMLInputElement>document.getElementById('txtBoardApprovalDate')).value;
+//this.postdata.controls['joiningdate'].value = 'dsd';
+this.edit_data.controls['EmpTerminationVestingWithin'].setValue((<HTMLInputElement>document.getElementById('EmpTransferValue')).value);
+};
 
 
 

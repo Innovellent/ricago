@@ -1,0 +1,666 @@
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="content-wrapper" style="min-height: 278px;">
+
+    <section class="content-header">
+      <h1>&nbsp;
+
+
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Manage Grant</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <div class="">
+    	<div class="col-md-12">
+          <!-- MAP & BOX PANE -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">Manage Grant</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+				<i class="fa fa-minus"></i>
+                </button>
+            <!--    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <div class="row no-gutter">
+                <div class="col-md-12 col-sm-12">
+                  <div class="pad">
+                    <!-- Map will be created here -->
+		<form class="form-horizontal">
+
+                     <div class="row">
+                    	<div class="col-md-12">
+                           <div class="col-md-5">
+                     	    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddScheme">
+							<i class="fa fa-plus-circle"></i> ADD Grant</button>
+                           </div>
+                           <div class="col-md-2">
+                     	   <div id="uploadifive-file_upload2" class="uploadifive-button" style="height: 30px; line-height: 30px; overflow: hidden; position: relative; text-align: center; width: 100px;">Attach Docs<input id="file_upload2" name="file_upload" type="file" multiple="" style="width: 100px; display: none;"><input type="file" style="font-size: 30px; opacity: 0; position: absolute; right: -3px; top: -3px; z-index: 999;" multiple="multiple"></div><div id="uploadifive-file_upload2-queue" class="uploadifive-queue"></div>
+                           </div>
+                            <div class="col-md-2">
+                            	<button type="button" class="btn btn-primary"><i class="fa fa-upload"></i>&nbsp;&nbsp;Upload</button>
+                            </div>
+                           <div class="col-md-3">&nbsp;
+                     	    <a href="admin.xlsx"><button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;&nbsp;Download Template</button></a>
+                           </div>
+                           <div class="col-md-12 table-responsive">
+                        	 <div id="Grant_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer"><div class="row"><div class="col-sm-9"></div><div class="col-sm-3"><div id="Grant_filter" class="dataTables_filter">
+                             <label>
+                               <input type="search" placeholder="Search" >
+
+                             </label></div></div></div><div class="row"><div class="col-sm-12"><table class="table table-bordered  dataTable no-footer" id="Grant" role="grid" aria-describedby="Grant_info">
+			   <thead>
+			   <tr role="row"><th class="th sorting_asc" tabindex="0" aria-controls="Grant" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Company Name: activate to sort column descending">Company Name</th><th class="th sorting" tabindex="0" aria-controls="Grant" rowspan="1" colspan="1" aria-label="Scheme Name: activate to sort column ascending">Scheme Name</th><th class="th sorting" tabindex="0" aria-controls="Grant" rowspan="1" colspan="1" aria-label="Scheme Type: activate to sort column ascending">Scheme Type</th><th class="th sorting" tabindex="0" aria-controls="Grant" rowspan="1" colspan="1" aria-label="Plan Name: activate to sort column ascending">Plan Name</th><th class="th sorting" tabindex="0" aria-controls="Grant" rowspan="1" colspan="1" aria-label="Grant Reference Id: activate to sort column ascending">Grant Reference Id</th><th class="th sorting" tabindex="0" aria-controls="Grant" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending">Action</th></tr>
+			  </thead>
+			  <tbody>
+
+
+
+
+
+				<tr role="row" class="odd">
+                <td class="td sorting_1">Clonect</td>
+                  <td class="td"><a data-toggle="modal" data-target="#document">Esop-2015</a></td>
+                  <td class="td">Esop</td>
+                   <td class="td"><a data-toggle="modal" data-target="#document">Plan 1</a></td>
+                  <td class="td"><a data-toggle="modal" data-target="#AddScheme">EMS-G001</a></td>
+                  <td class="td">
+                  <button type="button" class="btn btn-success head1"><i class="fa fa-filter"></i>&nbsp;Manage Grant Details</button>&nbsp;<button type="button" class="btn btn-info employee"><i class="fa fa-user-plus"></i>&nbsp;Add Grantees</button>&nbsp;<button type="button" class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Close</button>
+                  </td>
+		        </tr><tr role="row" class="even">
+                <td class="td sorting_1">Clonect</td>
+                  <td class="td"><a data-toggle="modal" data-target="#document">Esop-2015</a></td>
+                  <td class="td">Esop</td>
+                  <td class="td"><a data-toggle="modal" data-target="#document">Plan 2</a></td>
+                  <td class="td"><a data-toggle="modal" data-target="#AddScheme">EMS-G002</a></td>
+                  <td class="td">
+                  	 <button type="button" class="btn btn-success head1"><i class="fa fa-filter"></i>&nbsp;Manage Grant Details</button>&nbsp;<button type="button" class="btn btn-info employee"><i class="fa fa-user-plus"></i>&nbsp;Add Grantees</button>&nbsp;<button type="button" class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Close</button>
+                  </td>
+		        </tr><tr role="row" class="odd">
+                <td class="td sorting_1">Clonect</td>
+                  <td class="td"><a data-toggle="modal" data-target="#document">Esop-2015</a></td>
+                  <td class="td">Esop</td>
+                  <td class="td"><a data-toggle="modal" data-target="#document">Plan 3</a></td>
+                  <td class="td"><a data-toggle="modal" data-target="#AddScheme">EMS-G003</a></td>
+                  <td class="td">
+                  	<button type="button" class="btn btn-success head1"><i class="fa fa-filter"></i>&nbsp;Manage Grant Details</button>&nbsp;<button type="button" class="btn btn-info employee"><i class="fa fa-user-plus"></i>&nbsp;Add Grantees</button>&nbsp;<button type="button" class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Close</button>
+                  </td>
+		        </tr></tbody>
+		   </table></div></div><div class="row"><div class="col-sm-5"><div class="dataTables_info" id="Grant_info" role="status" aria-live="polite">Showing 1 to 3 of 3 entries</div></div><div class="col-sm-7"><div class="dataTables_paginate paging_simple_numbers" id="Grant_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="Grant_previous"><a href="#" aria-controls="Grant" data-dt-idx="0" tabindex="0">Previous</a></li><li class="paginate_button active"><a href="#" aria-controls="Grant" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button next disabled" id="Grant_next"><a href="#" aria-controls="Grant" data-dt-idx="2" tabindex="0">Next</a></li></ul></div></div></div></div>
+                           </div>
+
+                        </div>
+                    </div>
+
+                  <div class="col-md-12 form-group">
+ 					 <div id="head2" style="display: none;">
+
+                       <div id="top1">
+    	<div class="col-lg-12">
+
+            	<img src="assets/img/step4/1.png" img="" class="img-responsive" width="70%">
+
+        </div>
+
+    	<fieldset class="fsStyle">
+                            <legend class="legendStyle">
+                             <h3>Vesting Schdule</h3>
+                            </legend>
+
+                        <div class="col-md-12">
+
+                          <div class="form-group col-md-6">
+                         <label class="col-md-6" for="Grant">&nbsp;</label>
+                        <select class="form-control" style="width: 62%;">
+                              <option>Select Type Of Vesting</option>
+                              <option>---</option>
+                              <option>---</option>
+                            </select>
+                        </div>
+                         <div class="form-group col-md-6">
+                         <label class="col-md-6" for="Grant">Date Of Vesting:</label>
+                        <input type="text" id="txtBoardApprovalDate2" name="txtBoardApprovalDate" value="" class="form-control" style="width: 62%;">
+                        </div>
+                         </div>
+
+                         <div class="col-md-12">
+
+                          <div class="form-group col-md-6">
+                        <label class="control-label col-md-2" for="Vesting"></label>
+
+                            <select class="form-control">
+                              <option>No. Of Grades</option>
+                              <option>1</option>
+                             <option>2</option>
+                             <option>3</option>
+                             <option>4</option>
+                             <option>5</option>
+                             <option>6</option>
+                            </select>
+                         </div>
+
+                         <table class=" table table-responsive table-bordered" style="width:100%">
+                           <thead>
+                           	<tr><th>Grade</th>
+                            <th>Date of vesting</th>
+                            <th>% of Options</th>
+                           </tr></thead>
+                            <tbody>
+                              <tr>
+                                <td class="col-xs-1">Grade1</td>
+                                <td> <input type="text" id="txtBoardApprovalDate3" name="txtBoardApprovalDate" value="" class="form-control" style="width: 62%;"></td>
+                                <td><input type="text" class="form-control"></td>
+
+                              </tr>
+                               <tr>
+                                <td class="col-xs-1">Grade2</td>
+                                <td> <input type="text" id="txtBoardApprovalDate4" name="txtBoardApprovalDate" value="" class="form-control" style="width: 62%;"></td>
+                                <td><input type="text" class="form-control"></td>
+
+                              </tr>
+                               <tr>
+                                <td class="col-xs-1">Grade3</td>
+                                <td> <input type="text" id="txtBoardApprovalDate5" name="txtBoardApprovalDate" value="" class="form-control" style="width: 62%;"></td>
+                                <td><input type="text" class="form-control"></td>
+
+                              </tr>
+                             </tbody>
+                         </table>
+
+
+                         </div>
+
+                         <div class="col-md-12">
+
+                          <div class="form-group col-md-6">
+  			    <label class="control-label" for="Vesting"> Is vesting attached to any condition?</label>
+                            <input type="checkbox">Yes<input type="checkbox">No
+                         </div>
+                          <div class="form-group col-md-6">
+                            <select class="form-control">
+                              <option>No. Of Conditions</option>
+                              <option>1</option>
+                             <option>2</option>
+                            </select>
+                         </div>
+
+                         <div class="col-md-12">
+                         <br>
+
+                            <table class=" table table-responsive table-bordered" style="width:100%">
+
+                              <tbody><tr>
+                                <td class="col-xs-1">Condition1</td>
+                                <td><textarea type="text" class="form-control"></textarea></td>
+
+                              </tr>
+                              <tr>
+                                <td class="col-xs-1">Condition2</td>
+                                 <td><textarea type="text" class="form-control"></textarea></td>
+
+                              </tr>
+                              <tr>
+                                <td class="col-xs-1">Condition3</td>
+                                <td><textarea type="text" class="form-control"></textarea></td>
+
+                              </tr>
+
+                         </tbody></table>
+
+                    </div>
+
+                         </div>
+                      <p>&nbsp;</p>
+                      </fieldset>
+
+        <div class="col-lg-12 form-group">
+
+
+                        <button type="button" class="btn btn-primary">Save</button>
+                      <button type="button" class="btn btn-success" id="show">Next</button>
+
+   					 </div>
+    </div>
+
+                       <div id="top2" style="display: none;">
+        <div class="col-lg-12">
+
+            	<img src="assets/img/step4/2.png" img="" class="img-responsive" width="70%">
+
+        </div>
+
+    	<fieldset class="fsStyle">
+                            <legend class="legendStyle">
+                             <h3>Exercise Details</h3>
+                            </legend>
+
+                    <div class="col-md-10 col-md-offset-1"><br>
+
+                        <div class="col-md-6">
+                            <input type="text" class="form-control m-bot15" id="text1" placeholder="Exercise Price" title="Grant Amount">
+                         </div>
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-default">Revise</button>
+                         </div>
+                         <p>&nbsp;</p>
+                         <div class="col-md-6">
+                            <select class="form-control">
+                              <option>Select Currency</option>
+                              <option>Yes</option>
+                              <option>No</option>
+
+                            </select>
+                         </div>
+
+                        <div class="col-md-6">
+                            <select class="form-control">
+                              <option>Mode Of payment</option>
+                              <option>Yes</option>
+                              <option>No</option>
+
+                            </select>
+                         </div>
+                         &nbsp;
+                         <div class="form-group col-md-6">
+                         <label class="" for="email">Last Date Of Exercise:</label>
+                           <input type="text" id="txtBoardApprovalDate6" name="txtBoardApprovalDate" value="" class="form-control" style="width: 62%;">
+                          </div>
+                   <p>&nbsp;</p>
+                        <div class="col-md-6">
+                        <label class="" for="email">Or Within
+                            <input type="text" style="border-bottom:dotted;border-left:none;border-right:none;border-top:none;width:20%;"> Of Vesting</label>
+                         </div>
+
+                    </div>
+                      <p>&nbsp;</p>
+                     </fieldset>
+
+        <div class="col-lg-12 form-group">
+
+
+
+					     <button type="button" class="btn btn-default" id="back4">Back</button>
+                       <button type="button" class="btn btn-primary">Save</button>
+                      <button type="button" class="btn btn-danger" id="close">Freeze</button>
+
+   					</div>
+    </div>
+
+
+
+
+
+
+                   </div>
+               </div>
+               <div class="col-lg-12" id="search" style="display: none;">
+               	<fieldset class="fsStyle">
+                   <legend class="legendStyle">
+                        <h3 style="color:#005a7d">Search Details</h3>
+                    </legend>
+                    	<div class="form-group col-lg-4">
+
+					   <select class="form-control" style="width:80%;">
+                          <option value="true">Select Company Name</option>
+                          <option>ABC Cop.</option>
+                          <option>India Global Pvt Ltd</option>
+
+                        </select>
+				</div>
+
+				<div class="form-group col-lg-4">
+
+				  <select class="form-control" style="width:80%;">
+                          <option value="true">Select Location</option>
+                          <option>Bangalore</option>
+                          <option>Pune</option>
+
+                        </select>
+				</div>
+
+				<div class="form-group col-lg-4">
+
+					<select class="form-control" style="width:80%;">
+                          <option value="true">Select Department</option>
+                          <option>Marketing </option>
+                          <option>IT </option>
+                          <option>HR </option>
+
+                        </select>
+				</div>
+
+				<div class="form-group col-lg-4">
+
+				                    <select class="form-control" style="width:80%;">
+                                          <option value="true">Select Division</option>
+                                          <option>HR </option>
+                                          <option>IT Head</option>
+
+                                       </select>
+				</div>
+
+				<div class="form-group col-lg-4">
+					<select class="form-control" style="width:80%;">
+                                          <option value="true">Select Grade</option>
+                                          <option>A</option>
+                                          <option>B</option>
+
+
+                                       </select>
+				</div>
+
+				<div class="form-group col-lg-4">
+
+					<select class="form-control " style="width:80%;">
+                                          <option value="true">Select Designation</option>
+                                          <option>Manager</option>
+                                          <option>Admin</option>
+                                          <option>Sr. Manager</option>
+
+                                       </select>
+				</div>
+
+				<div class="form-group col-lg-4">
+				<label>Date Of Joining From:</label>
+				 <input type="text" id="txtBoardApprovalDate" name="txtBoardApprovalDate" value="" class="form-control" style="width: 62%;">
+				</div>
+
+				<div class="form-group col-lg-4">
+				<label>Date Of Joining To:</label>
+				 <input type="text" id="txtBoardApprovalDate1" name="txtBoardApprovalDate" value="" class="form-control" style="width: 62%;">
+				</div>
+                <div class="form-group col-sm-4">
+                <label></label>
+				  <input type="text" class="form-control m-bot15" id="text1" placeholder="Employee Name/ Employee ID" title="Employee Name/ Employee ID">
+				  </div>
+                  <div class="col-sm-12"><br>
+				<button type="button" class="btn btn-primary" id="search1">Search</button>
+                 <br>
+				</div>
+ </fieldset>
+
+                <div class=" table-responsive" id="asign" style="display: none;">
+
+                        &nbsp;
+                        &nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;
+                        &nbsp; <table class="table table-bordered" style="width:100%"><tbody><tr><th class="th">Company Name</th><th class="th">Location</th><th class="th">Department</th>
+                            <th class="th">Division</th>
+							 <th class="th">Employee Name</th>
+							  <th class="th">Employee ID</th>
+							  <th class="th">Grade</th>
+							  <th class="th">Designation</th>
+							  <th class="th">DOJ</th>
+							  <th class="th">Options to grant</th></tr>
+                          <tr>
+                            <td class="td">ABC</td>
+                            <td class="td">GOA</td>
+                            <td class="td">Finance</td>
+							<td class="td">Accounts</td>
+							<td class="td">Sneha</td>
+							<td class="td">ABC-098</td>
+							<td class="td">A</td>
+							<td class="td">CS</td>
+							<td class="td">12-06-2009</td>
+                            <td class="td"><input type="text" value=""></td>
+                          </tr>
+                          <tr>
+                           <td class="td">ABC</td>
+                            <td class="td">GOA</td>
+                            <td class="td">Finance</td>
+							<td class="td">Accounts</td>
+							<td class="td">Sneha</td>
+							<td class="td">ABC-098</td>
+							<td class="td">A</td>
+							<td class="td">CS</td>
+							<td class="td">12-06-2009</td>
+                            <td class="td"><input type="text" value=""></td>
+                          </tr>
+
+                     </tbody></table>
+
+					 <button type="button" class="btn btn-primary" id="submit">Grant</button><br>
+					  </div>
+               </div>
+        </form>
+
+
+            </div>
+
+                 </div>
+
+
+                  </div>
+                </div>
+                <!-- /.col -->
+
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+          <!-- /.row -->
+
+          <!-- /.box -->
+        </div>
+<app-footer></app-footer>
+<div id="AddScheme" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md">
+ <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><i class="fa  fa-plus-square"></i> Add Grant</h4>
+      </div>
+
+      <div class="modal-body ">
+	  <div class="row">
+          <div class="form-group col-lg-6">
+               <label class="" for="email">Date Of Grant:</label>
+               <input type="text" id="txtBoardApprovalDate7" name="txtBoardApprovalDate" value=""  class="form-control">
+          </div>
+          <div class="form-group col-lg-6">
+             <label class="" for="Employees">Record Date :</label>
+             <input type="text" id="txtBoardApprovalDate8" name="txtBoardApprovalDate" value=""  class="form-control">
+         </div>
+
+          <div class="col-lg-6 form-group">
+            <label class="control-label " for="email">Add Documents:</label>
+         	<input id="file_upload1" name="file_upload" type="file" multiple style="width:100px"><br/>
+         </div>
+          <div class="col-lg-6 form-group">
+         	 <button type="button" class="btn btn-primary">Download Format</button>
+         </div>
+        <div class="form-group col-lg-12">
+          <label class="control-label " for="email">Options to be granted</label>
+          <input type="text"class="" style="width:10%; border-bottom:dashed;border-left:none;border-right:none;border-top:none">
+        </div>
+          <div class="form-group col-lg-12">
+           <label class="control-label " for="email">Wheather Aceeptance Of Grant is required ?</label><br/>
+          <label class="radio-inline"><input type="radio" name="optradio">Yes</label>
+          <label class="radio-inline"><input type="radio" name="optradio">No</label>
+         </div>
+          <div class="form-group col-lg-12">
+          <label class="control-label " for="email">Grants to be accepted Within</label>
+          <input type="text"class="" style="width:10%; border-bottom:dashed;border-left:none;border-right:none;border-top:none">days Of date of Grant uploading.
+      </div>
+          <div class="form-group col-lg-6">
+         <label class="control-label " for="email">Remind Before</label>
+         <input type="text"class="" style="width:10%; border-bottom:dashed;border-left:none;border-right:none;border-top:none">days.
+      </div>
+          <div class="form-group col-lg-6">
+        <input type="text" class="form-control" id="text1" style="width: 62%;"  placeholder="Remind intervals">
+     </div>
+     </div>
+    </div>
+
+	 <div class="modal-footer">
+	   <button type="button" class="btn btn-primary" >Add</button>
+	   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<!--view document-->
+<div id="document" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><i class="fa fa-file-pdf-o"></i>&nbsp;View Document Details</h4>
+      </div>
+	    <form class="form-horizontal" role="form">
+      <div class="modal-body">
+      <div class="row">
+      <div class="col-lg-12">
+      	<div class="form-group col-lg-6">
+        	 <label class="">Company Name : Clonect</label>
+       </div>
+       <div class="form-group col-lg-6">
+        	 <label class="">Scheme Name : Esop-2015</label>
+       </div>
+       <div class="form-group col-lg-6">
+        	 <label class="">Scheme Type : Esop</label>
+       </div>
+       <div class="form-group col-lg-6">
+        	 <label class="">Plan Name : Plan1</label>
+       </div>
+       <div class="form-group col-lg-6">
+        	 <label class="">Plan Document :<a href="#"> Plan.pdf</a></label>
+       </div>
+       <div class="form-group col-lg-6">
+        	 <label class="">Scheme Document : <a href="#">scheme.pdf</a></label>
+       </div>
+       </div>
+       </div>
+      </div>
+      <div class="modal-footer">
+	    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+     </form>
+    </div>
+
+  </div>
+</div>
+<!--end document-->
+<!-- Calculate Modal -->
+	<div id="Calculate" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><i class="fa fa-calculator"></i>  Calculate My Wealth !</h4>
+      </div>
+	    <form class="form-horizontal" role="form">
+      <div class="modal-body">
+
+    <div class="form-group">
+      <label for="inputType" class="col-md-5 control-label">  View for</label>
+      <div class="col-md-5">
+       <select class="form-control input-sm">
+	<option>View for</option>
+	<option></option>
+	</select>
+      </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-6 control-label">Exercisable Options:</label>
+        <div class="col-md-5 control-label" style="text-align: left;">
+           1000
+        </div>
+    </div>
+	 <div class="form-group">
+        <label class="col-md-6 control-label">Enter no. of options:</label>
+        <div class="col-md-5">
+          <input type="number" class="form-control input-sm" name="">
+        </div>
+    </div>
+	 <div class="form-group">
+        <label class="col-md-7 control-label">Current MP (Closing) :</label>
+       <div class="col-md-4 control-label" style="text-align: left;">
+        170
+        </div>
+    </div>
+	 <div class="form-group">
+        <label class="col-md-5 control-label">Benefit :</label>
+       <div class="col-md-5 control-label" style="text-align: left;">
+          130000
+        </div>
+    </div>
+	 <div class="form-group">
+        <label class="col-md-6 control-label">Tax @ slab rate:</label>
+         <div class="col-md-5 control-label" style="text-align: left;">
+          13390
+        </div>
+    </div>
+	 <div class="form-group">
+        <label class="col-md-6 control-label">Notional Benefit:</label>
+        <div class="col-md-5 control-label" style="text-align: left;">
+          116610
+        </div>
+    </div>
+
+
+      </div>
+      <div class="modal-footer">
+	    <button type="button" class="btn btn-success" data-dismiss="modal">Calculate</button>
+		  <button type="button" class="btn btn-warning" data-dismiss="modal">Reset</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+	  </form>
+    </div>
+
+  </div>
+</div>
+
+
+	<!-- Calendar Modal -->
+<div id="Calendar" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><i class="fa  fa-calendar"></i> Calendar</h4>
+      </div>
+
+      <div class="modal-body box box-solid bg-green-gradient">
+     <div class="box-body no-padding">
+    <div id="calendar" style="width: 100%"><div class="datepicker datepicker-inline"><div class="datepicker-days" style="display: block;"><table class="table table-condensed"><thead><tr><th class="prev" style="visibility: visible;">«</th><th colspan="5" class="datepicker-switch">November 2016</th><th class="next" style="visibility: visible;">»</th></tr><tr><th class="dow">Su</th><th class="dow">Mo</th><th class="dow">Tu</th><th class="dow">We</th><th class="dow">Th</th><th class="dow">Fr</th><th class="dow">Sa</th></tr></thead><tbody><tr><td class="old day">30</td><td class="old day">31</td><td class="day">1</td><td class="day">2</td><td class="day">3</td><td class="day">4</td><td class="day">5</td></tr><tr><td class="day">6</td><td class="day">7</td><td class="day">8</td><td class="day">9</td><td class="day">10</td><td class="day">11</td><td class="day">12</td></tr><tr><td class="day">13</td><td class="day">14</td><td class="day">15</td><td class="day">16</td><td class="day">17</td><td class="day">18</td><td class="day">19</td></tr><tr><td class="day">20</td><td class="day">21</td><td class="day">22</td><td class="day">23</td><td class="day">24</td><td class="day">25</td><td class="day">26</td></tr><tr><td class="day">27</td><td class="day">28</td><td class="day">29</td><td class="day">30</td><td class="new day">1</td><td class="new day">2</td><td class="new day">3</td></tr><tr><td class="new day">4</td><td class="new day">5</td><td class="new day">6</td><td class="new day">7</td><td class="new day">8</td><td class="new day">9</td><td class="new day">10</td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-months" style="display: none;"><table class="table table-condensed"><thead><tr><th class="prev" style="visibility: visible;">«</th><th colspan="5" class="datepicker-switch">2016</th><th class="next" style="visibility: visible;">»</th></tr></thead><tbody><tr><td colspan="7"><span class="month">Jan</span><span class="month">Feb</span><span class="month">Mar</span><span class="month">Apr</span><span class="month">May</span><span class="month">Jun</span><span class="month">Jul</span><span class="month">Aug</span><span class="month">Sep</span><span class="month">Oct</span><span class="month">Nov</span><span class="month">Dec</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div><div class="datepicker-years" style="display: none;"><table class="table table-condensed"><thead><tr><th class="prev" style="visibility: visible;">«</th><th colspan="5" class="datepicker-switch">2010-2019</th><th class="next" style="visibility: visible;">»</th></tr></thead><tbody><tr><td colspan="7"><span class="year old">2009</span><span class="year">2010</span><span class="year">2011</span><span class="year">2012</span><span class="year">2013</span><span class="year">2014</span><span class="year">2015</span><span class="year">2016</span><span class="year">2017</span><span class="year">2018</span><span class="year">2019</span><span class="year new">2020</span></td></tr></tbody><tfoot><tr><th colspan="7" class="today" style="display: none;">Today</th></tr><tr><th colspan="7" class="clear" style="display: none;">Clear</th></tr></tfoot></table></div></div></div>
+	    </div>
+
+      </div>
+      <div class="modal-footer">
+	    <button type="button" class="btn btn-success" data-dismiss="modal">Add new event</button>
+		  <button type="button" class="btn btn-warning" data-dismiss="modal">Reset</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+</div>
+</body>

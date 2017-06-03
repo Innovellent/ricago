@@ -34,6 +34,8 @@ import { CompanyDivisionComponent } from './company-division/company-division.co
 import { CompanyBankComponent } from './company-bank/company-bank.component';
 import { CompanyRoleComponent } from './company-role/company-role.component';
 import { CompanyDetailsComponent } from './company-details/company-details.component';
+import { UserComponent } from './user/user.component';
+import { ManageGranteeComponent } from './manage-grantee/manage-grantee.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { CompanyDetailsComponent } from './company-details/company-details.compo
     CompanyDivisionComponent,
     CompanyBankComponent,
     CompanyRoleComponent,
-    CompanyDetailsComponent
+    CompanyDetailsComponent,
+    UserComponent,
+    ManageGranteeComponent
       ],
   imports: [
     BrowserModule,

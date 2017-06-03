@@ -1,0 +1,746 @@
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="content-wrapper">
+
+    <section class="content-header">
+      <h1>&nbsp;
+
+
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">User Management</li>
+      </ol>
+    </section>
+<div class="col-lg-12">
+	<h3 style="color:#036; font-weight:bold;">User Management</h3>
+
+
+</div>
+    <!-- Main content -->
+    <div class="">
+
+	<div class="col-md-12">
+          <!-- MAP & BOX PANE -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">General Employee Details</h3>
+
+
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <div class="row no-gutter">
+                <div class="col-lg-12 col-sm-12">
+                <div class="col-lg-12"><br>
+                    <div class="col-lg-4"></div>
+                           <div class="col-md-2">
+                     	   <!-- <div id="uploadifive-file_upload" class="uploadifive-button" style="height: 30px; line-height: 30px; overflow: hidden; position: relative; text-align: center; width: 100px;">Attach Doc<input id="file_upload" name="file_upload" type="file" multiple="" style="width: 100px; display: none;"><input type="file" style="font-size: 30px; opacity: 0; position: absolute; right: -3px; top: -3px; z-index: 999;" multiple="multiple"></div><div id="uploadifive-file_upload-queue" class="uploadifive-queue"></div> -->
+                           </div>
+                            <div class="col-md-2">
+                            	<button type="button" class="btn btn-primary"><i class="fa fa-upload"></i>&nbsp;&nbsp;Upload</button>
+                            </div>
+                           <div class="col-md-3">&nbsp;
+                     	    <a href="admin.xlsx"><button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;&nbsp;Download Template</button></a>
+                           </div>
+                           </div>
+                  <!-- Map will be created here -->
+					 <div class="col-lg-12 form-group"><br>
+    			   <table class="table table-bordered dataTable no-footer" id="Exercise" role="grid">
+			    <thead>
+
+			   <tr role="row">
+			   <th class="th sorting_disabled" rowspan="1" colspan="1"> Employee ID</th>
+			   <th class="th sorting_disabled" rowspan="1" colspan="1">Exercise Name</th>
+			   <th class="th sorting_disabled" rowspan="1" colspan="1">Date Of Joining</th>
+			   <th class="th sorting_disabled" rowspan="1" colspan="1">Company Name</th>
+			   <th class="th sorting_disabled" rowspan="1" colspan="1">Department</th>
+			   <th class="th sorting_disabled" rowspan="1" colspan="1">Division</th>
+			   <th class="th sorting_disabled" rowspan="1" colspan="1">Designation</th>
+			   <th class="th sorting_disabled" rowspan="1" colspan="1">Action</th>
+			   </tr>
+
+			   </thead>
+<tbody>
+
+  <tr role="row" class="odd" *ngFor="let profiles of profile.Results" >
+
+
+         <td class="td" > {{profiles.EmployeeID}}</td>
+         <td class="td">{{profiles.EmployeeName}}</td>
+         <td class="td" >{{profiles.JoiningDate}}</td>
+         <td class="td">{{profiles.CompanyName}}</td>
+         <td class="td" >{{profiles.DepartmentName}}</td>
+         <td class="td">{{profiles.DivisionName}}</td>
+         <td class="td" >{{profiles.DesignationName}}</td>
+
+            <td class="td"><a type="button" class="btn btn-primary btn-xs"(click)="goTo('employeeDetails',profiles.UsersID)"><i class="fa fa-edit"></i>&nbsp;Edit</a>
+           <!-- <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i>&nbsp;Delete</button> -->
+<button type="button" class="btn btn-danger" (click)="removeuser(profiles.UsersID)"><i class="fa fa-remove"></i>&nbsp;Delete</button>
+     </tr>
+
+				<!-- <tr role="row" class="odd">
+			   <td class="td">E1/2001/1506</td>
+               <td class="td">Kapil Sharma</td>
+			   <td class="td">12/11/2016</td>
+				 <td class="td">IT Global</td>
+                   <td class="td">HR</td>
+                  <td class="td">Approval </td>
+                  <td class="td">Manager</td>
+                 <td class="td"><a type="button" class="btn btn-primary btn-xs"(click)="goTo('employeeDetails')"><i class="fa fa-edit"></i>&nbsp;Edit</a>
+				   <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i>&nbsp;Delete</button>
+				  </td>
+
+		        </tr>
+				<tr role="row" class="odd">
+			   <td class="td">E1/2001/1508</td>
+               <td class="td">Sunita Agrawal</td>
+			   <td class="td">12/11/2015</td>
+				 <td class="td">IT Global</td>
+                   <td class="td">HR</td>
+                  <td class="td">Admin </td>
+                  <td class="td">Manager</td>
+                  <td class="td"><a type="button" class="btn btn-primary btn-xs"(click)="goTo('employeeDetails')"><i class="fa fa-edit"></i>&nbsp;Edit</a>
+				   <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i>&nbsp;Delete</button>
+				  </td>
+
+		        </tr> -->
+				</tbody><tbody>
+		   </tbody></table>
+
+					    </div>
+                 </div>
+				</div>
+                </div>
+                <!-- /.col -->
+
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+
+            <div *ngIf = "locations == '/user' " id="employeeDetails_post">
+              <form class="" role="form" [formGroup]="postdata" (ngSubmit)="onSubmitPost()">
+    	<div class="col-md-12" >
+          <!-- MAP & BOX PANE -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">General Employee Details</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+				<i class="fa fa-minus"></i>
+                </button>
+            <!--    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <div class="row no-gutter">
+                <div class="col-md-12 col-sm-12">
+                  <div class="pad">
+                    <!-- Map will be created here -->
+					<form class="form-horizontal">
+
+                    </form></div>
+
+ 					 <div class="col-md-12 form-group">
+
+
+                    <div class="col-md-12">
+
+   					 <div class="col-md-4">
+
+   					<input type="text" class="form-control m-bot15" id="text1" formControlName="EmployeeName" title="Enter employee Name" placeholder="Employee Name">
+   					 </div>
+                     <div class="col-md-4">
+                        <input type="text" class="form-control m-bot15" formControlName="EmployeeID" id="text1" placeholder="Employee ID">
+   					 </div>
+                     <div class="col-md-4">
+
+
+        <select class="form-control" title="Select Company Name" (change)="companyname_change($event.target.value)" formControlName="CompanyID" >
+<option> Select Company</option>
+          <option *ngFor="let v of company_name.Results" value={{v.CompanyID}}>
+            {{v.CompanyName}}
+          </option>
+                  </select>
+   					 </div>
+                     </div>
+                     <div class="col-md-12"><br>
+
+   					 <div class="col-md-4">
+					  <select class="form-control" title="Grade" formControlName="Grade" >
+
+              <option> Select Grade</option>
+                        <option *ngFor="let v of grade.Results" value={{v.GradeCode}}>
+                          {{v.GradeName}}
+                        </option>
+
+                  </select>
+
+   					 </div>
+                     <div class="col-md-4">
+					 <select class="form-control" title="Grade" formControlName="Location">
+             <option> Select Location</option>
+                       <option *ngFor="let v of location.Results" value={{v.LocationCode}}>
+                         {{v.LocationName}}
+                       </option>
+                  </select>
+
+   					 </div>
+   					<div class="col-md-4">
+					 <select class="form-control" title="Department" formControlName="Department" >
+                <option>Select Department</option>
+                <option *ngFor="let v of department.Results" value={{v.DepartmentCode}}>
+                  {{v.DepartmentName}}
+                </option>
+
+                  </select>
+
+   					 </div>
+                     </div>
+
+                     <div class="col-md-12">
+					 <p>&nbsp;</p>
+                     <div class="col-lg-4">
+					 <select class="form-control" title="Division" formControlName="Division">
+						  <option>Select Division</option>
+              <option *ngFor="let v of division.Results" value={{v.DivisionCode}}>
+                {{v.DivisionName}}
+              </option>
+
+					</select>
+
+
+   					 </div>
+                     <div class="col-md-4">
+                      <select class="form-control" title="Designation" formControlName="Designation" >
+						  <option>Select Designation</option>
+              <option *ngFor="let v of designation.Results" value={{v.DesignationCode}}>
+                {{v.DesignationName}}
+              </option>
+
+					</select>
+
+   					 </div>
+   					<div class="col-lg-4">
+                        <select class="form-control" formControlName="KMPOrDirector" >
+                          <option *ngFor="let wheather of wheather.Results" value={{wheather.ConfigCode}}>
+                          {{wheather.ConfigValue}}
+                          </option>
+						  </select>
+   					 </div>
+                     </div>
+					   <p>&nbsp;</p>
+
+                     <div class="col-md-12">
+					     <div class="form-group col-md-4">
+                     <label class="" for="email">Date Of Joining:</label>
+   					  <input type="text" id="txtBoardApprovalDate"  name="txtBoardApprovalDate" value="" class="form-control" style="width: 62%;">
+					  </div>
+					  <div class="form-group col-md-4">
+                    <textarea class="form-control m-bot15" required formControlName="Address" id="text1" placeholder="Full Address" title="Enter Full Address"></textarea>
+					 </div>
+
+				   <div class="form-group col-md-4">&nbsp;&nbsp;
+                       <input type="text" class="form-control m-bot15" formControlName="EmailID"  id="text1" placeholder="Mail ID">
+					 </div>
+                   </div>
+				   <div class="col-md-12">
+
+   					 <div class="form-group col-md-4">
+                    <input type="text" class="form-control m-bot15" formControlName="PAN"  id="text1" placeholder="PAN Card">
+					 </div>
+                     <div class="form-group col-md-4">
+                    <input type="text" class="form-control m-bot15" formControlName="TaxSlab"  id="TaxSlab" placeholder="Tax Slab">
+					 </div>
+
+   					 <div class="form-group col-md-4">
+                     <label class="" for="email">Upload Address Proof:</label>
+
+                       <!-- <input id="file" name="file_upload" formControlName="AddressProofDoc"  type="file" multiple="" style="width:100px"><br> -->
+
+                       <input type="file" type="file" (change)="file_upload($event)" id="filePicker" multiple ><br/>
+                       <input type="hidden"   id="output" value="" />
+                       <textarea id="base64textarea" formControlName="AddressProofDoc" ></textarea>
+
+                                   <!-- <input type="file" id="filePicker"> -->
+
+
+                     </div>
+                     </div>
+                     <div class="col-lg-12 form-group">
+
+
+                       <button type="submit" class="btn btn-primary">Save</button>
+
+   					 </div>
+
+					    </div>
+
+
+
+
+
+                 </div>
+
+
+                  </div>
+                </div>
+                <!-- /.col -->
+
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.box-body -->
+            <div class="col-md-12">
+          <!-- MAP & BOX PANE -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">Bank and Demart Details</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+				<i class="fa fa-minus"></i>
+                </button>
+            <!--    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <div class="row no-gutter">
+                <div class="col-md-12 col-sm-12">
+                  <div class="pad">
+                    <!-- Map will be created here -->
+					<form class="form-horizontal">
+
+                    </form></div>
+                <div class="col-md-12">
+ 					 <div class="form-group">
+
+
+                    <div class="col-md-12">
+
+   					 <div class="col-md-4">
+                      <select class="form-control" formControlName="BankCode" >
+                          <option>Select Bank Name</option>
+                          <option *ngFor="let v of bank.Results" value={{v.BankCode}}>
+                            {{v.BankName}}
+                          </option>
+						  </select>
+   					 </div>
+                     <div class="col-md-4">
+                        <input type="text" class="form-control m-bot15" formControlName="BranchName"  id="text1" placeholder="Branch Name">
+   					 </div>
+                     <div class="col-md-4">
+                        <input type="text" class="form-control m-bot15" formControlName="IFSCCode"  id="text1" placeholder="IFSC Code">
+   					 </div>
+                     </div>
+                     &nbsp;&nbsp;
+                     <div class="col-lg-12"><h4 style="color:#F30;">Demat Acount Details :</h4></div>
+                     <div class="col-md-12"><br>
+                     <div class="col-md-4">
+                     	<select class="form-control" formControlName="DPName" >
+                        <option> Select Depository</option>
+                        <option *ngFor="let getDepositorycondition of getDepositorycondition.Results" value={{getDepositorycondition.ConfigCode}}>
+                        {{getDepositorycondition.ConfigValue}}
+                        </option>
+                          </select>
+   					 </div>
+   					 <div class="col-md-4">
+                        <input type="text" formControlName="DPID"  class="form-control m-bot15" id="text1" placeholder="DP ID">
+   					 </div>
+                     <div class="col-md-4">
+                        <input type="text" formControlName="ClientID"  class="form-control m-bot15" id="text1" placeholder="Client ID">
+   					 </div>
+                     </div>
+                     <div class="col-lg-12"><h4 style="color:#F30;">Nominee Details :</h4></div>
+                     <div class="col-md-12"><br>
+                     <div class="col-md-3">&nbsp;&nbsp;
+                        <input type="text" formControlName="NomineeName"  class="form-control m-bot15" id="text1" placeholder="Name">
+   					 </div>
+                     <div class="col-md-3">&nbsp;&nbsp;
+                        <input type="text"formControlName="NomineeContactNo"   class="form-control m-bot15" id="text1" placeholder="Contact No">
+   					 </div>
+                     <div class="col-md-3">
+                        <textarea formControlName="NomineeAddress"  class="form-control m-bot15" id="text1" placeholder="Full Address" title="Enter Full Address"></textarea>
+   					 </div>
+                     <div class="form-group col-md-3">
+                     <label class="" for="email">Upload Address Proof:</label>
+
+                  <!-- <div id="uploadifive-file_upload1" formControlName="NomineeAddressDoc" class="uploadifive-button" style="height: 30px; line-height: 30px; overflow: hidden; position: relative; text-align: center; width: 100px;">Attach Docs<input id="file_upload1" name="file_upload" type="file" multiple="" style="width: 100px; display: none;"><input type="file" style="font-size: 30px; opacity: 0; position: absolute; right: -3px; top: -3px; z-index: 999;" multiple="multiple"></div><div id="uploadifive-file_upload1-queue" class="uploadifive-queue"></div><br> -->
+                     </div>
+                    <div class="col-md-4">
+                     	<select class="form-control" formControlName="NomineeDPName" >
+                        <option> Select Depository</option>
+                        <option *ngFor="let getDepositorycondition of getDepositorycondition.Results" value={{getDepositorycondition.ConfigCode}}>
+                        {{getDepositorycondition.ConfigValue}}
+                        </option>
+                          </select>
+   					 </div>
+   					 <div class="col-md-4">
+                        <input type="text" formControlName="NomineeDPID"  class="form-control m-bot15" id="text1" placeholder="DP ID">
+   					 </div>
+                     <div class="col-md-4">
+                        <input type="text" formControlName="NomineeClientID"  class="form-control m-bot15" id="text1" placeholder="Client ID">
+   					 </div>
+
+
+                     <div class="col-lg-12 form-group"><br>
+
+
+                       <button type="submit"  (click)="joiningdate($event.target.value)" class="btn btn-primary">Save</button>
+
+   					 </div>
+
+
+                 </div>
+
+
+                  </div>
+                </div>
+                <!-- /.col -->
+
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.box-body -->
+          </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+          <!-- /.row -->
+
+          <!-- /.box -->
+        </div>
+
+
+
+</form>
+</div>
+
+<!-- <select class="form-control" title="Select Company Name"    >
+
+<option *ngFor="let v of company_name.Results" value={{v.CompanyID}}>
+{{v.CompanyName}}
+</option>
+      </select> -->
+<div id="employeeDetails_edit" *ngFor="let profiles of user_id.Results">
+<form class="" role="form" [formGroup]="editdata" (ngSubmit)="onUpdatePost(profiles.UsersID)">
+
+<div class="col-md-12" id="employeeDetails">
+<!-- MAP & BOX PANE -->
+<div class="box box-success">
+<div class="box-header with-border">
+  <h3 class="box-title"> EhGeneral Employee Details</h3>
+
+  <div class="box-tools pull-right">
+    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+<i class="fa fa-minus"></i>
+    </button>
+<!--    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
+  </div>
+</div>
+<!-- /.box-header -->
+<div class="box-body no-padding">
+  <div class="row no-gutter">
+    <div class="col-md-12 col-sm-12">
+      <div class="pad">
+        <!-- Map will be created here -->
+<form class="form-horizontal">
+
+        </form></div>
+
+<div class="col-md-12 form-group">
+
+
+        <div class="col-md-12">
+
+ <div class="col-md-4">
+
+<input type="text" class="form-control m-bot15" id="text1" formControlName="EmployeeName" value={{profiles.EmployeeName}} [(ngModel)]="profiles.EmployeeName" title="Enter employee Name" placeholder="Employee Name">
+ </div>
+         <div class="col-md-4">
+            <input type="text" class="form-control m-bot15" formControlName="EmployeeID" [(ngModel)]="profiles.EmployeeID" id="text1" placeholder="Employee ID">
+ </div>
+         <div class="col-md-4" >
+
+           <!-- <input type="text" class="form-control m-bot15" formControlName="CompanyID" [(ngModel)]="profiles.CompanyName" id="text1" placeholder="CompanyName ID"> -->
+
+           <select class="form-control" formControlName="CompanyID" >
+                             <option>{{profiles.CompanyName}}</option>
+                              <!-- <option *ngFor="let v of company_name.Results" value={{v.CompanyID}}>
+         {{v.CompanyName}}
+         </option> -->
+           </select>
+
+ </div>
+         </div>
+         <div class="col-md-12"><br>
+
+ <div class="col-md-4">
+<select class="form-control" title="Grade" formControlName="Grade" [(ngModel)]="profiles.GradeName" >
+
+  <option> Select Grade</option>
+            <!-- <option *ngFor="let v of grade.Results" value={{v.GradeCode}}>
+              {{v.GradeName}}
+            </option> -->
+
+      </select>
+
+ </div>
+         <div class="col-md-4">
+<select class="form-control" title="Grade" formControlName="Location" [(ngModel)]="profiles.LocationName">
+ <option> Select Location</option>
+           <!-- <option *ngFor="let v of location.Results" value={{v.LocationCode}}>
+             {{v.LocationName}}
+           </option> -->
+      </select>
+
+ </div>
+<div class="col-md-4">
+<select class="form-control" title="Department"[(ngModel)]="profiles.Department" formControlName="Department" >
+    <option>Select Department</option>
+    <!-- <option *ngFor="let v of department.Results" value={{v.DepartmentCode}}>
+      {{v.DepartmentName}}
+    </option> -->
+
+      </select>
+
+ </div>
+         </div>
+
+         <div class="col-md-12">
+<p>&nbsp;</p>
+         <div class="col-lg-4">
+<select class="form-control" title="Division"  [(ngModel)]="profiles.DivisionName" formControlName="Division">
+  <option>Select Division</option>
+  <!-- <option *ngFor="let v of division.Results" value={{v.DivisionCode}}>
+    {{v.DivisionName}}
+  </option> -->
+
+</select>
+
+
+ </div>
+         <div class="col-md-4">
+          <select class="form-control"  title="Designation" formControlName="Designation" >
+  <option>Select Designation</option>
+  <option *ngFor="let v of designation.Results" value={{v.DesignationCode}}>
+    {{v.DesignationName}}
+  </option>
+
+</select>
+
+ </div>
+<!-- [(ngModel)]="profiles.KMPOrDirectorValue" -->
+<!-- <div class="col-lg-4">
+            <select class="form-control"  formControlName="KMPOrDirector" >
+              <option *ngFor="let wheather of wheather.Results" value={{wheather.ConfigCode}}>
+              {{wheather.ConfigValue}}
+              </option>
+  </select>
+ </div> -->
+         </div>
+ <p>&nbsp;</p>
+
+         <div class="col-md-12">
+   <div class="form-group col-md-4">
+         <label class="" for="email">Date Of Joining:</label>
+  <input type="text" id="txtBoardApprovalDate" value={{profiles.joiningdate}} [(ngModel)]="profiles.joiningdate"  name="txtBoardApprovalDate" class="form-control" style="width: 62%;">
+</div>
+<div class="form-group col-md-4">
+        <textarea class="form-control m-bot15" required formControlName="Address" value={{profiles.Address}} [(ngModel)]="profiles.Address" id="text1" placeholder="Full Address" title="Enter Full Address"></textarea>
+</div>
+
+<div class="form-group col-md-4">&nbsp;&nbsp;
+           <input type="text" class="form-control m-bot15" formControlName="EmailID" value={{profiles.EmailID}} [(ngModel)]="profiles.EmailID" id="text1" placeholder="Mail ID">
+</div>
+       </div>
+<div class="col-md-12">
+
+ <div class="form-group col-md-4">
+        <input type="text" class="form-control m-bot15" formControlName="PAN" value={{profiles.PAN}} [(ngModel)]="profiles.PAN" id="text1" placeholder="PAN Card">
+</div>
+         <div class="form-group col-md-4">
+        <input type="text" class="form-control m-bot15" formControlName="TaxSlab" value={{profiles.TaxSlab}} [(ngModel)]="profiles.TaxSlab" id="TaxSlab" placeholder="Tax Slab">
+</div>
+
+ <div class="form-group col-md-4">
+         <label class="" for="email">Upload Address Proof:</label>
+
+           <!-- <input id="file" name="file_upload" formControlName="AddressProofDoc"  type="file" multiple="" style="width:100px"><br> -->
+
+           <input type="file" type="file" (change)="file_upload($event)" id="filePicker" multiple ><br/>
+           <input type="hidden"   id="output" value="" />
+           <textarea id="base64textarea" value={{profiles.AddressProofDoc}} [(ngModel)]="profiles.AddressProofDoc" ></textarea>
+
+                       <!-- <input type="file" id="filePicker"> -->
+
+
+         </div>
+         </div>
+         <div class="col-lg-12 form-group">
+
+
+           <button type="submit" class="btn btn-primary">Save</button>
+
+ </div>
+
+  </div>
+
+
+
+
+
+     </div>
+
+
+      </div>
+    </div>
+    <!-- /.col -->
+
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.box-body -->
+<div class="col-md-12">
+<!-- MAP & BOX PANE -->
+<div class="box box-success">
+<div class="box-header with-border">
+  <h3 class="box-title">Bank and Demart Details</h3>
+
+  <div class="box-tools pull-right">
+    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+<i class="fa fa-minus"></i>
+    </button>
+<!--    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
+  </div>
+</div>
+<!-- /.box-header -->
+<div class="box-body no-padding">
+  <div class="row no-gutter">
+    <div class="col-md-12 col-sm-12">
+      <div class="pad">
+        <!-- Map will be created here -->
+<form class="form-horizontal">
+
+        </form></div>
+    <div class="col-md-12">
+<div class="form-group">
+
+
+        <div class="col-md-12">
+
+ <div class="col-md-4">
+          <select class="form-control" formControlName="BankCode"  [(ngModel)]="profiles.BankCode">
+              <option>Select Bank Name</option>
+              <option *ngFor="let v of bank.Results" value={{v.BankCode}}>
+                {{v.BankName}}
+              </option>
+  </select>
+ </div>
+         <div class="col-md-4">
+            <input type="text" class="form-control m-bot15" value={{profiles.AddressProofDoc}} [(ngModel)]="profiles.AddressProofDoc" formControlName="BranchName"  id="text1" placeholder="Branch Name">
+ </div>
+         <div class="col-md-4">
+            <input type="text" class="form-control m-bot15" value={{profiles.IFSCCode}} [(ngModel)]="profiles.IFSCCode"  formControlName="IFSCCode"  id="text1" placeholder="IFSC Code">
+ </div>
+         </div>
+         &nbsp;&nbsp;
+         <div class="col-lg-12"><h4 style="color:#F30;">Demat Acount Details :</h4></div>
+         <div class="col-md-12"><br>
+         <div class="col-md-4">
+          <select class="form-control" formControlName="DPName"  [(ngModel)]="profiles.DPName" >
+            <option> Select Depository</option>
+            <option *ngFor="let getDepositorycondition of getDepositorycondition.Results" value={{getDepositorycondition.ConfigCode}}>
+            {{getDepositorycondition.ConfigValue}}
+            </option>
+              </select>
+ </div>
+ <div class="col-md-4">
+            <input type="text" formControlName="DPID" value={{profiles.DPID}} [(ngModel)]="profiles.DPID"class="form-control m-bot15" id="text1" placeholder="DP ID">
+ </div>
+         <div class="col-md-4">
+            <input type="text" formControlName="ClientID"  value={{profiles.ClientID}} [(ngModel)]="profiles.ClientID" class="form-control m-bot15" id="text1" placeholder="Client ID">
+ </div>
+         </div>
+         <div class="col-lg-12"><h4 style="color:#F30;">Nominee Details :</h4></div>
+         <div class="col-md-12"><br>
+         <div class="col-md-3">&nbsp;&nbsp;
+            <input type="text" formControlName="NomineeName" value={{profiles.NomineeName}} [(ngModel)]="profiles.NomineeName" class="form-control m-bot15" id="text1" placeholder="Name">
+ </div>
+         <div class="col-md-3">&nbsp;&nbsp;
+            <input type="text"formControlName="NomineeContactNo"  value={{profiles.NomineeContactNo}} [(ngModel)]="profiles.NomineeContactNo" class="form-control m-bot15" id="text1" placeholder="Contact No">
+ </div>
+         <div class="col-md-3">
+            <textarea formControlName="NomineeAddress"  value={{profiles.NomineeAddress}} [(ngModel)]="profiles.NomineeAddress" class="form-control m-bot15" id="text1" placeholder="Full Address" title="Enter Full Address"></textarea>
+ </div>
+         <div class="form-group col-md-3">
+         <label class="" for="email">Upload Address Proof:</label>
+
+      <!-- <div id="uploadifive-file_upload1" formControlName="NomineeAddressDoc" class="uploadifive-button" style="height: 30px; line-height: 30px; overflow: hidden; position: relative; text-align: center; width: 100px;">Attach Docs<input id="file_upload1" name="file_upload" type="file" multiple="" style="width: 100px; display: none;"><input type="file" style="font-size: 30px; opacity: 0; position: absolute; right: -3px; top: -3px; z-index: 999;" multiple="multiple"></div><div id="uploadifive-file_upload1-queue" class="uploadifive-queue"></div><br> -->
+         </div>
+        <div class="col-md-4">
+          <select class="form-control" formControlName="NomineeDPName" [(ngModel)]="profiles.NomineeDPName" >
+            <option> Select Depository</option>
+            <option *ngFor="let getDepositorycondition of getDepositorycondition.Results" value={{getDepositorycondition.ConfigCode}}>
+            {{getDepositorycondition.ConfigValue}}
+            </option>
+              </select>
+ </div>
+ <div class="col-md-4">
+            <input type="text" formControlName="NomineeDPID"value={{profiles.NomineeDPID}} [(ngModel)]="profiles.NomineeDPID"  class="form-control m-bot15" id="text1" placeholder="DP ID">
+ </div>
+         <div class="col-md-4">
+            <input type="text" formControlName="NomineeClientID" value={{profiles.NomineeClientID}} [(ngModel)]="profiles.NomineeClientID" class="form-control m-bot15" id="text1" placeholder="Client ID">
+ </div>
+
+
+         <div class="col-lg-12 form-group"><br>
+
+
+           <button type="submit"  (click)="joiningdate($event.target.value)" class="btn btn-primary">Save</button>
+
+ </div>
+
+
+     </div>
+
+
+      </div>
+    </div>
+    <!-- /.col -->
+
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.box-body -->
+</div>
+<!-- /.box-body -->
+</div>
+<!-- /.box -->
+
+<!-- /.row -->
+
+<!-- /.box -->
+</div>
+</form>
+</div>
+
+
+    </div>
+    <!-- /.content -->
+  </div>
+
+<app-footer></app-footer>
+</div>
+</body>
