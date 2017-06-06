@@ -60,42 +60,33 @@
 
                              </label></div></div></div><div class="row"><div class="col-sm-12"><table class="table table-bordered  dataTable no-footer" id="Grant" role="grid" aria-describedby="Grant_info">
 			   <thead>
-			   <tr role="row"><th class="th sorting_asc" tabindex="0" aria-controls="Grant" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Company Name: activate to sort column descending">Company Name</th><th class="th sorting" tabindex="0" aria-controls="Grant" rowspan="1" colspan="1" aria-label="Scheme Name: activate to sort column ascending">Scheme Name</th><th class="th sorting" tabindex="0" aria-controls="Grant" rowspan="1" colspan="1" aria-label="Scheme Type: activate to sort column ascending">Scheme Type</th><th class="th sorting" tabindex="0" aria-controls="Grant" rowspan="1" colspan="1" aria-label="Plan Name: activate to sort column ascending">Plan Name</th><th class="th sorting" tabindex="0" aria-controls="Grant" rowspan="1" colspan="1" aria-label="Grant Reference Id: activate to sort column ascending">Grant Reference Id</th><th class="th sorting" tabindex="0" aria-controls="Grant" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending">Action</th></tr>
+			   <tr role="row" class="table table-bordered " id="Grant"><th class="th sorting_asc" tabindex="0" aria-controls="Grant" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Company Name: activate to sort column descending">Company Name</th><th class="th sorting" tabindex="0" aria-controls="Grant" rowspan="1" colspan="1" aria-label="Scheme Name: activate to sort column ascending">Scheme Name</th><th class="th sorting" tabindex="0" aria-controls="Grant" rowspan="1" colspan="1" aria-label="Scheme Type: activate to sort column ascending">Scheme Type</th><th class="th sorting" tabindex="0" aria-controls="Grant" rowspan="1" colspan="1" aria-label="Plan Name: activate to sort column ascending">Plan Name</th><th class="th sorting" tabindex="0" aria-controls="Grant" rowspan="1" colspan="1" aria-label="Grant Reference Id: activate to sort column ascending">Grant Reference Id</th><th class="th sorting" tabindex="0" aria-controls="Grant" rowspan="1" colspan="1" aria-label="Action: activate to sort column ascending">Action</th></tr>
 			  </thead>
 			  <tbody>
 
 
 
+                   <tr *ngFor="let profiles of profile.Results" >
 
 
-				<tr role="row" class="odd">
-                <td class="td sorting_1">Clonect</td>
-                  <td class="td"><a data-toggle="modal" data-target="#document">Esop-2015</a></td>
-                  <td class="td">Esop</td>
-                   <td class="td"><a data-toggle="modal" data-target="#document">Plan 1</a></td>
-                  <td class="td"><a data-toggle="modal" data-target="#AddScheme">EMS-G001</a></td>
-                  <td class="td">
-                  <button type="button" class="btn btn-success head1"><i class="fa fa-filter"></i>&nbsp;Manage Grant Details</button>&nbsp;<button type="button" class="btn btn-info employee"><i class="fa fa-user-plus"></i>&nbsp;Add Grantees</button>&nbsp;<button type="button" class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Close</button>
-                  </td>
-		        </tr><tr role="row" class="even">
-                <td class="td sorting_1">Clonect</td>
-                  <td class="td"><a data-toggle="modal" data-target="#document">Esop-2015</a></td>
-                  <td class="td">Esop</td>
-                  <td class="td"><a data-toggle="modal" data-target="#document">Plan 2</a></td>
-                  <td class="td"><a data-toggle="modal" data-target="#AddScheme">EMS-G002</a></td>
-                  <td class="td">
-                  	 <button type="button" class="btn btn-success head1"><i class="fa fa-filter"></i>&nbsp;Manage Grant Details</button>&nbsp;<button type="button" class="btn btn-info employee"><i class="fa fa-user-plus"></i>&nbsp;Add Grantees</button>&nbsp;<button type="button" class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Close</button>
-                  </td>
-		        </tr><tr role="row" class="odd">
-                <td class="td sorting_1">Clonect</td>
-                  <td class="td"><a data-toggle="modal" data-target="#document">Esop-2015</a></td>
-                  <td class="td">Esop</td>
-                  <td class="td"><a data-toggle="modal" data-target="#document">Plan 3</a></td>
-                  <td class="td"><a data-toggle="modal" data-target="#AddScheme">EMS-G003</a></td>
-                  <td class="td">
-                  	<button type="button" class="btn btn-success head1"><i class="fa fa-filter"></i>&nbsp;Manage Grant Details</button>&nbsp;<button type="button" class="btn btn-info employee"><i class="fa fa-user-plus"></i>&nbsp;Add Grantees</button>&nbsp;<button type="button" class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Close</button>
-                  </td>
-		        </tr></tbody>
+                          <td class="td" > {{profiles.CompanyName}}</td>
+                          <td class="td" (click)="getschemeplan(profiles.SchemeID)" >{{profiles.SchemeName}}</td>
+                            <td class="td" > {{profiles.SchemeType}}</td>
+                          <td class="td" (click)="getschemeplan(profiles.SchemeID)" >{{profiles.PlanName}}</td>
+                          <td class="td"><a data-toggle="modal" data-target="#AddScheme">{{profiles.GrantNo}}</a></td>
+
+                           <td class="td">
+
+                               	<button type="button" class="btn btn-success head1"  (click)="getschemewizard(profiles.GrantID)" >
+                                  <i class="fa fa-filter"></i>&nbsp;Manage Grant Details</button>&nbsp;
+                                  <button type="button" class="btn btn-info employee" >
+                                    <i class="fa fa-user-plus"></i>&nbsp;Add Grantees</button>&nbsp;
+                                    <button type="button" class="btn btn-danger"><i class="fa fa-remove"></i>
+                                      &nbsp;Close</button>
+                                    </td>
+                           <!-- <button type="button" class="btn btn-primary head1" (click)="updatepost(profiles.GrantID)"><i class="fa fa-edit"></i>&nbsp;Edit</button>&nbsp;<button type="button" class="btn btn-danger" (click)="removepost(profiles.GrantID)"><i class="fa fa-remove"></i>&nbsp;Delete</button></td> -->
+                      </tr>
+          </tbody>
 		   </table></div></div><div class="row"><div class="col-sm-5"><div class="dataTables_info" id="Grant_info" role="status" aria-live="polite">Showing 1 to 3 of 3 entries</div></div><div class="col-sm-7"><div class="dataTables_paginate paging_simple_numbers" id="Grant_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="Grant_previous"><a href="#" aria-controls="Grant" data-dt-idx="0" tabindex="0">Previous</a></li><li class="paginate_button active"><a href="#" aria-controls="Grant" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button next disabled" id="Grant_next"><a href="#" aria-controls="Grant" data-dt-idx="2" tabindex="0">Next</a></li></ul></div></div></div></div>
                            </div>
 
@@ -103,16 +94,35 @@
                     </div>
 
                   <div class="col-md-12 form-group">
- 					 <div id="head2" style="display: none;">
-
-                       <div id="top1">
+ 					 <div id="head2" style="display: none;" >
+<form class="form-horizontal" role="form" [formGroup]="edit_data" (ngSubmit)="onSubmitEdit()" >
+<div >
+                       <div id="top1" >
     	<div class="col-lg-12">
 
             	<img src="assets/img/step4/1.png" img="" class="img-responsive" width="70%">
 
         </div>
 
-    	<fieldset class="fsStyle">
+    	<fieldset class="fsStyle" *ngFor="let wizard_data of getschemewizarddetails.Results">
+<input type="hidden" id="" name="txtBoardApprovalDate"[(ngModel)]="wizard_data.GrantID" formControlName="GrantID" value="wizard_data.GrantID" class="form-control" style="width: 62%;">
+<input type="hidden" id="" name="txtBoardApprovalDate"[(ngModel)]="wizard_data.SchemeDossierID" formControlName="SchemeDossierID" value="wizard_data.SchemeDossierID" class="form-control" style="width: 62%;">
+<!--
+<input type="hidden" id="" name="txtBoardApprovalDate"[(ngModel)]="wizard_data.GrantDate" formControlName="GrantDate" value="wizard_data.GrantDate" class="form-control" style="width: 62%;">
+
+<input type="hidden" id="" name="txtBoardApprovalDate"[(ngModel)]="wizard_data.RecordDate" formControlName="RecordDate" value="wizard_data.RecordDate" class="form-control" style="width: 62%;"> -->
+
+<input type="hidden" id="" name="txtBoardApprovalDate"[(ngModel)]="wizard_data.OptionsGranted" formControlName="OptionsGranted" value="wizard_data.OptionsGranted" class="form-control" style="width: 62%;">
+
+<input type="hidden" id="" name="txtBoardApprovalDate"[(ngModel)]="wizard_data.AcceptancedRequired" formControlName="AcceptancedRequired" value="wizard_data.AcceptancedRequired" class="form-control" style="width: 62%;">
+
+<input type="hidden" id="" name="txtBoardApprovalDate"[(ngModel)]="wizard_data.GrantAcceptedWithinDays" formControlName="GrantAcceptedWithinDays" value="wizard_data.GrantAcceptedWithinDays" class="form-control" style="width: 62%;">
+
+<input type="hidden" id="" name="txtBoardApprovalDate"[(ngModel)]="wizard_data.RemindBeforeDays" formControlName="RemindBeforeDays" value="wizard_data.RemindBeforeDays" class="form-control" style="width: 62%;">
+
+<input type="hidden" id="" name="txtBoardApprovalDate"[(ngModel)]="wizard_data.RemindIntervalDays" formControlName="RemindIntervalDays" value="wizard_data.RemindIntervalDays" class="form-control" style="width: 62%;">
+  <input type="hidden"  id="grant_details" >
+
                             <legend class="legendStyle">
                              <h3>Vesting Schdule</h3>
                             </legend>
@@ -121,15 +131,16 @@
 
                           <div class="form-group col-md-6">
                          <label class="col-md-6" for="Grant">&nbsp;</label>
-                        <select class="form-control" style="width: 62%;">
+                        <select class="form-control" style="width: 62%;" [(ngModel)]="wizard_data.VestingType" formControlName="VestingType">
                               <option>Select Type Of Vesting</option>
-                              <option>---</option>
-                              <option>---</option>
+                              <option value="Y">Yes</option>
+                              <option value="N">No</option>
                             </select>
                         </div>
                          <div class="form-group col-md-6">
                          <label class="col-md-6" for="Grant">Date Of Vesting:</label>
-                        <input type="text" id="txtBoardApprovalDate2" name="txtBoardApprovalDate" value="" class="form-control" style="width: 62%;">
+                         <!-- [(ngModel)]="wizard_data.VestingDate" -->
+                        <input type="text" id="txtBoardApprovalDate2" name="txtBoardApprovalDate"  formControlName="VestingDate" value="1/1/2009" class="form-control" style="width: 62%;">
                         </div>
                          </div>
 
@@ -138,18 +149,31 @@
                           <div class="form-group col-md-6">
                         <label class="control-label col-md-2" for="Vesting"></label>
 
-                            <select class="form-control">
+                            <select class="form-control"[(ngModel)]="wizard_data.NoOfGrades" formControlName="NoOfGrades"  (change)="dynamic_table($event.target.value)">
                               <option>No. Of Grades</option>
-                              <option>1</option>
-                             <option>2</option>
-                             <option>3</option>
-                             <option>4</option>
-                             <option>5</option>
-                             <option>6</option>
+                              <option value="1">1</option>
+                             <option value="2">2</option>
+                             <option value="3">3</option>
+                             <option value="4">4</option>
+                             <option value="5">5</option>
+                             <option value="6">6</option>
                             </select>
                          </div>
 
-                         <table class=" table table-responsive table-bordered" style="width:100%">
+
+                         <!-- <table border="1" id="mtable">
+                             <thead><tr><td>Item</td><td>Red</td><td>Green</td></tr></thead>
+                             <tbody><tr><td>Some Item</td><td><input type="checkbox"/></td><td><input type="checkbox"/></td></tr></tbody>
+                         </table><br/><br/> -->
+                         <!-- <input id="row" placeholder="Enter Item Name"/><button id="irow">Insert Row</button><br/><br/> -->
+                         <!-- <input id="col" placeholder="Enter Heading"/><button id="icol">Insert Column</button> -->
+
+                         <input type="hidden"  id="grant_details" value="wizard_data.VestingCondition1 | objngfor11">
+<!--
+{{wizard_data.VestingCondition1 | objngfor11}} -->
+
+
+                         <table id="mtable" class=" table table-responsive table-bordered" style="width:100%">
                            <thead>
                            	<tr><th>Grade</th>
                             <th>Date of vesting</th>
@@ -158,22 +182,22 @@
                             <tbody>
                               <tr>
                                 <td class="col-xs-1">Grade1</td>
-                                <td> <input type="text" id="txtBoardApprovalDate3" name="txtBoardApprovalDate" value="" class="form-control" style="width: 62%;"></td>
+                                <td> <input type="text" id="" name="txtBoardApprovalDate" value="" class="form-control" style="width: 62%;"></td>
                                 <td><input type="text" class="form-control"></td>
 
                               </tr>
-                               <tr>
+                               <!-- <tr>
                                 <td class="col-xs-1">Grade2</td>
-                                <td> <input type="text" id="txtBoardApprovalDate4" name="txtBoardApprovalDate" value="" class="form-control" style="width: 62%;"></td>
-                                <td><input type="text" class="form-control"></td>
+                                <td> <input type="text" id="" name="txtBoardApprovalDate" value="d" class="form-control" style="width: 62%;"></td>
+                                <td><input type="text" class="form-control">schemedetailsid</td>
 
                               </tr>
                                <tr>
                                 <td class="col-xs-1">Grade3</td>
-                                <td> <input type="text" id="txtBoardApprovalDate5" name="txtBoardApprovalDate" value="" class="form-control" style="width: 62%;"></td>
-                                <td><input type="text" class="form-control"></td>
+                                <td> <input type="text" id="" name="txtBoardApprovalDate" value="sds" class="form-control" style="width: 62%;"></td>
+                                <td><input type="text" class="form-control">sds</td>
 
-                              </tr>
+                              </tr>-->
                              </tbody>
                          </table>
 
@@ -181,37 +205,64 @@
                          </div>
 
                          <div class="col-md-12">
+                           <input type="hidden" id="checkbox_value">
 
-                          <div class="form-group col-md-6">
+                          <div class="form-group col-md-6"  *ngIf="wizard_data.VestingCondition == 'Y'" >
   			    <label class="control-label" for="Vesting"> Is vesting attached to any condition?</label>
-                            <input type="checkbox">Yes<input type="checkbox">No
+                            <!-- <input type="checkbox" [(ngModel)]="wizard_data.VestingCondition" formControlName="VestingCondition" name="VestingCondition" *ngIf="wizard_data.VestingConditions == 'Y' " checked value="Y">Yes
+                            <input type="checkbox" [(ngModel)]="wizard_data.VestingCondition" formControlName="VestingCondition" name="VestingCondition"  *ngIf="wizard_data.VestingConditions == 'N' " checked value="N" >No -->
+
+                          <input type="checkbox"  id="checkbox_valueY" (change)="logCheckboxY($event.target.value)" checked value="Y"/>Yes
+                            <input type="checkbox"  id="checkbox_valueN" (change)="logCheckboxN($event.target.value)" value="N"  />No
+
                          </div>
-                          <div class="form-group col-md-6">
-                            <select class="form-control">
+                         <div class="form-group col-md-6"  *ngIf="wizard_data.VestingCondition == 'N'  " >
+          <label class="control-label" for="Vesting"> Is vesting attached to any condition?</label>
+                           <!-- <input type="checkbox" [(ngModel)]="wizard_data.VestingCondition" formControlName="VestingCondition" name="VestingCondition" *ngIf="wizard_data.VestingConditions == 'Y' " checked value="Y">Yes
+                           <input type="checkbox" [(ngModel)]="wizard_data.VestingCondition" formControlName="VestingCondition" name="VestingCondition"  *ngIf="wizard_data.VestingConditions == 'N' " checked value="N" >No -->
+
+                           <input type="checkbox"  id="checkbox_valueY" (change)="logCheckboxY($event.target.value)"  value="Y"/>Yes
+                           <input type="checkbox"  id="checkbox_valueN" (change)="logCheckboxN($event.target.value)" checked value="N"  />No
+
+                        </div>
+                        <div class="form-group col-md-6"  *ngIf="wizard_data.VestingCondition == ''  " >
+         <label class="control-label" for="Vesting"> Is vesting attached to any condition?</label>
+                          <!-- <input type="checkbox" [(ngModel)]="wizard_data.VestingCondition" formControlName="VestingCondition" name="VestingCondition" *ngIf="wizard_data.VestingConditions == 'Y' " checked value="Y">Yes
+                          <input type="checkbox" [(ngModel)]="wizard_data.VestingCondition" formControlName="VestingCondition" name="VestingCondition"  *ngIf="wizard_data.VestingConditions == 'N' " checked value="N" >No -->
+
+                          <input type="checkbox"  id="checkbox_valueY" (change)="logCheckboxY($event.target.value)"  value="Y"/>Yes
+                          <input type="checkbox"  id="checkbox_valueN" (change)="logCheckboxN($event.target.value)"  value="N"  />No
+
+                       </div>
+<div  *ngIf="wizard_data.VestingCondition == 'N'  " >
+{{ wizard_data.VestingCondition | objngfor111 }}
+                            </div>
+                          <div class="form-group col-md-6" id="condition_num">
+                            <select class="form-control" [(ngModel)]="wizard_data.NoOfVestingCondition" formControlName="NoOfVestingCondition" (change)="dynamic_table_condition($event.target.value)">
                               <option>No. Of Conditions</option>
-                              <option>1</option>
-                             <option>2</option>
+                              <option value="1">1</option>
+                             <option value="2">2</option>
                             </select>
                          </div>
 
-                         <div class="col-md-12">
+                         <div class="col-md-12" id="condition_details">
                          <br>
 
-                            <table class=" table table-responsive table-bordered" style="width:100%">
+                            <table id="conditiontable" class=" table table-responsive table-bordered" style="width:100%">
 
                               <tbody><tr>
                                 <td class="col-xs-1">Condition1</td>
-                                <td><textarea type="text" class="form-control"></textarea></td>
+                                <td><textarea type="text" [(ngModel)]="wizard_data.VestingCondition1" formControlName="VestingCondition1"  value="{{wizard_data.VestingCondition1}}" id="" class="form-control"></textarea></td>
 
                               </tr>
                               <tr>
                                 <td class="col-xs-1">Condition2</td>
-                                 <td><textarea type="text" class="form-control"></textarea></td>
+                                 <td><textarea type="text" [(ngModel)]="wizard_data.VestingCondition2" formControlName="VestingCondition2"  value="{{wizard_data.VestingCondition2}}" id="" class="form-control"></textarea></td>
 
                               </tr>
                               <tr>
                                 <td class="col-xs-1">Condition3</td>
-                                <td><textarea type="text" class="form-control"></textarea></td>
+                                <td><textarea [(ngModel)]="wizard_data.VestingCondition3" formControlName="VestingCondition3"  value="{{wizard_data.VestingCondition3}}" type="text" id="" class="form-control"></textarea></td>
 
                               </tr>
 
@@ -226,7 +277,7 @@
         <div class="col-lg-12 form-group">
 
 
-                        <button type="button" class="btn btn-primary">Save</button>
+                        <button type="submit" (click)="grade_details()"  class="btn btn-primary">Save</button>
                       <button type="button" class="btn btn-success" id="show">Next</button>
 
    					 </div>
@@ -239,7 +290,7 @@
 
         </div>
 
-    	<fieldset class="fsStyle">
+    	<fieldset class="fsStyle" *ngFor="let wizard_data of getschemewizarddetails.Results">
                             <legend class="legendStyle">
                              <h3>Exercise Details</h3>
                             </legend>
@@ -247,38 +298,39 @@
                     <div class="col-md-10 col-md-offset-1"><br>
 
                         <div class="col-md-6">
-                            <input type="text" class="form-control m-bot15" id="text1" placeholder="Exercise Price" title="Grant Amount">
+                            <input type="text"[(ngModel)]="wizard_data.ExercisePrice" formControlName="ExercisePrice"  value="{{wizard_data.ExercisePrice}}" class="form-control m-bot15" id="text1" placeholder="Exercise Price" title="Grant Amount">
                          </div>
                         <div class="col-md-6">
                             <button type="button" class="btn btn-default">Revise</button>
                          </div>
                          <p>&nbsp;</p>
                          <div class="col-md-6">
-                            <select class="form-control">
+                            <select class="form-control" [(ngModel)]="wizard_data.ExerciseCurrency" formControlName="ExerciseCurrency">
                               <option>Select Currency</option>
-                              <option>Yes</option>
-                              <option>No</option>
+                              <option value="INR">INR</option>
+                              <option value="USD">USD</option>
 
                             </select>
                          </div>
 
                         <div class="col-md-6">
-                            <select class="form-control">
+                            <select class="form-control" [(ngModel)]="wizard_data.ExercisePaymentOptions" formControlName="ExercisePaymentOptions">
                               <option>Mode Of payment</option>
-                              <option>Yes</option>
-                              <option>No</option>
+                              <option value="Y">Yes</option>
+                              <option value="N">No</option>
 
                             </select>
                          </div>
                          &nbsp;
                          <div class="form-group col-md-6">
                          <label class="" for="email">Last Date Of Exercise:</label>
-                           <input type="text" id="txtBoardApprovalDate6" name="txtBoardApprovalDate" value="" class="form-control" style="width: 62%;">
+                         <!-- [(ngModel)]="wizard_data.ExerciseLastDate" -->
+                           <input type="text" formControlName="ExerciseLastDate"  value="1/1/2009" id="txtBoardApprovalDate6" name="txtBoardApprovalDate" class="form-control" style="width: 62%;">
                           </div>
                    <p>&nbsp;</p>
                         <div class="col-md-6">
                         <label class="" for="email">Or Within
-                            <input type="text" style="border-bottom:dotted;border-left:none;border-right:none;border-top:none;width:20%;"> Of Vesting</label>
+                            <input type="text" [(ngModel)]="wizard_data.ExerciseWithinOfVesting" formControlName="ExerciseWithinOfVesting"  value="{{wizard_data.ExerciseWithinOfVesting}}" style="border-bottom:dotted;border-left:none;border-right:none;border-top:none;width:20%;"> Of Vesting</label>
                          </div>
 
                     </div>
@@ -290,14 +342,14 @@
 
 
 					     <button type="button" class="btn btn-default" id="back4">Back</button>
-                       <button type="button" class="btn btn-primary">Save</button>
+                       <button type="submit" (click)="grade_details()" class="btn btn-primary">Save</button>
                       <button type="button" class="btn btn-danger" id="close">Freeze</button>
 
    					</div>
     </div>
+</div>
 
-
-
+</form>
 
 
 
@@ -469,48 +521,85 @@
 
       <div class="modal-body ">
 	  <div class="row">
+      <form class="" role="form" [formGroup]="postdata" (ngSubmit)="onSubmitPost()">
+      <div class="col-md-4">
+
+
+<select class="form-control"   title="Select Company Name" (change)="companyname_change($event.target.value)" >
+<option> Select Company</option>
+<option *ngFor="let v of company_values.Results" value={{v.CompanyID}}>
+{{v.CompanyName}}
+</option>
+   </select>
+</div>
+<div class="col-md-4">
+
+
+<select class="form-control"  title="Select Scheme Name" (change)="scheme_change($event.target.value)">
+<option> Select Scheme</option>
+<option *ngFor="let v of scheme_values.Results" value={{v.SchemeID}}>
+{{v.SchemeName}}
+</option>
+</select>
+</div>
+<div class="col-md-4">
+
+
+<select class="form-control"  formControlName="SchemeDossierID" title="Select Plan Name"  >
+<option> Select Plan</option>
+<option *ngFor="let v of plan_values.Results" value={{v.SchemeDossierID}}>
+{{v.PlanName}}
+</option>
+</select>
+</div>
+<br />
           <div class="form-group col-lg-6">
                <label class="" for="email">Date Of Grant:</label>
-               <input type="text" id="txtBoardApprovalDate7" name="txtBoardApprovalDate" value=""  class="form-control">
+               <input type="text"  formControlName="GrantDate" id="txtBoardApprovalDate7" name="txtBoardApprovalDate" value=""  class="form-control">
           </div>
           <div class="form-group col-lg-6">
              <label class="" for="Employees">Record Date :</label>
-             <input type="text" id="txtBoardApprovalDate8" name="txtBoardApprovalDate" value=""  class="form-control">
+             <input type="text"  formControlName="RecordDate" id="txtBoardApprovalDate8" name="txtBoardApprovalDate" value=""  class="form-control">
          </div>
 
           <div class="col-lg-6 form-group">
             <label class="control-label " for="email">Add Documents:</label>
-         	<input id="file_upload1" name="file_upload" type="file" multiple style="width:100px"><br/>
+         	<input id="file_upload1"  formControlName="GrantDocuments" name="file_upload" type="file" multiple style="width:100px"><br/>
          </div>
           <div class="col-lg-6 form-group">
          	 <button type="button" class="btn btn-primary">Download Format</button>
          </div>
         <div class="form-group col-lg-12">
           <label class="control-label " for="email">Options to be granted</label>
-          <input type="text"class="" style="width:10%; border-bottom:dashed;border-left:none;border-right:none;border-top:none">
+          <input type="text"  formControlName="OptionsGranted" class="" style="width:10%; border-bottom:dashed;border-left:none;border-right:none;border-top:none">
         </div>
           <div class="form-group col-lg-12">
            <label class="control-label " for="email">Wheather Aceeptance Of Grant is required ?</label><br/>
-          <label class="radio-inline"><input type="radio" name="optradio">Yes</label>
-          <label class="radio-inline"><input type="radio" name="optradio">No</label>
+          <label class="radio-inline"><input type="radio" name="AcceptancedRequired" value="Y"  formControlName="AcceptancedRequired" >Yes</label>
+          <label class="radio-inline"><input type="radio" name="AcceptancedRequired" value="N"  formControlName="AcceptancedRequired" >No</label>
          </div>
           <div class="form-group col-lg-12">
           <label class="control-label " for="email">Grants to be accepted Within</label>
-          <input type="text"class="" style="width:10%; border-bottom:dashed;border-left:none;border-right:none;border-top:none">days Of date of Grant uploading.
+          <input type="text"class="" formControlName="GrantAcceptedWithinDays"style="width:10%; border-bottom:dashed;border-left:none;border-right:none;border-top:none">days Of date of Grant uploading.
       </div>
           <div class="form-group col-lg-6">
          <label class="control-label " for="email">Remind Before</label>
-         <input type="text"class="" style="width:10%; border-bottom:dashed;border-left:none;border-right:none;border-top:none">days.
+         <input type="text"class=""  formControlName="RemindBeforeDays" style="width:10%; border-bottom:dashed;border-left:none;border-right:none;border-top:none">days.
       </div>
           <div class="form-group col-lg-6">
-        <input type="text" class="form-control" id="text1" style="width: 62%;"  placeholder="Remind intervals">
+        <input type="text"  formControlName="RemindIntervalDays" class="form-control" id="text1" style="width: 62%;"  placeholder="Remind intervals">
      </div>
+     <div class="form-group col-lg-6">
+     <button type="submit"(click)="getdate()"class="btn btn-primary" >Add</button>
+	   <button type="button" class="btn btn-default" data-dismiss="modal">Reset</button>
+ </div>
+   </form>
      </div>
     </div>
 
 	 <div class="modal-footer">
-	   <button type="button" class="btn btn-primary" >Add</button>
-	   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	   <!-- <button type="button" class="btn btn-primary" >Add</button>
+	   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
       </div>
 
     </div>
@@ -527,35 +616,35 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title"><i class="fa fa-file-pdf-o"></i>&nbsp;View Document Details</h4>
       </div>
-	    <form class="form-horizontal" role="form">
-      <div class="modal-body">
-      <div class="row">
-      <div class="col-lg-12">
-      	<div class="form-group col-lg-6">
-        	 <label class="">Company Name : Clonect</label>
-       </div>
-       <div class="form-group col-lg-6">
-        	 <label class="">Scheme Name : Esop-2015</label>
-       </div>
-       <div class="form-group col-lg-6">
-        	 <label class="">Scheme Type : Esop</label>
-       </div>
-       <div class="form-group col-lg-6">
-        	 <label class="">Plan Name : Plan1</label>
-       </div>
-       <div class="form-group col-lg-6">
-        	 <label class="">Plan Document :<a href="#"> Plan.pdf</a></label>
-       </div>
-       <div class="form-group col-lg-6">
-        	 <label class="">Scheme Document : <a href="#">scheme.pdf</a></label>
-       </div>
-       </div>
-       </div>
-      </div>
-      <div class="modal-footer">
-	    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-     </form>
+      <form class="form-horizontal" role="form">
+        <div class="modal-body">
+          <div class="row" *ngFor="let data of schemedetailsid.Results">
+            <div class="col-lg-12" >
+              <div class="form-group col-lg-6">
+                <label class="">Company Name : {{data.CompanyName}}</label>
+              </div>
+              <div class="form-group col-lg-6">
+                <label class="">Scheme Name :{{data.SchemeName}}</label>
+              </div>
+              <div class="form-group col-lg-6">
+                <label class="">Scheme Type : {{data.SchemeType}}</label>
+              </div>
+              <div class="form-group col-lg-6">
+                <label class="">Plan Name : {{data.PlanName}}</label>
+              </div>
+              <div class="form-group col-lg-6">
+                <label class="">Plan Document : </label>
+              </div>
+              <div class="form-group col-lg-6">
+                <label class="">Scheme Document : </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </form>
     </div>
 
   </div>

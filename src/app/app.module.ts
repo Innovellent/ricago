@@ -37,6 +37,9 @@ import { CompanyDetailsComponent } from './company-details/company-details.compo
 import { UserComponent } from './user/user.component';
 import { ManageGranteeComponent } from './manage-grantee/manage-grantee.component';
 
+import { ObjNgFor11 } from './manage-grantee/manage-grantee.component';
+
+import { ObjNgFor111 } from './manage-grantee/manage-grantee.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +52,8 @@ import { ManageGranteeComponent } from './manage-grantee/manage-grantee.componen
     WhitelabelkeyPipe,
     MapFromKeyValuePipe,
     ObjNgFor,
+    ObjNgFor11,
+    ObjNgFor111,
     ObjNgForNew,
     ObjNgForValues,
     ObjNgFor1,
