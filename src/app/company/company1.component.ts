@@ -25,16 +25,11 @@ const emailDomains: string = "yahoo.com"
 export class ObjNgFor implements PipeTransform {
 TR=[];
   transform(v, args) {
-    //console.log(`${v.toString().split('#')[0]}`);
     if (v!=null)
     {
-      console.log(`${v.toString().split('#')[0]}`);
       this.TR.push(` ${v.toString().split('#')[1]}`);
-      console.log("Test Tr");
-      console.log(this.TR);
      return ` ${v.toString().split('#')[0]}`;
    }
-
 
 
 
@@ -46,11 +41,10 @@ TR=[];
 export class ObjNgForNew implements PipeTransform {
   transform(v, args) {
 
-    //console.log(`${v.toString().split('#')[0]}`);
+   
     if (v!=null)
     {
-      console.log(`${v.toString().split('#')[1]}`);
-
+   
      return ` ${v.toString().split('#')[1]}`;
    }
 
@@ -58,27 +52,6 @@ export class ObjNgForNew implements PipeTransform {
    }
 
 
-}
-@Pipe({ name: 'objngforvalues' })
-export class ObjNgForValues implements PipeTransform {
-TR=[];
-//transform(value, args:string[]) : any {
-  //  let keys = [];
-  //  for (let key in value) {
-  //    keys.push({key: key, value: value[key]});
-  //  }
-  //  return keys;
-
- //return` ${value.toString().split('=')[0]}`;
-
- //}
- transform(value, args:string[]) : any {
-     let keys = [];
-     for (let key in value) {
-       keys.push({key: key, value: value[key]});
-     }
-     return keys;
-   }
 }
 
 @Component({
@@ -106,8 +79,6 @@ todos:Array<any>=[{
  //   'key3': 'Jain',
  // }
 tg=[];
-tgv=[];
-arr = [];
 get_white_label:Array<any>=[];
 updatedetails:FormGroup;
 profile_update={};
@@ -239,7 +210,7 @@ getChoice2:any=[];
          data => {
 
         this.delete_post_id = data;
-        console.log(this.delete_post_id);
+     
        },
          error => {
            console.error("Error deleting !"+post_id);
@@ -405,14 +376,105 @@ getChoice2:any=[];
     params.set('grant_type', 'password');
     this.getAPIAccessToken(params);
 
+     $(function () {
+
+    $('#Grant').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": true
+    });
+    $('#Vesting').DataTable({
+       "paging": true,
+       "lengthChange": false,
+       "searching": true,
+       "ordering": true,
+       "info": true,
+       "autoWidth": false
+     });
+    $('#Exercise').DataTable({
+       "paging": true,
+       "lengthChange": false,
+       "searching": true,
+       "ordering": true,
+       "info": true,
+       "autoWidth": false
+     });
+    $('#Generate').DataTable({
+       "paging": true,
+       "lengthChange": false,
+       "searching": true,
+       "ordering": true,
+       "info": true,
+       "autoWidth": false
+     });
+    $('#resolution').DataTable({
+       "paging": true,
+       "lengthChange": false,
+       "searching": true,
+       "ordering": true,
+       "info": true,
+       "autoWidth": false
+     });
+    $('#Scheme').DataTable({
+       "paging": true,
+       "lengthChange": false,
+       "searching": true,
+       "ordering": true,
+       "info": true,
+       "autoWidth": false
+     });
+    $('#Termination').DataTable({
+       "paging": true,
+       "lengthChange": false,
+       "searching": true,
+       "ordering": true,
+       "info": true,
+       "autoWidth": false
+     });
+   $('#Allot').DataTable({
+       "paging": true,
+       "lengthChange": false,
+       "searching": true,
+       "ordering": true,
+       "info": true,
+       "autoWidth": false
+     });
+   $('#Proceed').DataTable({
+       "paging": true,
+       "lengthChange": false,
+       "searching": true,
+       "ordering": true,
+       "info": true,
+       "autoWidth": false
+     });
+  });
+
+
+    $('input[type=text]').focus(function () {
+    let placeholder = $(this).attr('placeholder');
+    if(placeholder != undefined){
+      $(this).parent().prepend('<span class="input-placeholder">'+placeholder+'</span>');
+    $(this).removeAttr('placeholder');
+    }
+  });
+  $('input').blur(function(){
+  //  alert($(this).parent().find('.input-placeholder'));
+  //$(this).attr('placeholder',placeholder);
+    $(this).parent().find('.input-placeholder').remove();
+
+  });
+
+
 
 this.dataServices.getcompany().subscribe((data: Array<Object>)=> {
 
        this.company_name = data;
-  console.log("this.company_name");
-        console.log(this.company_name);
 
-  console.log("this.company_name");
+      
+
 
         });
 
@@ -420,8 +482,7 @@ this.dataServices.getcompany().subscribe((data: Array<Object>)=> {
 
                this.get_white_label = data;
 
-                console.log(this.get_white_label);
-
+      
 
 
                 });
@@ -430,47 +491,27 @@ this.dataServices.getcompany().subscribe((data: Array<Object>)=> {
 
                        this.getDepositorycondition = data;
 
-                       console.log("this.getDepositorycondition");
-                        console.log(this.getDepositorycondition);
-
-                        console.log("this.getDepositorycondition");
                         });
                         this.dataServices.getsharelistedcondition().subscribe((data: Array<Object>)=> {
 
                                this.getsharelistedcondition = data;
 
-                               console.log("this.getsharelistedcondition");
-                                console.log(this.getsharelistedcondition);
-
-                                console.log("this.getsharelistedcondition");
                                 });
                                 this.dataServices.getsharesDemandcondition().subscribe((data: Array<Object>)=> {
 
                                        this.getsharesDemandcondition = data;
 
-                                       console.log("this.getsharesDemandcondition");
-                                        console.log(this.getsharesDemandcondition);
-
-                                        console.log("this.getsharesDemandcondition");
                                         });
 
                                         this.dataServices.getChoice1().subscribe((data: Array<Object>)=> {
 
                                                this.getChoice1 = data;
 
-                                               console.log("this.getChoice1");
-                                                console.log(this.getChoice1);
-
-                                                console.log("this.getChoice1");
                                                 });
                                                 this.dataServices.getChoice2().subscribe((data: Array<Object>)=> {
 
                                                        this.getChoice2 = data;
 
-                                                       console.log("this.getChoice2");
-                                                        console.log(this.getChoice2);
-
-                                                        console.log("this.getChoice2");
                                                         });
 
 
@@ -507,40 +548,33 @@ this.dataServices.getcompany().subscribe((data: Array<Object>)=> {
 
 this.updatedetails = this.formBuilder.group({
 
-      CompanyName:'',
-      //  CompanyName: new Control(this.updatedetails.CompanyName.value),
-    //  CompanyName: this.updatedetails.controls.CompanyName,
-      CompanyCIN:'',
-      AuthCapital: '',
-      PaidupCapital: '',
-      SharesListed:'',
-      SharesInDemat:'',
-      CompanyISIN:'',
-      Depository:'',
+      CompanyName:new FormControl(),
+      CompanyCIN: new FormControl(),
+      AuthCapital: new FormControl(),
+      PaidupCapital: new FormControl(),
+      SharesListed: new FormControl(),
+      SharesInDemat: new FormControl(),
+      CompanyISIN: new FormControl(),
+      Depository: new FormControl(),
         CompanyType: "PR",
         Currency: "INR",
-        SecurityName:'',
-         SecretaryName:'',
-          SecretaryEmail:'',
-           SecretaryPhone:'',
-              SysAdminName:'',
-                 SysAdminEmail:'',
-                    SysAdminPhone:'',
+        SecurityName:new FormControl(),
+         SecretaryName:new FormControl(),
+          SecretaryEmail:new FormControl(),
+           SecretaryPhone:new FormControl(),
+              SysAdminName:new FormControl(),
+                 SysAdminEmail:new FormControl(),
+                    SysAdminPhone:new FormControl(),
                     EmailDomains: "yahoo.com",
                     ModifiedBy: 11,
-                    additionaltext1:'',
-                    additionaltext2:'',
-                    additionaldate1:'',
-                    additionaldate2:'',
-                    additionalchoice1:'',
-                    additionalchoice2:''
+                    additionaltext1:new FormControl(),
+                    additionaltext2:new FormControl(),
+                    additionaldate1:new FormControl(),
+                    additionaldate2:new FormControl(),
+                    additionalchoice1:new FormControl(),
+                    additionalchoice2:new FormControl()
 
     });
-
-
-
-
-
   }
 
   private getAPIAccessToken(params: URLSearchParams) {
@@ -589,7 +623,6 @@ this.updatedetails = this.formBuilder.group({
         });
   }
 
-
   private getAllAPIData() {
     this.dataServices.getAllData().subscribe(
         (serviceData: Response) => {
@@ -598,19 +631,16 @@ this.updatedetails = this.formBuilder.group({
         });
   }
 
-
-
-
  onSubmitPost()
   {
 let json_post_data=JSON.stringify(this.postdata.value);
-     console.log(json_post_data);
+ 
 
     this.dataServices.createCompany(json_post_data).subscribe(
        data => {
 
         this.profile = data;
-        console.log(this.profile);
+     
        },
        error => {
          console.error("Error saving user!");
@@ -626,33 +656,23 @@ localStorage.setItem('updateid',update_id);
     this.dataServices.getUser_id(update_id).subscribe((data: Array<Object>)=> {
 
        this.profile_id = data;
-
         console.log("profile_id");
-        //console.log(this.profile_id);
-
-
-
         });
 
    $('#edit').modal('show');
-//console.log(update_id);
-
 }
-
 
  onUpdatePost()
   {
-
  let updateid= localStorage.getItem('updateid');
-//alert(updateid);
-let json_post_data=JSON.stringify(this.updatedetails.value);
-     console.log(json_post_data);
+ let json_post_data=JSON.stringify(this.updatedetails.value);
+   
 
     this.dataServices.updatedetail(json_post_data,updateid).subscribe(
        data => {
 
         this.profile_update = data;
-        console.log(this.profile_update);
+      
        },
        error => {
          console.error("Error saving user!");
@@ -661,96 +681,69 @@ let json_post_data=JSON.stringify(this.updatedetails.value);
     );
 
   }
-// ngAfterViewInit(obj) {
-//   this.generateArray(obj);
-//  }
 
   generateArray(obj){
 
 
-      // console.log(Object.keys(obj));|| obj[key] =='G'
-      //console.log(Object.keys(obj).forEach((key) => {(obj[key] == null)  && delete obj[key]; return obj[key]}));
-     console.log(Object.keys(obj).forEach((key) => {
+    Object.keys(obj).forEach((key) => {
 
        if (obj[key] === null || obj[key] ==2 )
            delete obj[key];
 
-        }));
+        });
 
 this.tg.push(Object.keys(obj).map((key)=>{ return `${obj[key].toString().split('#')[1]}`}));
-//console.log("testt : " +this.tg);
+
   return Object.keys(obj).map((key)=>{return obj[key]});
 
 
   }
 
   generateArrayC(obj){
-console.log("obj");
-console.log(obj);
   console.log(Object.keys(obj).forEach((key) => {(obj[key] == null)
      && delete obj[key];
       return  [`${parseInt(obj[key]).toString().split('#')[1]}`,`${parseInt(obj[key]).toString().split('#')[0]}`]}));
-//console.log(Object.keys(obj).map((key)=>{!obj[key] !== null ; return [`${obj[key].toString().split('#')[1]}`,`${obj[key].toString().split('#')[0]}`] }));
-this.tgv.push(Object.keys(obj).map((key)=>{!obj[key] !== null ; return `${obj[key].toString().split('#')[1]}` }));
+      return Object.keys(obj).map((key)=>{!obj[key] !== null ; return [`${obj[key].toString().split('#')[1]}`,`${obj[key].toString().split('#')[0]}`] });
+  }
+  generateArrayCE(obj){
 
-      return Object.keys(obj).map((key)=>{!obj[key] !== null ; return [`${obj[key].toString().split('#')[0]}`,`${obj[key].toString().split('#')[1]}`].join(",") });
+      var arr = $.map(this.tg, function(el) {return el; })
 
+      var unique = arr.filter(function(elem, index, self) {
+
+        return index == self.indexOf(elem);
+
+
+      });
+
+      var arraytoobject={}
+      unique.forEach(function(keyarr) {
+        Object.keys(obj).map((key)=>{
+          if(keyarr == key) {
+            var keys=key;
+            var value=obj[key];
+            arraytoobject[keys]=value;
+     
+            return arraytoobject;
+          }
+        });
+
+      });
+
+
+  return Object.keys(arraytoobject).map((key)=>{
+    var keys=key;
+    var value=arraytoobject[key];
+    return [keys,arraytoobject[key]]});
 
   }
-  // generateArrayCE(obj){
-  //   console.log("obj");
-  //   console.log(obj);
-  //     console.log("obj");
-  //
-  //         return Object.keys(obj).map((key)=>{!obj[key] !== null ; return `${obj[key].toString().split('#')[1]}` });
-  //
-  // //     var arr = $.map(this.tg, function(el) {return el; })
-  // //
-  // //     var unique = arr.filter(function(elem, index, self) {
-  // //
-  // //       return index == self.indexOf(elem);
-  // //
-  // //
-  // //     });
-  // //
-  // //     var arraytoobject={}
-  // //     unique.forEach(function(keyarr) {
-  // //       Object.keys(obj).map((key)=>{
-  // //         if(keyarr == key) {
-  // //           var keys=key;
-  // //           var value=obj[key];
-  // //           arraytoobject[keys]=value;
-  // //           //console.log(arraytoobject[keys]+"="+value);
-  // //           console.log(keys+"="+value);
-  // //
-  // //           return arraytoobject;
-  // //         }
-  // //       });
-  // //
-  // //     });
-  // //
-  // // console.log(arraytoobject);
-  // //
-  // //     console.log(Object.keys(arraytoobject).map((key)=>{  var keys=key;return arraytoobject[key]}));
-  // //         //  console.log(Object.keys(arraytoobject).map((key)=>{  var keys=key;return [arraytoobject[key],keys]}));
-  // //       // return [keys,vals];
-  // //
-  // // return Object.keys(arraytoobject).map((key)=>{
-  // //   var keys=key;
-  // //   var value=arraytoobject[key];
-  // //   return value});
-  //
-  // }
 
 
 
   generateArrayTR(obj){
-    //console.log(typeof this.tg);
-
+ 
     var arr = $.map(this.tg, function(el) {return el; })
 
-    // console.log(arr);
-    // console.log(typeof arr);
     var unique = arr.filter(function(elem, index, self) {
 
       return index == self.indexOf(elem);
@@ -765,98 +758,17 @@ this.tgv.push(Object.keys(obj).map((key)=>{!obj[key] !== null ; return `${obj[ke
           var keys=key;
           var value=obj[key];
           arraytoobject[keys]=value;
-          //console.log(arraytoobject[keys]+"="+value);
-          console.log(keys+"="+value);
-
           return arraytoobject;
         }
       });
 
     });
 
-
     return Object.keys(arraytoobject).map((key)=>{return arraytoobject[key]});
 
 
   }
 
-
-
-    generateArrayTRE(obj){
-      //console.log(typeof this.tg);
-
-      var arr = $.map(this.tgv, function(el) {return el; })
-console.log("obj");
-       console.log(obj);
-      // console.log(typeof arr);
-      var unique = arr.filter(function(elem, index, self) {
-
-        return index == self.indexOf(elem);
-
-
-      });
-
-      var arraytoobject={}
-      unique.forEach(function(keyarr) {
-        Object.keys(obj).map((key)=>{
-          if(keyarr == key) {
-            var keys=key;
-            var value=obj[key];
-            arraytoobject[keys]=value;
-            //console.log(arraytoobject[keys]+"="+value);
-            console.log(keys+"="+value);
-
-            return arraytoobject;
-          }
-        });
-
-      });
-      console.log("arraytoobject");
-console.log(arraytoobject);
-
-// for (var prop in arraytoobject) {
-//     arr.push(arraytoobject[prop]);
-// }JSON.parse(arraytoobject.json())
-      return [arraytoobject];
-
-
-    }
-
-    generateArrayTREV(obj){
-      //console.log(typeof this.tg);
-      var arr = $.map(this.tgv, function(el) {return el; })
-    console.log("objQQ");
-       console.log(obj);
-      // console.log(typeof arr);
-      var unique = arr.filter(function(elem, index, self) {
-
-        return index == self.indexOf(elem);
-
-
-      });
-
-      var arraytoobject={}
-      unique.forEach(function(keyarr) {
-        Object.keys(obj).map((key)=>{
-          if(keyarr == key) {
-            var keys=key;
-            var value=obj[key];
-            arraytoobject[keys]=value;
-            //arraytoobject[keys]=keys+"="+value;
-            //console.log(arraytoobject[keys]+"="+value);
-            console.log(keys+"="+value);
-
-            return arraytoobject;
-          }
-        });
-
-      });
-    console.log("arraytoobject");
-  console.log(Object.keys(arraytoobject).map((key)=>{ var keys=key; return [keys,arraytoobject[key] ].join(",")   }));
-      return Object.keys(arraytoobject).map((key)=>{ var keys=key; return [keys,arraytoobject[key] ].join(",")   });
-
-
-    }
 
 
 

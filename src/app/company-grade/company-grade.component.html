@@ -119,7 +119,7 @@
 	    <form class="" role="form" [formGroup]="postdata" (ngSubmit)="onSubmitPost()">
 		      		 <div class="form-group col-lg-6">
 					              <select class="form-control" formControlName="CompanyID">
-                                          <option >Select Company</option>
+                                          <option selected>Select Company</option>
 
   <option *ngFor="let v of company_name.Results" value={{v.CompanyID}}>
     {{v.CompanyName}}
