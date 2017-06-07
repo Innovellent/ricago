@@ -1,0 +1,607 @@
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="content-wrapper">
+  <section class="content-header">
+    <h1>
+      <!--      Dashboard -->
+      &nbsp;
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li class="active">Company Details</li>
+    </ol>
+  </section>
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="col-md-12">
+      <!-- MAP & BOX PANE -->
+      <div class="box box-success">
+        <div class="box-header with-border">
+          <h3 class="box-title">Company Details</h3>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+              <i class="fa fa-minus"></i>
+            </button>
+            <!--    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+          <div class="row no-gutter">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <div class="pad col-lg-12">
+                <!-- form will be created here -->
+                <div class="col-lg-2"><br></div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="col-md-12 pull-right">
+                      <button type="button"
+                              class="btn btn-primary"
+                              data-toggle="modal"
+                              data-target="#Addcompany"
+                              (click)="showAddModal()">
+                        <i class="fa fa-plus-circle"></i> ADD COMPANY
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="table-responsive">
+                    <div id="Grant_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                      <div class="row">
+                        <div class="col-sm-9"></div>
+                        <div class="col-sm-3">
+                          <div id="Grant_filter" class="dataTables_filter"><label></label></div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <table class="table table-bordered dataTable no-footer"
+                                 id="Grant"
+                                 role="grid"
+                                 aria-describedby="Grant_info" *ngIf="tokenRecieved && dataLoded">
+                            <thead>
+
+                            <tr role="row">
+                              <th class="th sorting_asc"
+                                  tabindex="0"
+                                  aria-controls="Grant"
+                                  rowspan="1"
+                                  colspan="1"
+                                  aria-sort="ascending"
+                                  aria-label="Company Name: activate to sort column descending"
+                                  style="width: 63px;">Company Name
+                              </th>
+                              <th class="th sorting"
+                                  tabindex="0"
+                                  aria-controls="Grant"
+                                  rowspan="1"
+                                  colspan="1"
+                                  aria-label="CIN No.: activate to sort column ascending"
+                                  style="width: 24px;">CIN No.
+                              </th>
+                              <th class="th sorting"
+                                  tabindex="0"
+                                  aria-controls="Grant"
+                                  rowspan="1"
+                                  colspan="1"
+                                  aria-label=" Authorised Capital Share: activate to sort column ascending"
+                                  style="width: 72px;"> Authorised Capital Share
+                              </th>
+                              <th class="th sorting"
+                                  tabindex="0"
+                                  aria-controls="Grant"
+                                  rowspan="1"
+                                  colspan="1"
+                                  aria-label="Paidup Capital Share: activate to sort column ascending"
+                                  style="width: 52px;">Paidup Capital Share
+                              </th>
+                              <th class="th sorting"
+                                  tabindex="0"
+                                  aria-controls="Grant"
+                                  rowspan="1"
+                                  colspan="1"
+                                  aria-label="Stock Exchange on listed Share: activate to sort column ascending"
+                                  style="width: 82px;">Stock Exchange on listed Share
+                              </th>
+                              <th class="th sorting"
+                                  tabindex="0"
+                                  aria-controls="Grant"
+                                  rowspan="1"
+                                  colspan="1"
+                                  aria-label="Wheather Shares are listed: activate to sort column ascending"
+                                  style="width: 71px;">Wheather Shares are listed
+                              </th>
+                              <th class="th sorting"
+                                  tabindex="0"
+                                  aria-controls="Grant"
+                                  rowspan="1"
+                                  colspan="1"
+                                  aria-label="E-mail Id of company secretary: activate to sort column ascending"
+                                  style="width: 81px;">E-mail Id of company secretary
+                              </th>
+                              <th class="th sorting"
+                                  tabindex="0"
+                                  aria-controls="Grant"
+                                  rowspan="1"
+                                  colspan="1"
+                                  aria-label=" Contact No. of company secretary: activate to sort column ascending"
+                                  style="width: 88px;"> Contact No. of company secretary
+                              </th>
+                              <th class="th sorting"
+                                  tabindex="0"
+                                  aria-controls="Grant"
+                                  rowspan="1"
+                                  colspan="1"
+                                  aria-label="Mail-Id of Admin: activate to sort column ascending"
+                                  style="width: 42px;">Mail-Id of Admin
+                              </th>
+                              <th class="th sorting"
+                                  tabindex="0"
+                                  aria-controls="Grant"
+                                  rowspan="1"
+                                  colspan="1"
+                                  aria-label="Contact No. of Admin: activate to sort column ascending"
+                                  style="width: 55px;">Contact No. of Admin
+                              </th>
+                              <th class="th sorting"
+                                  tabindex="0"
+                                  aria-controls="Grant"
+                                  rowspan="1"
+                                  colspan="1"
+                                  aria-label="Action: activate to sort column ascending"
+                                  style="width: 79px;">Action
+                              </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr role="row" class="odd" *ngFor="let data of results">
+                              <td class="td sorting_1">{{data.CompanyName}}</td>
+                              <td class="td">{{data.CompanyCIN}}</td>
+                              <td class="td">{{data.AuthCapital}}</td>
+                              <td class="td">{{data.PaidupCapital}}</td>
+                              <td class="td">{{data.SharesInDemat}}</td>
+                              <td class="td">{{data.SharesListed}}</td>
+                              <td class="td">{{data.SecretaryEmail}}</td>
+                              <td class="td">{{data.SecretaryPhone}}</td>
+                              <td class="td">{{data.SysAdminEmail}}</td>
+                              <td class="td">{{data.SysAdminPhone}}</td>
+                              <td class="td">
+                                <button type="submit" class="btn btn-primary" (click)="editCompany(data);">
+                                  <i class="fa fa-edit"></i>Edit
+                                </button>
+                                <button type="submit" class="btn btn-danger" (click)="removeCompany(data);">
+                                  <i class="fa fa-remove"></i>Delete
+                                </button>
+                              </td>
+                            </tr>
+                            </tbody>
+                            <tbody>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-5">
+                          <div class="dataTables_info" id="Grant_info" role="status" aria-live="polite">Showing 1 to 3
+                                                                                                        of 3 entries
+                          </div>
+                        </div>
+                        <div class="col-sm-7">
+                          <div class="dataTables_paginate paging_simple_numbers" id="Grant_paginate">
+                            <ul class="pagination">
+                              <li class="paginate_button previous disabled" id="Grant_previous"><a href="#"
+                                                                                                   aria-controls="Grant"
+                                                                                                   data-dt-idx="0"
+                                                                                                   tabindex="0">Previous</a>
+                              </li>
+                              <li class="paginate_button active"><a href="#"
+                                                                    aria-controls="Grant"
+                                                                    data-dt-idx="1"
+                                                                    tabindex="0">1</a></li>
+                              <li class="paginate_button next disabled" id="Grant_next"><a href="#"
+                                                                                           aria-controls="Grant"
+                                                                                           data-dt-idx="2"
+                                                                                           tabindex="0">Next</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.col -->
+
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+
+      <!-- /.row -->
+
+      <!-- /.box -->
+    </div>
+  </div>
+  <!-- /.content -->
+</div>
+
+
+<!--Modal Template for the Add Company Modal Starts-->
+
+<div bsModal
+     #addModal="bs-modal"
+     class="modal fade"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="mySmallModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><i class="fa  fa-plus-square"></i> Add Company Details</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideAddModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-inline">
+          <div class="col-lg-6 form-group">
+            <select [(ngModel)]="addCompanyType" name="addCompanyType" class="form-control m-bot15">
+              <option *ngFor="let company of companyType" [ngValue]="company">{{ company.ConfigValue }}</option>
+            </select>
+          </div>
+          <div class="form-group col-lg-6">
+            <label></label>
+            <input type="text" class="form-control m-bot15" placeholder="Company Name" name = "addCompanyName" [(ngModel)]="addCompanyName" title="Company Name">
+          </div>
+        </form>
+        <br>
+        <form class="form-inline">
+          <div class="col-lg-6 form-group">
+            <input type="text" class="form-control m-bot15" placeholder="Company CIN" name = "addCompanyCIN" [(ngModel)]="addCompanyCIN" title="Company CIN">
+          </div>
+
+          <div class="form-group col-lg-6">
+            <label></label>
+            <input type="text"
+                   name=""
+                   class="form-control"
+                   placeholder="Authorised Shared Capital"
+                   name = "addAuthorizedSharedCapital"
+                   [(ngModel)]="addAuthorizedSharedCapital"
+                   title="Authorised Shared Capital">
+          </div>
+        </form>
+        <br>
+        <form class="form-inline">
+          <div class="form-group col-lg-6">
+            <label></label>
+            <input type="text"
+                   name=""
+                   class="form-control"
+                   placeholder="Paid Up Shared Capital"
+                   name = "addPaidupSharedCapital"
+                   [(ngModel)]="addPaidUpSharedCapital"
+                   title="Paid Up Shared Capital">
+          </div>
+
+          <div class="form-group col-lg-6">
+            <label></label>
+            <select [(ngModel)]="addShareListing" name="addShareListing" class="form-control m-bot15">
+              <option *ngFor="let company of shareListings" [ngValue]="company">{{ company.ConfigValue }}</option>
+            </select>
+          </div>
+        </form>
+        <br>
+        <form class="form-inline">
+          <div class="form-group col-lg-6">
+            <label></label>
+            <select [(ngModel)]="addStockExchange" name="addStockExchange" class="form-control m-bot15">
+              <option *ngFor="let company of stockExchanges" [ngValue]="company">{{ company }}</option>
+            </select>
+          </div>
+          <div class="form-group col-lg-6">
+            <label></label>
+            <select [(ngModel)]="addDematShareListing" name="addDematShareListing" class="form-control m-bot15">
+              <option *ngFor="let company of shareListingsInDemat" [ngValue]="company">{{ company.ConfigValue }}</option>
+            </select>
+          </div>
+        </form>
+        <br>
+        <form class="form-inline">
+          <div class="form-group col-lg-6">
+            <label></label>
+            <input type="text" name="" class="form-control" placeholder="Company ISIN" name = "addCompanyISIN" [(ngModel)]="addCompanyISIN" title="Company ISIN">
+          </div>
+          <div class="form-group col-lg-6">
+            <label></label>
+            <select [(ngModel)]="addDepository" name="addDepository" class="form-control m-bot15">
+              <option *ngFor="let company of depository" [ngValue]="company">{{ company.ConfigValue }}</option>
+            </select>
+          </div>
+        </form>
+        <br>
+        <form class="form-inline">
+          <div class="form-group col-lg-6">
+            <label></label>
+            <input type="text" name="" class="form-control" placeholder="Security Name" name = "addSecurityName" [(ngModel)]="addSecurityName" title="Security Name">
+          </div>
+
+          <div class="form-group col-lg-6">
+            <label></label>
+            <input type="text"
+                   class="form-control m-bot15"
+                   placeholder="Name of Company Secretary"
+                   name = "addCompanySecretaryName"
+                   [(ngModel)]="addCompanySecretaryName"
+                   title="Name of Company Secretary">
+          </div>
+        </form>
+        <br>
+        <form class="form-inline">
+          <div class="form-group col-lg-6">
+            <label></label>
+            <input type="text"
+                   class="form-control m-bot15"
+                   placeholder="E-Mail Id Of Company Secretary"
+                   name = "addCompanySecretaryEmail"
+                   [(ngModel)]="addCompanySecretaryEmail"
+                   title="E-Mail Id Of Company Secretary">
+          </div>
+
+          <div class="form-group col-lg-6">
+            <label></label>
+            <input type="text"
+                   class="form-control m-bot15"
+                   placeholder="Contact No of Company Secretary"
+                   name = "addCompanySecretaryNumber"
+                   [(ngModel)]="addCompanySecretaryNumber"
+                   title="Contact No of Company Secretary">
+          </div>
+        </form>
+        <br>
+        <form class="form-inline">
+          <div class="form-group col-lg-6">
+            <label></label>
+            <input type="text" class="form-control m-bot15" placeholder="Name of Admin" name = "addAdminName" [(ngModel)]="addAdminName" title="Name of Admin">
+          </div>
+          <div class="form-group col-lg-6">
+            <label></label>
+            <input type="text" class="form-control m-bot15" placeholder="Mail-Id Of Admin" name = "addAdminEmail" [(ngModel)]="addAdminEmail" title="Mail-Id Of Admin">
+          </div>
+        </form>
+        <br>
+        <form class="form-inline">
+          <div class="form-group col-lg-6">
+            <label></label>
+            <input type="text"
+                   class="form-control m-bot15"
+                   placeholder="Contact No Of Admin"
+                   name = "addAdminNumber"
+                   [(ngModel)]="addAdminNumber"
+                   title="Contact No Of Admin">
+          </div>
+          <div class="form-group col-lg-12">
+            <label> Current Open Schemes:</label>
+          </div>
+        </form>
+        <br>
+        <form class="form-inline">
+          <div class="form-group col-lg-4">
+            <label class="form-group"> ESOP-2015</label>
+          </div>
+          <div class="form-group col-lg-4">
+            <label>*RSU*</label>
+          </div>
+          <div class="form-group col-lg-4">
+            <label>*SAR 2015*</label>
+          </div>
+          <div class="col-lg-2"><br></div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="addCompanyForm();">Save</button>
+        <button type="button" class="btn btn-default" (click)="resetAddCompanyForm();">Reset</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal Template for Add Company Modal Ends-->
+
+<!--Modal Template for the Edit Company Modal Starts-->
+
+<div bsModal
+     #editModal="bs-modal"
+     class="modal fade"
+     tabindex="-1"
+     role="dialog"
+     aria-labelledby="mySmallModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title"><i class="fa  fa-plus-square"></i> Edit Company Details</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="hideEditModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="form-inline">
+          <div class="col-lg-6 form-group">
+            <select [(ngModel)]="editCompanyType" name="editCompanyType">
+              <option *ngFor="let company of companyType" [ngValue]="company">{{ company.ConfigValue }}</option>
+            </select>
+          </div>
+          <div class="form-group col-lg-6">
+            <label></label>
+            <input type="text" class="form-control m-bot15" placeholder="Company Name" name = "editCompanyName" [(ngModel)]="editCompanyName" title="Company Name">
+          </div>
+        </form>
+        <br>
+        <form class="form-inline">
+          <div class="col-lg-6 form-group">
+            <input type="text" class="form-control m-bot15" placeholder="Company CIN" name = "editCompanyCIN" [(ngModel)]="editCompanyCIN" title="Company CIN">
+          </div>
+
+          <div class="form-group col-lg-6">
+            <label></label>
+            <input type="text"
+                   name=""
+                   class="form-control"
+                   placeholder="Authorised Shared Capital"
+                   name = "editAuthorizedSharedCapital"
+                   [(ngModel)]="editAuthorizedSharedCapital"
+                   title="Authorised Shared Capital">
+          </div>
+        </form>
+        <br>
+        <form class="form-inline">
+          <div class="form-group col-lg-6">
+            <label></label>
+            <input type="text"
+                   name=""
+                   class="form-control"
+                   placeholder="Paid Up Shared Capital"
+                   name = "editPaidupSharedCapital"
+                   [(ngModel)]="editPaidUpSharedCapital"
+                   title="Paid Up Shared Capital">
+          </div>
+
+          <div class="form-group col-lg-6">
+            <label></label>
+            <select [(ngModel)]="editShareListing" name="editShareListing">
+              <option *ngFor="let company of shareListings" [ngValue]="company">{{ company.ConfigValue }}</option>
+            </select>
+          </div>
+        </form>
+        <br>
+        <form class="form-inline">
+          <div class="form-group col-lg-6">
+            <label></label>
+            <select [(ngModel)]="editStockExchange" name="editStockExchange">
+              <option *ngFor="let company of stockExchanges" [ngValue]="company">{{ company }}</option>
+            </select>
+          </div>
+          <div class="form-group col-lg-6">
+            <label></label>
+            <select [(ngModel)]="editDematShareListing" name="editDematShareListing">
+              <option *ngFor="let company of shareListingsInDemat" [ngValue]="company">{{ company.ConfigValue }}</option>
+            </select>
+          </div>
+        </form>
+        <br>
+        <form class="form-inline">
+          <div class="form-group col-lg-6">
+            <label></label>
+            <input type="text" name="" class="form-control" placeholder="Company ISIN" name = "editCompanyISIN" [(ngModel)]="editCompanyISIN" title="Company ISIN">
+          </div>
+          <div class="form-group col-lg-6">
+            <label></label>
+            <select [(ngModel)]="editDepository" name="editDepository">
+              <option *ngFor="let company of depository" [ngValue]="company">{{ company.ConfigValue }}</option>
+            </select>
+          </div>
+        </form>
+        <br>
+        <form class="form-inline">
+          <div class="form-group col-lg-6">
+            <label></label>
+            <input type="text" name="" class="form-control" placeholder="Security Name" name = "editSecurityName" [(ngModel)]="editSecurityName" title="Security Name">
+          </div>
+
+          <div class="form-group col-lg-6">
+            <label></label>
+            <input type="text"
+                   class="form-control m-bot15"
+                   placeholder="Name of Company Secretary"
+                   name = "editCompanySecretaryName"
+                   [(ngModel)]="editCompanySecretaryName"
+                   title="Name of Company Secretary">
+          </div>
+        </form>
+        <br>
+        <form class="form-inline">
+          <div class="form-group col-lg-6">
+            <label></label>
+            <input type="text"
+                   class="form-control m-bot15"
+                   placeholder="E-Mail Id Of Company Secretary"
+                   name = "editCompanySecretaryEmail"
+                   [(ngModel)]="editCompanySecretaryEmail"
+                   title="E-Mail Id Of Company Secretary">
+          </div>
+
+          <div class="form-group col-lg-6">
+            <label></label>
+            <input type="text"
+                   class="form-control m-bot15"
+                   placeholder="Contact No of Company Secretary"
+                   name = "editCompanySecretaryNumber"
+                   [(ngModel)]="editCompanySecretaryNumber"
+                   title="Contact No of Company Secretary">
+          </div>
+        </form>
+        <br>
+        <form class="form-inline">
+          <div class="form-group col-lg-6">
+            <label></label>
+            <input type="text" class="form-control m-bot15" placeholder="Name of Admin" name = "editAdminName" [(ngModel)]="editAdminName" title="Name of Admin">
+          </div>
+          <div class="form-group col-lg-6">
+            <label></label>
+            <input type="text" class="form-control m-bot15" placeholder="Mail-Id Of Admin" name = "editAdminEmail" [(ngModel)]="editAdminEmail" title="Mail-Id Of Admin">
+          </div>
+        </form>
+        <br>
+        <form class="form-inline">
+          <div class="form-group col-lg-6">
+            <label></label>
+            <input type="text"
+                   class="form-control m-bot15"
+                   placeholder="Contact No Of Admin"
+                   name = "editAdminNumber"
+                   [(ngModel)]="editAdminNumber"
+                   title="Contact No Of Admin">
+          </div>
+          <div class="form-group col-lg-12">
+            <label> Current Open Schemes:</label>
+          </div>
+        </form>
+        <br>
+        <form class="form-inline">
+          <div class="form-group col-lg-4">
+            <label class="form-group"> ESOP-2015</label>
+          </div>
+          <div class="form-group col-lg-4">
+            <label>*RSU*</label>
+          </div>
+          <div class="form-group col-lg-4">
+            <label>*SAR 2015*</label>
+          </div>
+          <div class="col-lg-2"><br></div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="UpdateCompanyData();">Save</button>
+        <button type="button" class="btn btn-default" (click)="resetEditCompanyForm();">Reset</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+
+<!--Modal Template for the Edit Company Modal Ends-->
