@@ -38,35 +38,40 @@ getUser() {
 let headers = new Headers();
   headers.append('Content-Type',
      'application/json');
-    
+     headers.append('Content-Type',
+        'application/json');
+
+    //headers.append('Access-Control-Allow-Origin', '*');
+
+
     this.createAuthorizationHeader(headers);
-    return this.http.get(this.base_url + "api/companygrade/getall", {headers:headers})
+    return this.http.get(this.base_url + "api/companygrade/getall/", {headers:headers})
     .map((res:Response) => JSON.parse(res.json()));
   }
 
 
   removepost(post_id) {
-   
+
 let headers = new Headers();
   headers.append('Content-Type',
      'application/json');
 this.createAuthorizationHeader(headers);
 console.log(post_id);
-      
+
     return this.http.delete(this.base_url + "api/companygrade/delete/"+post_id, {headers:headers});
 
   }
 
 
     createUser(postdata) {
-   
+
 let headers = new Headers();
   headers.append('Content-Type',
      'application/json; charset=utf-8');
      this.createAuthorizationHeader(headers);
 
 console.log(postdata);
-      
+
     return this.http.post(this.base_url + "api/companygrade/add", postdata, {headers:headers}).map(res=> res.json());
 
   }
@@ -85,7 +90,7 @@ let headers = new Headers();
 
 
     updatedetail(update_data,updateid) {
-   
+
 let headers = new Headers();
   headers.append('Content-Type',
      'application/json; charset=utf-8');
@@ -94,7 +99,7 @@ let headers = new Headers();
     this.createAuthorizationHeader(headers);
 
 console.log(update_data);
-      
+
     return this.http.put(this.base_url + "api/companygrade/update/"+updateid, update_data, {headers:headers}).map(res=> res.json());
 
   }

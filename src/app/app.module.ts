@@ -15,7 +15,9 @@ import { CompanyGradeComponent } from './company-grade/company-grade.component';
 import { CompanyComponent } from './company/company1.component';
 import { ObjNgFor } from './company/company1.component';
 import { ObjNgForNew } from './company/company1.component';
-
+import { ObjNgForValues } from './company/company1.component';
+import { ObjNgFor1 } from './company-details/company-details.component';
+import { ObjNgForNew1 } from './company-details/company-details.component';
 import {ModalModule} from 'ng2-bootstrap/modal';
 import { KeyPipesPipe } from './key-pipes.pipe';
 import { WhitelabelkeyPipe } from './whitelabelkey.pipe';
@@ -26,7 +28,25 @@ import { NumberTomonthPipe } from './schemedoosier/number-tomonth.pipe';
 import { NumberToyearPipe } from './schemedoosier/number-toyear.pipe';
 import { CompanyDepartmentComponent } from './company-department/company-department.component';
 import { ObjNgForValue } from './schemedoosier/schemedoosier.component';
+import { LocationComponent } from './location/location.component';
+import { CompanyDesignationComponent } from './company-designation/company-designation.component';
+import { CompanyDivisionComponent } from './company-division/company-division.component';
+import { CompanyBankComponent } from './company-bank/company-bank.component';
+import { CompanyRoleComponent } from './company-role/company-role.component';
+import { CompanyDetailsComponent } from './company-details/company-details.component';
+import { UserComponent } from './user/user.component';
+import { ManageGranteeComponent } from './manage-grantee/manage-grantee.component';
 
+import { ObjNgFor11 } from './manage-grantee/manage-grantee.component';
+
+import { ObjNgFor111 } from './manage-grantee/manage-grantee.component';
+import { ObjNgFor22 } from './manage-grantee/manage-grantee.component';
+import { ObjNgFor222 } from './manage-grantee/manage-grantee.component';
+import { ObjNgForValue1 } from './schemedoosier/schemedoosier.component';
+import { objngforvalue2 } from './schemedoosier/schemedoosier.component';
+import { ObjNgForValue3 } from './schemedoosier/schemedoosier.component';
+
+import { ObjNgForValue4 } from './schemedoosier/schemedoosier.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,13 +59,32 @@ import { ObjNgForValue } from './schemedoosier/schemedoosier.component';
     WhitelabelkeyPipe,
     MapFromKeyValuePipe,
     ObjNgFor,
+    ObjNgFor11,
+    ObjNgFor22,
+    ObjNgForValue4,
+    ObjNgFor111,
+    objngforvalue2,
+    ObjNgForValue3,
     ObjNgForNew,
+    ObjNgForValues,
+    ObjNgFor222,
+    ObjNgFor1,
+    ObjNgForNew1,
+    ObjNgForValue1,
     SchemedoosierComponent,
     NumberTodatePipe,
     NumberTomonthPipe,
     NumberToyearPipe,
     CompanyDepartmentComponent,
-    ObjNgForValue
+    ObjNgForValue,
+    LocationComponent,
+    CompanyDesignationComponent,
+    CompanyDivisionComponent,
+    CompanyBankComponent,
+    CompanyRoleComponent,
+    CompanyDetailsComponent,
+    UserComponent,
+    ManageGranteeComponent
       ],
   imports: [
     BrowserModule,
