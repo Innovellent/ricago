@@ -1,0 +1,31 @@
+.lbutton:hover {
+ color: #003366;
+}
+  .bg-aqua{ background-color:#0563AD !important}
+  .bg-yellow{ background-color:#0563AD !important}
+  .bg-green{ background-color:#0563AD !important}
+  .bg-red{ background-color:#0563AD !important}
+  .th{background-color: #f4faff;
+	border: 1px solid #5eb0f0 !important;
+    color: #007ee5;}
+	.td{border: 1px solid #5eb0f0 !important;}
+legend.legendStyle{padding-left:5px;padding-right:5px}
+fieldset.fsStyle{font-family:Verdana,Arial,sans-serif;font-size:small;font-weight:normal;border:1px solid #999;padding:0 17px;margin:10px}
+legend.legendStyle{font-size:90%;color:#005a7d;background-color:transparent;font-weight:bold}
+legend{margin-bottom: 5px;width:auto;border-bottom:0}
+.hero{font-weight:100;color:#3A7179;font-size:20px}
+@media screen and (max-width:900px){.display-block{display:none}}
+.modal-header { background-color: #00BCD4;color:fff}
+	.modal-title {color:#fff;}
+
+	.form-control {
+    border-radius: 0;
+    box-shadow: none;
+    border-bottom-color: #d2d6de;
+	background-image: none;
+    border-right: 0;
+    border-top: 0;
+    border-left: 0;
+    border-bottom: 1px solid #ccc;
+
+}

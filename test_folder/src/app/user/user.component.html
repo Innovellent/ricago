@@ -1,0 +1,409 @@
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="content-wrapper">
+
+    <section class="content-header">
+      <h1>&nbsp;
+
+
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">User Management</li>
+      </ol>
+    </section>
+<div class="col-lg-12">
+	<h3 style="color:#036; font-weight:bold;">User Management</h3>
+
+
+</div>
+    <!-- Main content -->
+    <div class="">
+	<div class="col-md-12">
+          <!-- MAP & BOX PANE -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">General Employee Details</h3>
+
+
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <div class="row no-gutter">
+                <div class="col-lg-12 col-sm-12">
+                <div class="col-lg-12"><br>
+                    <div class="col-lg-4"></div>
+                           <div class="col-md-2">
+                     	   <div id="uploadifive-file_upload" class="uploadifive-button" style="height: 30px; line-height: 30px; overflow: hidden; position: relative; text-align: center; width: 100px;">Attach Doc<input id="file_upload" name="file_upload" type="file" multiple="" style="width: 100px; display: none;"><input type="file" style="font-size: 30px; opacity: 0; position: absolute; right: -3px; top: -3px; z-index: 999;" multiple="multiple"></div><div id="uploadifive-file_upload-queue" class="uploadifive-queue"></div>
+                           </div>
+                            <div class="col-md-2">
+                            	<button type="button" class="btn btn-primary"><i class="fa fa-upload"></i>&nbsp;&nbsp;Upload</button>
+                            </div>
+                           <div class="col-md-3">&nbsp;
+                     	    <a href="admin.xlsx"><button type="button" class="btn btn-primary"><i class="fa fa-download"></i>&nbsp;&nbsp;Download Template</button></a>
+                           </div>
+                           </div>
+                  <!-- Map will be created here -->
+					 <div class="col-lg-12 form-group"><br>
+    			   <table class="table table-bordered dataTable no-footer" id="Exercise" role="grid">
+			    <thead>
+
+			   <tr role="row">
+			   <th class="th sorting_disabled" rowspan="1" colspan="1"> Employee ID</th>
+			   <th class="th sorting_disabled" rowspan="1" colspan="1">Exercise Name</th>
+			   <th class="th sorting_disabled" rowspan="1" colspan="1">Date Of Joining</th>
+			   <th class="th sorting_disabled" rowspan="1" colspan="1">Company Name</th>
+			   <th class="th sorting_disabled" rowspan="1" colspan="1">Department</th>
+			   <th class="th sorting_disabled" rowspan="1" colspan="1">Division</th>
+			   <th class="th sorting_disabled" rowspan="1" colspan="1">Designation</th>
+			   <th class="th sorting_disabled" rowspan="1" colspan="1">Action</th>
+			   </tr>
+
+			   </thead>
+<tbody>
+
+
+
+				<tr role="row" class="odd">
+			   <td class="td">E1/2001/1506</td>
+               <td class="td">Kapil Sharma</td>
+			   <td class="td">12/11/2016</td>
+				 <td class="td">IT Global</td>
+                   <td class="td">HR</td>
+                  <td class="td">Approval </td>
+                  <td class="td">Manager</td>
+                 <td class="td"><a type="button" class="btn btn-primary btn-xs" href="#employeeDetails"><i class="fa fa-edit"></i>&nbsp;Edit</a>
+				   <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i>&nbsp;Delete</button>
+				  </td>
+
+		        </tr>
+				<tr role="row" class="odd">
+			   <td class="td">E1/2001/1508</td>
+               <td class="td">Sunita Agrawal</td>
+			   <td class="td">12/11/2015</td>
+				 <td class="td">IT Global</td>
+                   <td class="td">HR</td>
+                  <td class="td">Admin </td>
+                  <td class="td">Manager</td>
+                  <td class="td"><a type="button" class="btn btn-primary btn-xs" href="#employeeDetails"><i class="fa fa-edit"></i>&nbsp;Edit</a>
+				   <button type="button" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i>&nbsp;Delete</button>
+				  </td>
+
+		        </tr>
+				</tbody><tbody>
+		   </tbody></table>
+
+					    </div>
+                 </div>
+				</div>
+                </div>
+                <!-- /.col -->
+
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+    	<div class="col-md-12" id="employeeDetails">
+          <!-- MAP & BOX PANE -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">General Employee Details</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+				<i class="fa fa-minus"></i>
+                </button>
+            <!--    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <div class="row no-gutter">
+                <div class="col-md-12 col-sm-12">
+                  <div class="pad">
+                    <!-- Map will be created here -->
+					<form class="form-horizontal">
+
+                    </form></div>
+
+ 					 <div class="col-md-12 form-group">
+
+
+                    <div class="col-md-12">
+
+   					 <div class="col-md-4">
+
+   					<input type="text" class="form-control m-bot15" id="text1" title="Enter employee Name" placeholder="Employee Name">
+   					 </div>
+                     <div class="col-md-4">
+                        <input type="text" class="form-control m-bot15" id="text1" placeholder="Employee ID">
+   					 </div>
+                     <div class="col-md-4">
+
+
+        <select class="form-control" title="Select Company Name">
+
+                <option>Select Company Name</option>
+                  <option>Clonect</option>
+                  <option>Innovellent</option>
+                  <option>Max</option>
+                  <option>Yoyo</option>
+                  <option>Clonect </option>
+                  <option>Innovellent</option>
+
+                  </select>
+   					 </div>
+                     </div>
+                     <div class="col-md-12"><br>
+
+   					 <div class="col-md-4">
+					  <select class="form-control" title="Grade">
+
+                <option>Select Grade</option>
+                  <option>A</option>
+                  <option>B</option>
+                  <option>C</option>
+                  <option>D</option>
+
+                  </select>
+
+   					 </div>
+                     <div class="col-md-4">
+					 <select class="form-control" title="Grade">
+                <option>Select Location</option>
+                  <option>Noida</option>
+                  <option>Delhi</option>
+                  <option>Mumbai</option>
+                  <option>Bangalore</option>
+
+                  </select>
+
+   					 </div>
+   					<div class="col-md-4">
+					 <select class="form-control" title="Department">
+                <option>Select Department</option>
+                  <option>HR</option>
+                  <option>IT</option>
+                  <option>Marketing</option>
+
+                  </select>
+
+   					 </div>
+                     </div>
+
+                     <div class="col-md-12">
+					 <p>&nbsp;</p>
+                     <div class="col-lg-4">
+					 <select class="form-control" title="Division">
+						  <option>Select Division</option>
+						  <option>--</option>
+						  <option>--</option>
+						  <option>--</option>
+
+					</select>
+
+
+   					 </div>
+                     <div class="col-md-4">
+                      <select class="form-control" title="Designation">
+						  <option>Select Designation</option>
+						  <option>Manager</option>
+						  <option>SuperAdmin</option>
+						  <option>TeamLead</option>
+
+					</select>
+
+   					 </div>
+   					<div class="col-lg-4">
+                        <select class="form-control">
+                          <option>Wheather A</option>
+                          <option>Kmp</option>
+                          <option>Director</option>
+                          <option>Director and Kmp</option>
+						  </select>
+   					 </div>
+                     </div>
+					   <p>&nbsp;</p>
+
+                     <div class="col-md-12">
+					     <div class="form-group col-md-4">
+                     <label class="" for="email">Date Of Joining:</label>
+   					  <input type="text" id="txtBoardApprovalDate" name="txtBoardApprovalDate" value="" class="form-control" style="width: 62%;">
+					  </div>
+					  <div class="form-group col-md-4">
+                    <textarea class="form-control m-bot15" id="text1" placeholder="Full Address" title="Enter Full Address"></textarea>
+					 </div>
+
+				   <div class="form-group col-md-4">&nbsp;&nbsp;
+                       <input type="text" class="form-control m-bot15" id="text1" placeholder="Mail ID">
+					 </div>
+                   </div>
+				   <div class="col-md-12">
+
+   					 <div class="form-group col-md-4">
+                    <input type="text" class="form-control m-bot15" id="text1" placeholder="PAN Card">
+					 </div>
+                     <div class="form-group col-md-4">
+                    <input type="text" class="form-control m-bot15" id="text1" placeholder="Tax Slab">
+					 </div>
+
+   					 <div class="form-group col-md-4">
+                     <label class="" for="email">Upload Address Proof:</label>
+
+                       <input id="file_upload" name="file_upload" type="file" multiple="" style="width:100px"><br>
+                     </div>
+                     </div>
+                     <div class="col-lg-12 form-group">
+
+
+                       <button type="button" class="btn btn-primary">Save</button>
+
+   					 </div>
+
+					    </div>
+
+
+
+
+
+                 </div>
+
+
+                  </div>
+                </div>
+                <!-- /.col -->
+
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.box-body -->
+            <div class="col-md-12">
+          <!-- MAP & BOX PANE -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">Bank and Demart Details</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+				<i class="fa fa-minus"></i>
+                </button>
+            <!--    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <div class="row no-gutter">
+                <div class="col-md-12 col-sm-12">
+                  <div class="pad">
+                    <!-- Map will be created here -->
+					<form class="form-horizontal">
+
+                    </form></div>
+                <div class="col-md-12">
+ 					 <div class="form-group">
+
+
+                    <div class="col-md-12">
+
+   					 <div class="col-md-4">
+                      <select class="form-control">
+                          <option>Select Bank Name</option>
+                          <option>SBI</option>
+                          <option>BOI</option>
+                          <option>HDFC</option>
+						  </select>
+   					 </div>
+                     <div class="col-md-4">
+                        <input type="text" class="form-control m-bot15" id="text1" placeholder="Branch Name">
+   					 </div>
+                     <div class="col-md-4">
+                        <input type="text" class="form-control m-bot15" id="text1" placeholder="IFSC Code">
+   					 </div>
+                     </div>
+                     &nbsp;&nbsp;
+                     <div class="col-lg-12"><h4 style="color:#F30;">Demat Acount Details :</h4></div>
+                     <div class="col-md-12"><br>
+                     <div class="col-md-4">
+                     	<select class="form-control">
+                          <option>Select DP Name</option>
+                          <option>CDSL</option>
+                          <option>NSDL</option>
+                          </select>
+   					 </div>
+   					 <div class="col-md-4">
+                        <input type="text" class="form-control m-bot15" id="text1" placeholder="DP ID">
+   					 </div>
+                     <div class="col-md-4">
+                        <input type="text" class="form-control m-bot15" id="text1" placeholder="Client ID">
+   					 </div>
+                     </div>
+                     <div class="col-lg-12"><h4 style="color:#F30;">Nominee Details :</h4></div>
+                     <div class="col-md-12"><br>
+                     <div class="col-md-3">&nbsp;&nbsp;
+                        <input type="text" class="form-control m-bot15" id="text1" placeholder="Name">
+   					 </div>
+                     <div class="col-md-3">&nbsp;&nbsp;
+                        <input type="text" class="form-control m-bot15" id="text1" placeholder="Contact No">
+   					 </div>
+                     <div class="col-md-3">
+                        <textarea class="form-control m-bot15" id="text1" placeholder="Full Address" title="Enter Full Address"></textarea>
+   					 </div>
+                     <div class="form-group col-md-3">
+                     <label class="" for="email">Upload Address Proof:</label>
+
+                  <div id="uploadifive-file_upload1" class="uploadifive-button" style="height: 30px; line-height: 30px; overflow: hidden; position: relative; text-align: center; width: 100px;">Attach Docs<input id="file_upload1" name="file_upload" type="file" multiple="" style="width: 100px; display: none;"><input type="file" style="font-size: 30px; opacity: 0; position: absolute; right: -3px; top: -3px; z-index: 999;" multiple="multiple"></div><div id="uploadifive-file_upload1-queue" class="uploadifive-queue"></div><br>
+                     </div>
+                    <div class="col-md-4">
+                     	<select class="form-control">
+                          <option>Select DP Name</option>
+                          <option>CDSL</option>
+                          <option>NSDL</option>
+                          </select>
+   					 </div>
+   					 <div class="col-md-4">
+                        <input type="text" class="form-control m-bot15" id="text1" placeholder="DP ID">
+   					 </div>
+                     <div class="col-md-4">
+                        <input type="text" class="form-control m-bot15" id="text1" placeholder="Client ID">
+   					 </div>
+
+                     <div class="col-lg-12 form-group"><br>
+
+
+                       <button type="button" class="btn btn-primary">Save</button>
+
+   					 </div>
+
+
+                 </div>
+
+
+                  </div>
+                </div>
+                <!-- /.col -->
+
+                <!-- /.col -->
+              </div>
+              <!-- /.row -->
+            </div>
+            <!-- /.box-body -->
+          </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+
+          <!-- /.row -->
+
+          <!-- /.box -->
+        </div>
+
+    </div>
+    <!-- /.content -->
+  </div>
+
+<app-footer></app-footer>
+</div>
+</body>

@@ -1,0 +1,1803 @@
+<body class="hold-transition skin-blue sidebar-mini">
+  <div class="wrapper">
+    <app-header></app-header>
+
+    <app-sidebar></app-sidebar>
+    <div class="content-wrapper">
+
+      <section class="content-header">
+        <h1>&nbsp;
+
+
+        </h1>
+        <ol class="breadcrumb">
+          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+          <li class="active">Scheme Dossier</li>
+        </ol>
+      </section>
+
+      <!-- Main content -->
+      <div class="">
+        <div class="col-md-12">
+          <!-- MAP & BOX PANE -->
+          <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title">Scheme Dossier</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                  <i class="fa fa-minus"></i>
+                </button>
+                <!--    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button> -->
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <div class="row no-gutter">
+                <div class="col-md-12 col-sm-12">
+                  <div class="pad">
+                    <!-- Map will be created here -->
+                    <form class="form-horizontal" role="form" [formGroup]="edit_data" (ngSubmit)="onSubmitEdit()">
+
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="col-md-2">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddScheme">
+                              <i class="fa fa-plus-circle"></i> ADD SCHEME</button>
+                            </div>
+                            <div class="col-md-2">
+                              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Addplan">
+                                <i class="fa fa-plus-circle"></i> ADD PLAN</button>
+                              </div>
+                              <div class="col-md-12 table-responsive">
+                                <table class="table table-bordered " id="Grant">
+                                  <thead>
+                                    <tr>
+                                      <th  class="th">Company Name</th>
+                                      <th  class="th">Scheme Name</th>
+                                      <th class="th">Scheme Type</th>
+                                      <th class="th">Plan Name</th>
+                                      <th class="th">Action</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+
+
+                                    <tr  *ngFor="let data of getallscheme">
+                                      <td class="td sorting_1">{{data.CompanyName}}</td>
+                                      <td class="td"><a href="#" data-toggle="modal" data-target="#AddScheme">{{data.SchemeName}}</a></td>
+                                      <td class="td">{{data.SchemeType}}</td>
+                                      <td class="td" *ngIf="data.PlanName ==''"><a (click)="getschemeid(data.SchemeID,data.SchemeDossierID)" >ADD</a></td>
+                                      <td class="td" *ngIf="data.PlanName !==''"><a (click)="getschemeid(data.SchemeID,data.SchemeDossierID)"  >{{data.PlanName}}</a></td>
+
+
+
+                                      <!-- <td class="td"><a href="#" data-toggle="modal" data-target="#Addplan">{{data.PlanName}}</a></td> -->
+                                      <td class="td">
+                                        <button type="button" class="btn btn-success head1" (click)="getschemewizard(data.SchemeDossierID)" ><i class="fa fa-filter"></i>&nbsp;Manage Scheme Details</button>&nbsp;
+                                        <button type="submit" class="btn btn-warning " (click)="getschemeplan(data.SchemeID)"><i class="fa fa-file-pdf-o"></i>&nbsp;View Scheme & Plan</button>&nbsp;
+                                        <button type="button" class="btn btn-danger close_button" id="close"><i class="fa fa-remove"></i>&nbsp;Close</button>&nbsp;
+
+                                      </td>
+                                    </tr>
+
+
+
+                                    <!-- <tr>
+                                    <td class="td">Clonect</td>
+                                    <td class="td"><a href="#" data-toggle="modal" data-target="#AddScheme">Esop-2015</a></td>
+                                    <td class="td">Esop</td>
+                                    <td class="td"><a href="#" data-toggle="modal" data-target="#Addplan">Plan 1</a></td>
+                                    <td class="td">
+                                    <button type="button" class="btn btn-success head1" ><i class="fa fa-filter"></i>&nbsp;Manage Scheme Details</button>&nbsp;
+                                    <button type="button" class="btn btn-warning"  data-toggle="modal" data-target="#document"><i class="fa fa-file-pdf-o"></i>&nbsp;View Scheme & Plan</button>&nbsp;<button type="button" class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Close</button>&nbsp;
+
+                                  </td>
+                                </tr> -->
+
+                                <!-- <tr>
+                                <td class="td">Clonect</td>
+                                <td class="td"><a href="#" data-toggle="modal" data-target="#AddScheme">Esop-2016</a></td>
+                                <td class="td">RSU</td>
+                                <td class="td"><a href="#" data-toggle="modal" data-target="#Addplan">Plan 2</a></td>
+                                <td class="td">
+                                <button type="button" class="btn btn-success head1" ><i class="fa fa-filter"></i>&nbsp;Manage Scheme Details</button>&nbsp;
+                                <button type="button" class="btn btn-warning"  data-toggle="modal" data-target="#document"><i class="fa fa-file-pdf-o"></i>&nbsp;View Scheme & Plan</button>&nbsp;<button type="button" class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Close</button>&nbsp;
+
+                              </td>
+                            </tr> -->
+
+                            <!-- <tr>
+                            <td class="td">Clonect</td>
+                            <td class="td"><a href="#" data-toggle="modal" data-target="#AddScheme">Esop-2017</a></td>
+                            <td class="td">SAR</td>
+                            <td class="td"><a href="#" data-toggle="modal" data-target="#Addplan">Plan 3</a></td>
+                            <td class="td">
+                            <button type="button" class="btn btn-success head1" ><i class="fa fa-filter"></i>&nbsp;Manage Scheme Details</button>&nbsp;
+                            <button type="button" class="btn btn-warning"  data-toggle="modal" data-target="#document"><i class="fa fa-file-pdf-o"></i>&nbsp;View Scheme & Plan</button>&nbsp;<button type="button" class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Close</button>&nbsp;
+
+                          </td>
+                        </tr> -->
+                      </tbody>
+                    </table>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="col-md-12 form-group">
+                <div id="head2">
+
+                  <div id="top1">
+                    <div class="col-lg-12" style="text-align:center">
+
+                      <img src="/assets/img/nextprevious/1.png" img class="img-responsive" width="70%">
+
+                    </div>
+
+                    <fieldset class=fsStyle  *ngFor="let wizard_data of getschemewizarddetails.Results">
+                      <legend class=legendStyle>
+                        <h3>Scheme Details</h3>
+                      </legend>
+
+
+                      <div class="col-md-12"><br/>
+
+                        <!-- formControlName="SchemeID"  -->
+                        <input type="hidden" class="form-control m-bot15" id="text1"[(ngModel)]="wizard_data.SchemeDossierID" formControlName="SchemeDossierID"  value="{{wizard_data.SchemeDossierID}}">
+
+                        <input type="hidden" class="form-control m-bot15" id="text1"[(ngModel)]="wizard_data.SchemeID" formControlName="SchemeID" placeholder=" No.of Options available" value="{{wizard_data.SchemeID}}">
+
+                        <label class="control-label col-md-4" for="email" value="wizard_data.SchemeName" >SchemeName: {{wizard_data.SchemeName}}</label>
+                        <div class="col-md-4">
+                          <input type="text" class="form-control m-bot15" id="text1"[(ngModel)]="wizard_data.TotalOptionsAvailable" formControlName="NoofOptionsAvailable" placeholder=" No.of Options available" value="{{wizard_data.TotalOptionsAvailable}}">
+                        </div>
+
+                        <div class="col-md-4">
+                          <select class="form-control" [(ngModel)]="wizard_data.TimeZoneCode" formControlName="TimeZone">
+                            <option>Time Zone</option>
+                            <option  [selected]="wizard_data.TimeZoneCode" >{{wizard_data.TimeZoneValue}}</option>
+                            <option *ngFor="let getschemetimezone of getschemetimezone.Results" value={{getschemetimezone.ConfigCode}}>
+                              {{getschemetimezone.ConfigValue}}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+
+                        <div class="col-md-4">&nbsp;
+                          <select class="form-control"[(ngModel)]="wizard_data.ModeCode" formControlName="Mode">
+                            <option>Select Mode Of Issue</option>
+                            <option  [selected]="wizard_data.ModeCode" >{{wizard_data.ModeValue}}</option>
+                            <option *ngFor="let getschememode of getschememode.Results" value={{getschememode.ConfigCode}}>
+                              {{getschememode.ConfigValue}}
+                            </option>
+                          </select>
+                        </div>
+
+                        <div class="col-md-4">&nbsp;
+                          <input type="text" formControlName="TrustName" [(ngModel)]="wizard_data.TrustName" class="form-control m-bot15" id="text1" placeholder=" Name of Trust" value={{wizard_data.TrustName}}>
+                        </div>
+                        <!-- <div class="col-md-4">&nbsp;
+                        <input type="text" class="form-control m-bot15" id="text1" placeholder="Name of document" title="Name of document" value={{getschemetimezone.ConfigCode}}>
+                      </div> -->
+
+                    </div>
+                    <div class="col-md-12">
+
+
+                      <div class="col-md-5">
+                        <br>
+                        <label class="control-label col-md-6" for="email">Show to employee?</label>
+                        <input type="radio"  class="" formControlName="ShowToEmployee">&nbsp; Yes
+                        <input type="radio"  formControlName="ShowToEmployee" class="">&nbsp; No
+                      </div>
+                      <div class="col-md-3">&nbsp;
+                        <!-- formControlName="SchemeDocuments" -->
+                        <!-- id="file_upload1" name="file_upload" -->
+                        <!-- <input   type="file" multiple style="width:100px"> -->
+                        <input type="file" type="file" (change)="file_upload($event)" id="files" multiple ><br/>
+                        <input type="hidden" formControlName="SchemeDocuments"  id="output" value="" />
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="col-md-12 table-responsive">
+                        <table class="table table-bordered " id="Grant">
+                          <thead>
+                            <tr>
+                              <th  class="th">Document Name</th>
+                              <th  class="th">Document Type</th>
+                              <th class="th">Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="td">Clonect_001</td>
+                              <td class="td">Esop.pdf</td>
+                              <td class="td">
+                                <button type="button" class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Delete</button>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td class="td">Clonect_001</td>
+                              <td class="td">Esop.pdf</td>
+                              <td class="td">
+                                <button type="button" class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Delete</button>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td class="td">Clonect_001</td>
+                              <td class="td">Esop.pdf</td>
+                              <td class="td">
+                                <button type="button" class="btn btn-danger"><i class="fa fa-remove"></i>&nbsp;Delete</button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                    &nbsp;
+                  </fieldset>
+
+                  <div class="col-lg-12 form-group" style="text-align:center">
+
+
+                    <button type="submit" class="btn btn-primary" >Save</button>
+                    <button type="button" class="btn btn-success" id="show">Next</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="top2">
+              <div class="col-lg-12" style="text-align:center">
+
+                <img src="/assets/img/nextprevious/2.png" img class="img-responsive" width="70%">
+
+              </div>
+
+              <fieldset class=fsStyle *ngFor="let wizard_data of getschemewizarddetails.Results">
+                <legend class=legendStyle>
+                  <h3> Add Plan</h3>
+                </legend>
+                <div class="col-md-12 col-md-offset-1">
+                  <div class="col-md-6 form-group">
+                    <label class="control-label" for="email">Scheme Name : {{wizard_data.SchemeName}}</label>
+                    <!-- <label class="control-label" for="email">ESOP-2015</label> -->
+                  </div>
+                </div>
+                <input type="hidden" formControlName="SchemeDossierID" class="form-control " style="width: 62%;" id="text1" placeholder=" plan Name" value={{wizard_data.PlanName}} [(ngModel)]="wizard_data.SchemeDossierID">
+
+                <div class="col-md-12 col-md-offset-1">
+                  <div class="col-md-6 form-group">
+                    <input type="text" formControlName="PlanName" class="form-control " style="width: 62%;" id="text1" placeholder=" plan Name" value={{wizard_data.PlanName}} [(ngModel)]="wizard_data.PlanName">
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <input type="text" formControlName="ShortName" class="form-control" id="text1" style="width: 62%;"  placeholder=" Plan Short Name"  value={{wizard_data.ShortName}} [(ngModel)]="wizard_data.ShortName">
+                  </div>
+                </div>
+                <div class="col-md-12 col-md-offset-1">
+                  <div class="col-md-6 form-group">
+                    <input type="text" formControlName="TotalOptions" class="form-control " style="width: 62%;" id="text1" placeholder="Total options" value={{wizard_data.TotalOptions}} [(ngModel)]="wizard_data.TotalOptions">
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <input type="text" formControlName="OptionsAvailable" class="form-control" id="text1" style="width: 62%;"  placeholder="Available Options" value={{wizard_data.AvailableOption}} [(ngModel)]="wizard_data.AvailableOption">
+                  </div>
+                </div>
+
+                <div class="col-md-12 col-md-offset-1">
+                  <div class="col-md-6 form-group">
+                    <select class="form-control" formControlName="TreatmentLapsedOption" [(ngModel)]="wizard_data.TreatmentLapsedOption">
+                      <option>Impact of Lapsed options</option>
+                      <option  [selected]="wizard_data.TreatmentLapsedOption" >{{wizard_data.TreatmentLapsedOption}}</option>
+                      <option  value="Addback">
+                        Addback
+                      </option>
+                      <option  value="Lapse">
+                        Lapse
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <input type="text" formControlName="SharesPerOption" class="form-control" id="text1" style="width: 62%;"  placeholder="ONE OPTION EQUAL TO" value={{wizard_data.SharesPerOption}} [(ngModel)]="wizard_data.SharesPerOption">
+                  </div>
+                </div>
+
+
+
+                <div class="col-md-12 col-md-offset-1">
+                  <div class="form-group col-md-6">
+                    <label class=" col-md-6" for="email">Date Of Board's Approval:</label>
+                    <input type="text" formControlName="BoardApprovalDate" id="txtBoardApprovalDate" name="txtBoardApprovalDate" value={{wizard_data.BoardApprovalDate}}  [(ngModel)]="wizard_data.BoardApprovalDate" class="form-control" style="width: 62%;">
+                  </div>
+
+
+                  <div class="form-group col-md-6">
+                    <label class="col-md-5" for="Employees"> Date Of Closure :</label>
+                    <input type="text" formControlName="ClosureDate" id="txtBoardApprovalDate1" name="txtBoardApprovalDate" value={{wizard_data.ClosureDate}}  [(ngModel)]="wizard_data.ClosureDate" class="form-control" style="width: 62%;">
+                  </div>
+
+
+                </div>
+
+                <div class="col-md-12"><br/>
+
+                  <div class="form-group col-md-3">
+
+                    <!-- <input id="file_upload" formControlName="GradeName" name="file_upload" type="file" multiple style="width:100px"><br/> -->
+                    <!-- <p class="help-block">Example block-level help text here.</p>-->
+                  </div>
+                  <div class="col-md-4">
+                  </div>
+                </div>
+                <p>&nbsp;</p>
+              </fieldset>
+
+              <div class="col-lg-12 form-group" style="text-align:center">
+
+
+                <button type="button" class="btn btn-default" id="back4" >Back</button>
+                <button type="submit" class="btn btn-primary" >Save</button>
+                <button type="button" class="btn btn-success" id="show1">Next</button>
+
+              </div>
+            </div>
+
+            <div id="top3">
+              <div class="col-lg-12" style="text-align:center">
+
+                <img src="/assets/img/nextprevious/3.png" img class="img-responsive" width="70%">
+
+              </div>
+
+              <fieldset class=fsStyle  *ngFor="let wizard_data of getschemewizarddetails.Results" >
+                <legend class=legendStyle>
+                  <h3>Vesting Schdule</h3>
+                </legend>
+
+                <div class="col-md-12">
+
+                  <div class="form-group col-md-6">
+                    <label class="col-md-6" for="Grant">&nbsp;</label>
+
+
+                    <select class="form-control" formControlName="VestingType" [(ngModel)]="wizard_data.VestingTypeCode">
+                      <option>Select Type Of Vesting</option>
+                      <option  [selected]="wizard_data.VestingTypeCode" >{{wizard_data.VestingTypeValue}}</option>
+                      <option *ngFor="let getschemevestingtype of getschemevestingtype.Results" value={{getschemevestingtype.ConfigCode}}>
+                        {{getschemevestingtype.ConfigValue}}
+                      </option>
+                    </select>
+
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="Grant">Date Of Vesting:</label>
+                    <input type="text" formControlName="VestingDate" [(ngModel)]="wizard_data.VestingDate" id="txtBoardApprovalDate2" name="txtBoardApprovalDate" value={{wizard_data.VestingDate}}  class="form-control" style="width: 62%;">
+                  </div>
+                </div>
+
+                <div class="col-md-12">
+
+                  <div class="form-group col-md-4">
+                    <label class="control-label" for="Vesting"></label>
+
+
+
+                    <select class="form-control" formControlName="NoOfGrades"[(ngModel)]="wizard_data.NoOfGrades" >
+                      <option>No. Of Grades</option>
+                      <option  [selected]="wizard_data.NoOfGrades" >{{wizard_data.NoOfGrades}}</option>
+                      <option *ngFor="let getschemenograde of getschemenograde.Results" value={{getschemenograde.ConfigCode}}>
+                        {{getschemenograde.ConfigValue}}
+                      </option>
+                    </select>
+
+                  </div>
+
+                  <table class=" table table-responsive table-bordered" style="width:100%">
+                    <thead>
+                      <th>Grade</th>
+                      <th>Date of vesting</th>
+                      <th>% of Options</th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="col-xs-1">Grade1</td>
+                        <td> <input type="text" formControlName="VestingSchedule" id="txtBoardApprovalDate3" name="txtBoardApprovalDate" value=""  class="form-control" style="width: 62%;"></td>
+                        <td><input type="text" formControlName="VestingSchedule" class="form-control"></td>
+
+                      </tr>
+                      <tr>
+                        <td class="col-xs-1">Grade2</td>
+                        <td> <input type="text" formControlName="VestingSchedule" id="txtBoardApprovalDate4" name="txtBoardApprovalDate" value=""  class="form-control" style="width: 62%;"></td>
+                        <td><input type="text" formControlName="VestingSchedule" class="form-control"></td>
+
+                      </tr>
+                      <tr>
+                        <td class="col-xs-1">Grade3</td>
+                        <td> <input type="text" formControlName="VestingSchedule" id="txtBoardApprovalDate5" name="txtBoardApprovalDate" value=""  class="form-control" style="width: 62%;"></td>
+                        <td><input type="text" formControlName="VestingSchedule" class="form-control"></td>
+
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+                </div>
+
+                <div class="col-md-12">
+                  <div class="form-group col-md-6">
+                    <label class="control-label" for="Vesting"> Is vesting attached to any condition?</label>
+                    <input type="checkbox" formControlName="VestingConditions" [(ngModel)]="wizard_data.VestingConditions" *ngIf="wizard_data.VestingConditions == 'Y' " checked value="Y"/>Yes
+                    <input type="checkbox" formControlName="VestingConditions" [(ngModel)]="wizard_data.VestingConditions"  *ngIf="wizard_data.VestingConditions =='N' " checked value="N"  />No
+                  </div>
+                  <div class="form-group col-md-6">
+                    <select class="form-control"formControlName="NoOfVestingConditions"[(ngModel)]="wizard_data.NoOfVestingConditions"  >
+                      <option  [selected]="wizard_data.NoOfVestingConditions" >{{wizard_data.NoOfVestingConditions}}</option>
+
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4" >4</option>
+                      <option value="5" >5</option>
+                      <option value="6" >6</option>
+                    </select>
+                  </div>
+
+                  <div class="col-md-12">
+                    <br/>
+
+                    <table class=" table table-responsive table-bordered" style="width:100%">
+
+                      <tr>
+                        <td class="col-xs-1">Condition1</td>
+                        <td><textarea type="text" formControlName="VestingCondition1"[(ngModel)]="wizard_data.VestingCondition1" class="form-control" value={{wizard_data.VestingCondition1}}></textarea></td>
+
+                      </tr>
+                      <tr>
+                        <td class="col-xs-1">Condition2</td>
+                        <td><textarea type="text" formControlName="VestingCondition2" [(ngModel)]="wizard_data.VestingCondition2"class="form-control" value={{wizard_data.VestingCondition2}}></textarea></td>
+
+                      </tr>
+                      <tr>
+                        <td class="col-xs-1">Condition3</td>
+                        <td><textarea type="text" formControlName="VestingCondition3"[(ngModel)]="wizard_data.VestingCondition3" class="form-control" value={{wizard_data.VestingCondition3}}></textarea></td>
+
+                      </tr>
+
+                    </table>
+
+                  </div>
+
+                </div>
+                <p>&nbsp;</p>
+              </fieldset>
+
+              <div class="col-lg-12 form-group" style="text-align:center">
+
+
+                <button type="button" class="btn btn-default" id="back3" >Back</button>
+                <button type="submit" class="btn btn-primary" >Save</button>
+                <button type="button" class="btn btn-success" id="show2">Next</button>
+
+              </div>
+            </div >
+
+            <div id="top4">
+              <div class="col-lg-12"  style="text-align:center">
+
+                <img src="/assets/img/nextprevious/4.png" img class="img-responsive" width="70%">
+
+              </div>
+
+              <fieldset class=fsStyle  *ngFor="let wizard_data of getschemewizarddetails.Results" >
+                <legend class=legendStyle>
+                  <h3>Exercise Details</h3>
+                </legend>
+
+                <div class="col-md-10 col-md-offset-1"><br/>
+
+                  <div class="col-md-6">
+                    <input type="text" formControlName="ExercisePrice" [(ngModel)]="wizard_data.ExercisePrice" value="{{wizard_data.ExercisePrice}}" lass="form-control m-bot15" id="text1" placeholder="Exercise Price" title="Grant Amount">
+                  </div>
+                  <div class="col-md-6">
+                    <button type="button"  class="btn btn-default">Revise</button>
+                  </div>
+                  <p>&nbsp;</p>
+                  <div class="col-md-6">
+
+                    <select class="form-control" formControlName="ExerciseCurrency" [(ngModel)]="wizard_data.ExerciseCurrency" >
+                      <option  [selected]="wizard_data.ExerciseCurrency" >{{wizard_data.ExerciseCurrency}}</option>
+
+                      <option value="USD">USD</option>
+                      <option value="INR">INR</option>
+                      <option value="GBP">GBP</option>
+                    </select>
+                  </div>
+
+                  <div class="col-md-6">
+
+
+                    <select class="form-control" formControlName="ExercisePaymentOptions" [(ngModel)]="wizard_data.ExercisePaymentOptionsCode" >
+                      <option>Mode Of payment</option>
+                      <option  [selected]="wizard_data.ExercisePaymentOptionsCode" >{{wizard_data.ExercisePaymentOptionsValue}}</option>
+                      <option *ngFor="let getschemepaymentmode of getschemepaymentmode.Results" value={{getschemepaymentmode.ConfigCode}}>
+                        {{getschemepaymentmode.ConfigValue}}
+                      </option>
+                    </select>
+                  </div>
+                  &nbsp;
+                  <div class="form-group col-md-6">
+                    <label class="" for="email">Last Date Of Exercise:</label>
+                    <input type="text" formControlName="ExercisePeriod" [(ngModel)]="wizard_data.VestingDate" id="txtBoardApprovalDate6" name="txtBoardApprovalDate" value={{wizard_data.VestingDate}}  class="form-control" style="width: 62%;">
+                  </div>
+                  <p>&nbsp;</p>
+                  <div class="col-md-6">
+                    <label class="" for="email">Or Within
+                      <input type="text" formControlName="ExerciseWithinOfVesting" [(ngModel)]="wizard_data.VestingTypeCode"  value={{wizard_data.VestingTypeCode}} style="border-bottom:dotted;border-left:none;border-right:none;border-top:none;width:20%;"> Of Vesting</label>
+                    </div>
+
+                  </div>
+                  <p>&nbsp;</p>
+                </fieldset>
+
+                <div class="col-lg-12 form-group" style="text-align:center">
+
+                  <button type="button" class="btn btn-default" id="back2" >Back</button>
+                  <button type="submit" class="btn btn-primary" >Save</button>
+                  <button type="button" class="btn btn-success" id="show3">Next</button>
+
+                </div>
+              </div>
+
+              <div id="top5">
+                <div class="col-lg-12" style="text-align:center">
+
+                  <img src="/assets/img/nextprevious/5.png" img class="img-responsive" width="70%">
+
+                </div>
+
+                <fieldset class=fsStyle *ngFor="let wizard_data of getschemewizarddetails.Results">
+                  <legend class=legendStyle>
+                    <h3>Additional Condition</h3>
+                  </legend>
+                  <div class="col-lg-12">
+                    <h4 style="color:#FFF;background-color:#3CF"></h4>
+                  </div>
+                  <div class="col-lg-12">
+
+
+                    &nbsp;
+                    &nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;
+                    &nbsp; <table class="table-responsive editable-table table-bordered" style="width:100%"><tbody><tr><th class="col-sm-3">&nbsp;</th>
+                      <th>&nbsp;</th>
+                      <th>&nbsp;</th><th>Vesting within (days)</th>
+                      <th>&nbsp;</th><th>Exercise Within (days)</th></tr>
+                      <tr>
+                        <td class="col-sm-3">Transfer</td>
+                        <td>
+
+                          <select class="form-control" formControlName="EmpTransfer" [(ngModel)]="wizard_data.EmpTransferCode">
+                            <option  [selected]="wizard_data.EmpTransferCode" >{{wizard_data.EmpTransferValue}}</option>
+                            <option *ngFor="let getschemeadditioncondition of getschemeadditioncondition.Results" value={{getschemeadditioncondition.ConfigCode}}>
+                              {{getschemeadditioncondition.ConfigValue}}
+                            </option>
+                          </select>
+                          <input type="text"  id="EmpTransferValue"
+                         (focus)="EmpTransferVestingWithin_onfocus(wizard_data.EmpTransferVestingWithin)">
+
+
+                          <input type="text"  id="EmpT" >
+
+
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>
+
+                          <select class=" input-sm" style="border:none;"  (change)="EmpTransferVestingWithin(wizard_data.EmpTransferVestingWithin)"   id= "EmpTransferVestingWithin_year"  >
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberToyear" >{{wizard_data.EmpTransferVestingWithin | numberToyear}}</option>
+
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;" (change)="EmpTransferVestingWithin()" id= "EmpTransferVestingWithin_month"  >
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTomonth" >{{wizard_data.EmpTransferVestingWithin | numberTomonth}}</option>
+
+                            <option>Months</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;"  (change)="EmpTransferVestingWithin()" id= "EmpTransferVestingWithin_day"  >
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTodate" >{{wizard_data.EmpTransferVestingWithin | numberTodate}}</option>
+
+                            <option>Days</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                          </select>
+
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>
+
+                          <select class=" input-sm" style="border:none;" formControlName="EmpTransferExerciseWithin">
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberToyear" >{{wizard_data.EmpTransferVestingWithin | numberToyear}}</option>
+
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;"  >
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTomonth" >{{wizard_data.EmpTransferVestingWithin | numberTomonth}}</option>
+
+                            <option>Months</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;"  >
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTodate" >{{wizard_data.EmpTransferVestingWithin | numberTodate}}</option>
+
+                            <option>Days</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                          </select>
+
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td><td></td><td></td><td></td>  <td>&nbsp;</td>  <td>&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td class="col-sm-3">Resignation</td>
+                        <td>
+                          <select class="form-control" formControlName="EmpResignation" [(ngModel)]="wizard_data.EmpResignationCode">
+                            <option  [selected]="wizard_data.EmpResignationCode" >{{wizard_data.EmpResignationValue}}</option>
+                            <option *ngFor="let getschemeadditioncondition of getschemeadditioncondition.Results" value={{getschemeadditioncondition.ConfigCode}}>
+                              {{getschemeadditioncondition.ConfigValue}}
+                            </option>
+                          </select>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>
+
+                          <select class=" input-sm" style="border:none;" formControlName="EmpResignationVestingWithin">
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberToyear" >{{wizard_data.EmpTransferVestingWithin | numberToyear}}</option>
+
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;" formControlName="EmpResignationVestingWithin" >
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTomonth" >{{wizard_data.EmpTransferVestingWithin | numberTomonth}}</option>
+
+                            <option>Months</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;" formControlName="EmpResignationVestingWithin" >
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTodate" >{{wizard_data.EmpTransferVestingWithin | numberTodate}}</option>
+
+                            <option>Days</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                          </select>
+
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>
+
+                          <select class=" input-sm" style="border:none;" formControlName="EmpResignationExerciseWithin" >
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberToyear" >{{wizard_data.EmpTransferVestingWithin | numberToyear}}</option>
+
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;" formControlName="EmpResignationExerciseWithin">
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTomonth" >{{wizard_data.EmpTransferVestingWithin | numberTomonth}}</option>
+
+                            <option>Months</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;" formControlName="EmpResignationExerciseWithin" >
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTodate" >{{wizard_data.EmpTransferVestingWithin | numberTodate}}</option>
+
+                            <option>Days</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                          </select>
+
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td><td></td><td></td><td></td>  <td>&nbsp;</td>  <td>&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td class="col-sm-3">Termination</td>
+                        <td>
+                          <select class="form-control" formControlName="EmpTermination" [(ngModel)]="wizard_data.EmpTerminationCode">
+                            <option  [selected]="wizard_data.EmpTerminationCode" >{{wizard_data.EmpTerminationValue}}</option>
+                            <option *ngFor="let getschemeadditioncondition of getschemeadditioncondition.Results" value={{getschemeadditioncondition.ConfigCode}}>
+                              {{getschemeadditioncondition.ConfigValue}}
+                            </option>
+                          </select>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>
+
+                          <select class=" input-sm" style="border:none;" formControlName="EmpTerminationVestingWithin" >
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberToyear" >{{wizard_data.EmpTransferVestingWithin | numberToyear}}</option>
+
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;" formControlName="EmpTerminationVestingWithin" >
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTomonth" >{{wizard_data.EmpTransferVestingWithin | numberTomonth}}</option>
+
+                            <option>Months</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;" formControlName="EmpTerminationVestingWithin">
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTodate" >{{wizard_data.EmpTransferVestingWithin | numberTodate}}</option>
+
+                            <option>Days</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                          </select>
+
+                        </td><td>&nbsp;</td>
+                        <td>
+
+                          <select class=" input-sm" style="border:none;" formControlName="EmpTerminationExerciseWithin" >
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberToyear" >{{wizard_data.EmpTransferVestingWithin | numberToyear}}</option>
+
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;" formControlName="EmpTerminationExerciseWithin" >
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTomonth" >{{wizard_data.EmpTransferVestingWithin | numberTomonth}}</option>
+
+                            <option>Months</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;" formControlName="EmpTerminationExerciseWithin">
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTodate" >{{wizard_data.EmpTransferVestingWithin | numberTodate}}</option>
+
+                            <option>Days</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                          </select>
+
+                        </td>
+
+
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td><td></td><td></td><td></td>  <td>&nbsp;</td>  <td>&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td class="col-sm-3">Superannuation</td>
+                        <td>
+                          <select class="form-control" formControlName="EmpSuperannuation"  [(ngModel)]="wizard_data.EmpSuperannuationCode">
+                            <option  [selected]="wizard_data.EmpSuperannuationCode" >{{wizard_data.EmpSuperannuationValue}}</option>
+                            <option *ngFor="let getschemeadditioncondition of getschemeadditioncondition.Results" value={{getschemeadditioncondition.ConfigCode}}>
+                              {{getschemeadditioncondition.ConfigValue}}
+                            </option>
+                          </select>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>
+
+                          <select class=" input-sm" style="border:none;" formControlName="EmpSuperannuationVestingWithin" >
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberToyear" >{{wizard_data.EmpTransferVestingWithin | numberToyear}}</option>
+
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;" formControlName="EmpSuperannuationVestingWithin" >
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTomonth" >{{wizard_data.EmpTransferVestingWithin | numberTomonth}}</option>
+
+                            <option>Months</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;" formControlName="EmpSuperannuationVestingWithin">
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTodate" >{{wizard_data.EmpTransferVestingWithin | numberTodate}}</option>
+
+                            <option>Days</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                          </select>
+
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>
+
+                          <select class=" input-sm" style="border:none;" formControlName="EmpSuperannuationExerciseWithin">
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberToyear" >{{wizard_data.EmpTransferVestingWithin | numberToyear}}</option>
+
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;" formControlName="EmpSuperannuationExerciseWithin">
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTomonth" >{{wizard_data.EmpTransferVestingWithin | numberTomonth}}</option>
+
+                            <option>Months</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;" formControlName="EmpSuperannuationExerciseWithin">
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTodate" >{{wizard_data.EmpTransferVestingWithin | numberTodate}}</option>
+
+                            <option>Days</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                          </select>
+
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td><td></td><td></td><td></td>  <td>&nbsp;</td>  <td>&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td class="col-sm-3">Permanent dissability</td>
+                        <td>
+                          <select class="form-control" formControlName="EmpPermdisability" [(ngModel)]="wizard_data.EmpPermdisability">
+                            <option  [selected]="wizard_data.EmpPermdisabilityCode" >{{wizard_data.EmpPermdisabilityValue}}</option>
+                            <option *ngFor="let getschemeadditioncondition of getschemeadditioncondition.Results" value={{getschemeadditioncondition.ConfigCode}}>
+                              {{getschemeadditioncondition.ConfigValue}}
+                            </option>
+                          </select>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>
+
+                          <select class=" input-sm" style="border:none;" formControlName="EmpPermdisabilityVestingWithin">
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberToyear" >{{wizard_data.EmpTransferVestingWithin | numberToyear}}</option>
+
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;" formControlName="EmpPermdisabilityVestingWithin">
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTomonth" >{{wizard_data.EmpTransferVestingWithin | numberTomonth}}</option>
+
+                            <option>Months</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;" formControlName="EmpPermdisabilityVestingWithin">
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTodate" >{{wizard_data.EmpTransferVestingWithin | numberTodate}}</option>
+
+                            <option>Days</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                          </select>
+
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>
+
+                          <select class=" input-sm" style="border:none;" formControlName="EmpPermdisabilityExerciseWithin">
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberToyear" >{{wizard_data.EmpTransferVestingWithin | numberToyear}}</option>
+
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;" formControlName="EmpPermdisabilityExerciseWithin">
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTomonth" >{{wizard_data.EmpTransferVestingWithin | numberTomonth}}</option>
+
+                            <option>Months</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;" formControlName="EmpPermdisabilityExerciseWithin">
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTodate" >{{wizard_data.EmpTransferVestingWithin | numberTodate}}</option>
+
+                            <option>Days</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                          </select>
+
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;</td><td></td><td></td><td></td>  <td>&nbsp;</td>  <td>&nbsp;</td>
+                      </tr>
+                      <tr>
+                        <td class="col-sm-3">Death</td>
+                        <td>
+                          <select class="form-control" formControlName="EmpDeath" [(ngModel)]="wizard_data.EmpDeathCode">
+                            <option  [selected]="wizard_data.EmpDeathCode" >{{wizard_data.EmpDeathValue}}</option>
+                            <option *ngFor="let getschemeadditioncondition of getschemeadditioncondition.Results" value={{getschemeadditioncondition.ConfigCode}}>
+                              {{getschemeadditioncondition.ConfigValue}}
+                            </option>
+                          </select>
+                        </td>
+                        <td>&nbsp;</td>
+
+                        <td>
+
+                          <select class=" input-sm" style="border:none;" formControlName="EmpDeathVestingWithin">
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberToyear" >{{wizard_data.EmpTransferVestingWithin | numberToyear}}</option>
+
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;" formControlName="EmpDeathVestingWithin">
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTomonth" >{{wizard_data.EmpTransferVestingWithin | numberTomonth}}</option>
+
+                            <option>Months</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;" formControlName="EmpDeathVestingWithin">
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTodate" >{{wizard_data.EmpTransferVestingWithin | numberTodate}}</option>
+
+                            <option>Days</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                          </select>
+
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>
+
+                          <select class=" input-sm" style="border:none;" formControlName="EmpDeathExerciseWithin">
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberToyear" >{{wizard_data.EmpTransferVestingWithin | numberToyear}}</option>
+
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;" formControlName="EmpDeathExerciseWithin">
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTomonth" >{{wizard_data.EmpTransferVestingWithin | numberTomonth}}</option>
+
+                            <option>Months</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                          </select>
+                          <select class=" input-sm" style="border:none;" formControlName="EmpDeathExerciseWithin">
+                            <option  [selected]="wizard_data.EmpTransferVestingWithin | numberTodate" >{{wizard_data.EmpTransferVestingWithin | numberTodate}}</option>
+
+                            <option>Days</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                            <option value="16">16</option>
+                            <option value="17">17</option>
+                            <option value="18">18</option>
+                            <option value="19">19</option>
+                            <option value="20">20</option>
+                            <option value="21">21</option>
+                            <option value="22">22</option>
+                            <option value="23">23</option>
+                            <option value="24">24</option>
+                            <option value="25">25</option>
+                            <option value="26">26</option>
+                            <option value="27">27</option>
+                            <option value="28">28</option>
+                            <option value="29">29</option>
+                            <option value="30">30</option>
+                            <option value="31">31</option>
+                          </select>
+
+                        </td>
+                      </tr>
+                    </tbody></table>
+                    <!-- <input type="checkbox" name="chk" value="chk">Visible To Employee-->
+                    <p>&nbsp;</p>
+                  </div>
+                </fieldset>
+
+                <div class="col-lg-12 form-group">
+                  <a><input type="checkbox" style="text-align:center">Select To Visible Employees !</a>
+
+
+                  <button type="button" class="btn btn-default" id="back1">Back</button>
+                  <button type="submit" class="btn btn-primary" id="show">Save</button>
+                  <button type="button" class="btn btn-danger" id="close">Freeze</button>
+
+                </div>
+              </div>
+
+
+              <!-- </div> -->
+
+
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+  <!-- /.col -->
+
+  <!-- /.col -->
+</div>
+<!-- /.row -->
+</div>
+<!-- /.box-body -->
+
+</div>
+
+
+
+
+
+<app-footer></app-footer>
+
+
+
+<div id="AddScheme" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><i class="fa  fa-plus-square"></i> Add Scheme</h4>
+      </div>
+
+      <div class="modal-body ">
+        <form class="" role="form" [formGroup]="postshemedetails" (ngSubmit)="onSubmitPost()">
+
+          <div class="form-group">
+
+            <select class="form-control" formControlName="CompanyId" >
+              <option >Select Company </option>
+              <!-- <option value="9">Innovellent Technologies Pvt Limited</option>
+              <option value="5">Wipro Technologies Pvt Limited</option> -->
+
+              <option *ngFor="let v of company_name.Results" value={{v.CompanyID}}>
+                {{v.CompanyName}}
+              </option>
+            </select>
+
+          </div>
+
+          <div class="form-group">
+
+            <select class="form-control" formControlName="SchemeType">
+              <option >Select Scheme Type </option>
+
+              <option *ngFor="let schemedetails of schemedetails.Results" value={{schemedetails.ConfigCode}}>
+                {{schemedetails.ConfigValue}}
+              </option>
+            </select>
+
+          </div>
+
+
+
+          <div class="form-group">
+
+            <input type="text" name="" id="text1" placeholder="Scheme Name" formControlName="SchemeName" class="form-control">
+          </div>
+          <div>
+            <h2>{{name}}</h2>
+            <!-- <div>
+            <input type="file" (change)="onChange($event)"/>
+          </div> -->
+        </div>
+
+        <!-- <div class="form-group">
+        <label class="">Attach Documents</label>
+        <input id="file_upload3" name="file_upload" formControlName="file_upload"  type="file" multiple >
+      </div> -->
+
+
+
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" >Add</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+
+    </form >
+  </div>
+
+</div>
+</div>
+</div>
+
+<!--add plan-->
+<div id="Addplan" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><i class="fa  fa-plus-square"></i> Add Plan</h4>
+      </div>
+
+      <div class="modal-body ">
+        <form class="" role="form" [formGroup]="postplandetails" (ngSubmit)="onSubmitplan()">
+
+          <!-- <div class="form-group" *ngFor="let data of schemedetailsid.Results" >
+          <label class="col-md-5"></label>
+          <select class="form-control" formControlName="CompanyId">
+          <option value={{data.CompanyID}}>{{data.CompanyID}}</option>
+
+        </select>
+      </div> -->
+      <div class="form-group" >
+        <label class="col-md-5"></label>
+        <select class="form-control" >
+          <option *ngFor="let data of schemedetailsid.Results"  >{{data.CompanyName}}</option>
+
+          <!-- <option *ngFor="let data of schemedetailsid.Results" value={{data.CompanyID}}>{{data.CompanyID}}</option> -->
+          <!-- <option *ngFor="let schemedetails of schemedetails.Results" value={{schemedetails.ConfigCode}}>
+          {{schemedetails.ConfigValue}}
+        </option> -->
+      </select>
+    </div>
+
+    <div class="form-group"  >
+      <label class="col-md-5"></label>
+      <select class="form-control" formControlName="SchemeID" *ngFor="let data of schemedetailsid.Results" >
+
+        <option disabled [selected]="data.SchemeName" >{{data.SchemeName}}</option>
+        <option *ngFor="let data of schemedetailsid.Results"  [ngValue]="data.SchemeID" >{{data.SchemeName}}</option>
+        <!-- <option *ngFor="let schemedetails of schemedetails.Results" value={{schemedetails.ConfigCode}}>
+        {{schemedetails.ConfigValue}}
+      </option> -->
+    </select>
+  </div>
+  <div class="form-group" >
+    <label class="col-md-5"></label>
+    <!--
+    <td class="td" *ngIf="data.PlanName ==''"><a (click)="getschemeid(data.SchemeID)" >ADD</a></td>
+    <td class="td" *ngIf="data.PlanName !==''"><a (click)="getschemeid(data.SchemeID)"  >{{data.PlanName}}</a></td> -->
+
+
+    <input type="text" name="" id="text1" formControlName="PlanName"  placeholder="Plan Name"  class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label class="">Attach Documents</label>
+    <input id="file_upload4" name="file_upload" type="file" multiple >
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" >Add</button>
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  </div>
+</form>
+</div>
+
+</div>
+</div>
+</div>
+<!--view document-->
+<div id="document" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><i class="fa fa-file-pdf-o"></i>&nbsp;View Document Details</h4>
+      </div>
+      <form class="form-horizontal" role="form">
+        <div class="modal-body">
+          <div class="row" *ngFor="let data of schemedetailsid.Results">
+            <div class="col-lg-12" >
+              <div class="form-group col-lg-6">
+                <label class="">Company Name : {{data.CompanyName}}</label>
+              </div>
+              <div class="form-group col-lg-6">
+                <label class="">Scheme Name :{{data.SchemeName}}</label>
+              </div>
+              <div class="form-group col-lg-6">
+                <label class="">Scheme Type : {{data.SchemeType}}</label>
+              </div>
+              <div class="form-group col-lg-6">
+                <label class="">Plan Name : {{data.PlanName}}</label>
+              </div>
+              <div class="form-group col-lg-6">
+                <label class="">Plan Document : </label>
+              </div>
+              <div class="form-group col-lg-6">
+                <label class="">Scheme Document : </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+</div>
+</body>

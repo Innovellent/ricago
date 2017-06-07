@@ -171,7 +171,7 @@ let headers = new Headers();
       .map((res:Response) => JSON.parse(res.json()));
     }
 
-    editplan(putdata) {
+    editplan(putdata,SchemeDossierID) {
 
   let headers = new Headers();
   headers.append('Content-Type',
@@ -180,9 +180,18 @@ let headers = new Headers();
 
   console.log(putdata);
 
-    return this.http.post(this.base_url + "/api/schemedossier/update", putdata, {headers:headers}).map(res=> res.json());
+    return this.http.put(this.base_url + "/api/schemedossier/update/"+SchemeDossierID, putdata, {headers:headers}).map(res=> res.json());
 
   }
+  getschemewizard_table_xml(getschemewizard_table_xml) {
+
+  let headers = new Headers();
+    headers.append('Content-Type',
+       'application/json');
+      this.createAuthorizationHeader(headers);
+      return this.http.get(this.base_url + "api/schemedossier/getvestinggrade/"+getschemewizard_table_xml, {headers:headers})
+      .map((res:Response) => JSON.parse(res.json()));
+    }
 
 
 

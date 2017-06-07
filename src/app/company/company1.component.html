@@ -58,6 +58,7 @@
                <table class="table table-bordered" id="Grant">
           <thead>
 
+
 <tr *ngFor="let value of get_white_label.Results  " >
 
 <ng-template  [ngIf]="value.DisplayType=='G'">
@@ -93,33 +94,7 @@
      </tr>
 
 
-
-         <!-- <tr *ngFor="let v of company_name.Results">
-                <td class="td">{{v.CompanyName}}</td>
-                <td class="td">{{v.CompanyCIN}}</td>
-                 <td class="td">{{v.AuthCapital}}</td>
-                <td class="td">{{v.PaidupCapital}}</td>
-                <td class="td">{{v.SharesInDemat}}</td>
-                <td class="td">{{v.SharesListed}}</td>
-                <td class="td">{{v.SecretaryEmail}}</td>
-                <td class="td">{{v.SecretaryPhone}}</td>
-                <td class="td">{{v.SysAdminEmail}}</td>
-                <td class="td">{{v.SysAdminPhone}}</td>
-                  <td class="td">
-    <button type="submit" class="btn btn-primary" (click)="editCompany(v.CompanyID);">
-        <i class="fa fa-edit">
-        </i>Edit
-    </button>
-    <button type="submit" class="btn btn-danger" (click)="removeCompany(v.CompanyID);">
-        <i class="fa fa-remove">
-        </i>Delete
-    </button>
-</td>
-            </tr> -->
-
-
-
-        <tbody>
+   </tbody>
        </table>
 
 
@@ -173,12 +148,26 @@
       <!-- <input [(ngModel)]="v | whitelabelkey"/> -->
       <!-- let name =new WhitelabelkeyPipe().transform(v); -->
       <!-- {{name}} -->
-      <ng-template  [ngIf]="name[0]=='Depository'">
+      <ng-template  [ngIf]="name.toString().split(',')[1]=='CompanyName'">
 
         <div class="form-group col-lg-12">
           <label></label>
-          <select class="form-control" formControlName={{name[0]}} >
-            <option selected>Depository</option>
+          <select class="form-control" formControlName="{{name.toString().split(',')[1]}}" >
+            <option [selected]="CompanyName" >CompanyName</option>
+            <option *ngFor="let v of company_name.Results" value={{v.CompanyID}}>
+              {{v.CompanyName}}
+
+            </option>
+          </select>
+        </div>
+
+      </ng-template>
+      <ng-template  [ngIf]="name.toString().split(',')[1]=='Depository'">
+
+        <div class="form-group col-lg-12">
+          <label></label>
+          <select class="form-control" formControlName="{{name.toString().split(',')[1]}}" >
+            <option>Depository</option>
             <option *ngFor="let getDepositorycondition of getDepositorycondition.Results" value={{getDepositorycondition.ConfigCode}}>
             {{getDepositorycondition.ConfigValue}}
             </option>
@@ -187,11 +176,11 @@
 
       </ng-template>
 
-      <ng-template  [ngIf]="name[0]=='SharesListed'">
+      <ng-template  [ngIf]="name.toString().split(',')[1]=='SharesListed'">
 
         <div class="form-group col-lg-12">
           <label></label>
-          <select class="form-control" formControlName={{name[0]}} >
+          <select class="form-control" formControlName="{{name.toString().split(',')[1]}}" >
             <option selected>Select Whether Shares Are Listed</option>
             <option *ngFor="let getsharelistedcondition of getsharelistedcondition.Results" value={{getsharelistedcondition.ConfigCode}}>
             {{getsharelistedcondition.ConfigValue}}
@@ -200,12 +189,12 @@
         </div>
 
       </ng-template>
-      <ng-template  [ngIf]="name[0]=='SharesInDemat'">
+      <ng-template  [ngIf]="name.toString().split(',')[1]=='SharesInDemat'">
 
         <div class="form-group col-lg-12">
           <label></label>
-          <select class="form-control" width="80%" formControlName={{name[0]}} >
-            <option selected>Shares in Demat Account</option>
+          <select class="form-control" width="80%" formControlName="{{name.toString().split(',')[1]}}" >
+            <option>Shares in Demat Account</option>
             <option *ngFor="let getsharesDemandcondition of getsharesDemandcondition.Results" value={{getsharesDemandcondition.ConfigCode}}>
             {{getsharesDemandcondition.ConfigValue}}
             </option>
@@ -213,50 +202,52 @@
         </div>
 
       </ng-template>
-      <ng-template  [ngIf]="name[0]=='additionalchoice1'">
+      <ng-template  [ngIf]="name.toString().split(',')[1]=='additionalchoice1'">
         <div class="form-group col-lg-12">
           <label></label>
-          <select class="form-control" width="80%"formControlName={{name[0]}} >
-            <option selected>additionalchoice1</option>
+          <select class="form-control" width="80%"formControlName="{{name.toString().split(',')[1]}}">
+            <option >additionalchoice1</option>
             <option *ngFor="let additionalchoice1 of getChoice1.Results" value={{additionalchoice1.ConfigCode}}>
             {{additionalchoice1.ConfigValue}}
             </option>
           </select>
         </div>
       </ng-template>
-      <ng-template  [ngIf]="name[0]=='additionalchoice2'">
+      <ng-template  [ngIf]="name.toString().split(',')[1]=='additionalchoice2'">
         <div class="form-group col-lg-12">
           <label></label>
-          <select class="form-control" width="80%"formControlName={{name[0]}} >
-            <option selected>additionalchoice2</option>
+          <select class="form-control" width="80%"formControlName="{{name.toString().split(',')[1]}}">
+            <option >additionalchoice2</option>
             <option *ngFor="let additionalchoice2 of getChoice2.Results" value={{additionalchoice2.ConfigCode}}>
             {{additionalchoice2.ConfigValue}}
             </option>
           </select>
         </div>
       </ng-template>
-      <ng-template  [ngIf]="name[0]=='additionaldate1'">
+      <ng-template  [ngIf]="name.toString().split(',')[1]=='additionaldate1'">
         <div class="form-group col-lg-12">
           <label></label>
-          <input type="date" name="" formControlName={{name[0]}} class="form-control" id="" value="" placeholder={{name[1]}} title={{name[0]}}>
+          <!-- <input type="date" name="" formControlName={{name}} class="form-control" id="" value="" placeholder={{name}} title={{name}}> -->
+          <input type="date" name="" formControlName="{{name.toString().split(',')[1]}}" class="form-control" id="" value="" placeholder="{{name.toString().split(',')[0]}}" title="{{name.toString().split(',')[1]}}">
 
         </div>
       </ng-template>
-      <ng-template  [ngIf]="name[0]=='additionaldate2'">
+      <ng-template  [ngIf]="name.toString().split(',')[1]=='additionaldate2'">
         <div class="form-group col-lg-12">
           <label></label>
-          <input type="date" name="" formControlName={{name[0]}} class="form-control" id="" value="" placeholder={{name[1]}} title={{name[0]}}>
+          <!-- <input type="date" name="" formControlName="{{name.toString().split(',')[1]}}" class="form-control" id="" value="" placeholder={{name}} title={{name}}> -->
+          <input type="date" name="" formControlName="{{name.toString().split(',')[1]}}" class="form-control" id="" value="" placeholder="{{name.toString().split(',')[0]}}" title="{{name.toString().split(',')[1]}}">
 
         </div>
       </ng-template>
 
-      <ng-template  [ngIf]="(name[0]!='SharesListed')&&(name[0]!='undefined')&&(name[0]!='SharesInDemat')&&(name[0]!='Depository')
-      &&(name[0]!='additionalchoice1')
-      &&(name[0]!='additionalchoice2')&&(name[0]!='additionaldate1')&&(name[0]!='additionaldate2')">
 
-        <input type="text" name="" formControlName={{name[0]}} class="form-control" id="" value="" placeholder={{name[1]}} title={{name[0]}}>
+      <ng-template  [ngIf]="(name.toString().split(',')[1]!='SharesListed')&&(name.toString().split(',')[1]!='CompanyName')&&(name.toString().split(',')[1]!='undefined')&&(name.toString().split(',')[1]!='SharesInDemat')&&(name.toString().split(',')[1]!='Depository')
+      &&(name.toString().split(',')[1]!='additionalchoice1')
+      &&(name.toString().split(',')[1]!='additionalchoice2')&&(name.toString().split(',')[1]!='additionaldate1')&&(name.toString().split(',')[1]!='additionaldate2')">
+
+        <input type="text" name="" formControlName="{{name.toString().split(',')[1]}}" class="form-control" id="" value="" placeholder="{{name.toString().split(',')[0]}}" title="{{name.toString().split(',')[1]}}">
       </ng-template>
-
 
       </div>
   </ng-template>
@@ -280,7 +271,7 @@
 
 
 <!--Modal Template for the Edit Company Modal Starts-->
-<!--
+
 <div id="edit" class="modal fade" role="dialog">
   <div class="modal-dialog modal-md">
 
@@ -292,18 +283,39 @@
 
       <div class="modal-body ">
       <div class="row" *ngFor="let v1 of profile_id.Results">
-      
+
        <form class=""role="form" [formGroup]="updatedetails" (ngSubmit)="onUpdatePost()">
 
 
 
-         <div class="form-group col-lg-6" *ngFor="let name of generateArrayCE(v1)" >
+         <!-- <div class="form-group col-lg-6" *ngFor="let name of generateArrayTRE(v1)" > -->
 
-           <ng-template  [ngIf]="name[0]=='Depository'">
+           <div class="form-group col-lg-6" *ngFor="let name of generateArrayTREV(v1) " >
+
+<!-- <div >
+<input  type="text" class="form-control input-sm" formControlName="{{name.toString().split(',')[0]}}" [(ngModel)]="name.toString().split(',')[1]"value="{{name.toString().split(',')[1]}}">
+
+</div> -->
+
+<ng-template  [ngIf]="(name.toString().split(',')[0]=='CompanyName')">
+
+  <div class="form-group col-lg-12">
+    <label></label>
+    <select class="form-control" [(ngModel)]="name.toString().split(',')[1]"  formControlName="{{name.toString().split(',')[0]}}" >
+      <option [selected]="name.toString().split(',')[0]" >{{name.toString().split(',')[0]}}</option>
+      <option *ngFor="let v of company_name.Results" value={{v.CompanyID}}>
+        {{v.CompanyName}}
+      </option>
+    </select>
+  </div>
+
+</ng-template>
+
+           <ng-template  [ngIf]="name.toString().split(',')[0]=='Depository'">
 
              <div class="form-group col-lg-12">
                <label></label>
-               <select class="form-control" formControlName={{name[0]}} >
+               <select class="form-control" [(ngModel)]="name.toString().split(',')[1]" formControlName="{{name.toString().split(',')[0]}}" >
 
                  <option>Depository</option>
                  <option *ngFor="let getDepositorycondition of getDepositorycondition.Results" value={{getDepositorycondition.ConfigCode}}>
@@ -314,13 +326,13 @@
 
            </ng-template>
 
-           <ng-template  [ngIf]="name[0]=='SharesListed'">
+           <ng-template  [ngIf]="name.toString().split(',')[0]=='SharesListed'">
 
              <div class="form-group col-lg-12">
                <label></label>
-               <select class="form-control" formControlName={{name[0]}} >
+               <select class="form-control" [(ngModel)]="name.toString().split(',')[1]" formControlName="{{name.toString().split(',')[0]}}" >
 
-                 <option  [selected]="name[1]" >{{name[1]}}</option>
+                 <option  [selected]="name" >{{name.toString().split(',')[1]}}</option>
                  <option>Select Whether Shares Are Listed</option>
                  <option *ngFor="let getsharelistedcondition of getsharelistedcondition.Results" value={{getsharelistedcondition.ConfigCode}}>
                  {{getsharelistedcondition.ConfigValue}}
@@ -329,14 +341,14 @@
              </div>
 
            </ng-template>
-           <ng-template  [ngIf]="name[0]=='SharesInDemat'">
+           <ng-template  [ngIf]="name.toString().split(',')[0]=='SharesInDemat'">
 
              <div class="form-group col-lg-12">
                <label></label>
-               <select class="form-control" width="80%" formControlName={{name[0]}} >
+               <select class="form-control" [(ngModel)]="name.toString().split(',')[1]" width="80%" formControlName="{{name.toString().split(',')[0]}}" >
                  <option>Shares in Demat Account</option>
 
-                 <option  [selected]="name[1]" >{{name[1]}}</option>
+                 <option  [selected]="name" >{{name.toString().split(',')[1]}}</option>
                  <option *ngFor="let getsharesDemandcondition of getsharesDemandcondition.Results" value={{getsharesDemandcondition.ConfigCode}}>
                  {{getsharesDemandcondition.ConfigValue}}
                  </option>
@@ -344,23 +356,23 @@
              </div>
 
            </ng-template>
-           <ng-template  [ngIf]="name[0]=='additionalchoice1'">
+           <ng-template  [ngIf]="name.toString().split(',')[0]=='additionalchoice1'">
              <div class="form-group col-lg-12">
                <label></label>
-               <select class="form-control" width="80%"formControlName={{name[0]}} >
+               <select class="form-control" [(ngModel)]="name.toString().split(',')[1]"  width="80%"formControlName="{{name.toString().split(',')[0]}}" >
                  <option >additionalchoice1</option>
 
-                 <option  [selected]="name[1]" >{{name[1]}}</option>
+                 <option  [selected]="name.toString().split(',')[0]" >{{name.toString().split(',')[1]}}</option>
                  <option *ngFor="let additionalchoice1 of getChoice1.Results" value={{additionalchoice1.ConfigCode}}>
                  {{additionalchoice1.ConfigValue}}
                  </option>
                </select>
              </div>
            </ng-template>
-           <ng-template  [ngIf]="name[0]=='additionalchoice2'">
+           <ng-template  [ngIf]="name.toString().split(',')[0]=='additionalchoice2'">
              <div class="form-group col-lg-12">
                <label></label>
-               <select class="form-control" width="80%"formControlName={{name[0]}} >
+               <select class="form-control" [(ngModel)]="name.toString().split(',')[1]"  width="80%"formControlName="{{name.toString().split(',')[0]}}">
                  <option >additionalchoice2</option>
                  <option *ngFor="let additionalchoice2 of getChoice2.Results" value={{additionalchoice2.ConfigCode}}>
                  {{additionalchoice2.ConfigValue}}
@@ -368,30 +380,34 @@
                </select>
              </div>
            </ng-template>
-           <ng-template  [ngIf]="name[0]=='additionaldate1'">
+           <ng-template  [ngIf]="name.toString().split(',')[0]=='additionaldate1'">
              <div class="form-group col-lg-12">
                <label></label>
-               <input type="text" name="" formControlName={{name[0]}} class="form-control" id=""[(ngModel)]="name[1]" value="{{name[1]}}">
+
+               <input  type="text" class="form-control input-sm" formControlName="{{name.toString().split(',')[0]}}" [(ngModel)]="name.toString().split(',')[1]"value="{{name.toString().split(',')[1]}}">
 
              </div>
            </ng-template>
-           <ng-template  [ngIf]="name[0]=='additionaldate2'">
+           <ng-template  [ngIf]="name.toString().split(',')[0]=='additionaldate2'">
              <div class="form-group col-lg-12">
                <label></label>
-               <input type="text"  name="" formControlName={{name[0]}} class="form-control input-sm" id="" [(ngModel)]="name[1]" value="{{name[1]}}">
+
+               <input  type="text" class="form-control input-sm" formControlName="{{name.toString().split(',')[0]}}" [(ngModel)]="name.toString().split(',')[1]"value="{{name.toString().split(',')[1]}}">
 
              </div>
            </ng-template>
 
+ <ng-template  [ngIf]="(name.toString().split(',')[0]!='SharesListed')&&(name.toString().split(',')[0]!='CompanyName')&&(name.toString().split(',')[0]!='SharesInDemat')&&(name.toString().split(',')[0]!='Depository')
+           &&(name.toString().split(',')[0]!='additionalchoice1')
+           &&(name.toString().split(',')[0]!='additionalchoice2')&&(name.toString().split(',')[0]!='additionaldate1')&&(name.toString().split(',')[0]!='additionaldate2')">
 
-          <ng-template  [ngIf]="(name[0]!='SharesListed')&&(name[0]!='SharesInDemat')&&(name[0]!='Depository')
-           &&(name[0]!='additionalchoice1')
-           &&(name[0]!='additionalchoice2')&&(name[0]!='additionaldate1')&&(name[0]!='additionaldate2')">
+             <!-- <input type="text" name="" formControlName={{(name.key)}} class="form-control input-sm" [(ngModel)]="name.value"> -->
 
-             <input type="text" name="" formControlName={{name[0]}} class="form-control input-sm" [(ngModel)]="name[1]" value="{{name[1]}}">
+             <input  type="text" class="form-control input-sm" formControlName="{{name.toString().split(',')[0]}}" [(ngModel)]="name.toString().split(',')[1]"value="{{name.toString().split(',')[1]}}">
+
     </ng-template>
        </div>
-
+<!-- </div> -->
      <div class="col-lg-2"><br></div>
        <button type="submit" class="btn btn-primary" >Save</button>
      <button type="button" class="btn btn-default" data-dismiss="modal">Reset</button>
@@ -403,7 +419,7 @@
     </div>
 
   </div>
-</div> --> 
+</div>
 <!--edit-->
 <!-- Calendar Modal -->
 
