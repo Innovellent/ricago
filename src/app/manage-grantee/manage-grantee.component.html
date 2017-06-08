@@ -123,6 +123,10 @@
 <input type="hidden" id="" name="txtBoardApprovalDate"[(ngModel)]="wizard_data.RemindIntervalDays" formControlName="RemindIntervalDays" value="wizard_data.RemindIntervalDays" class="form-control" style="width: 62%;">
   <input type="hidden"  id="grant_details" >
 
+  {{ wizard_data.VestingType | objngfor222 }}
+
+
+
                             <legend class="legendStyle">
                              <h3>Vesting Schdule</h3>
                             </legend>
@@ -131,20 +135,20 @@
 
                           <div class="form-group col-md-6">
                          <label class="col-md-6" for="Grant">&nbsp;</label>
-                        <select class="form-control" style="width: 62%;" [(ngModel)]="wizard_data.VestingType" formControlName="VestingType">
+                        <select class="form-control" style="width: 62%;" (change)="onchange_typevesting($event.target.value)" [(ngModel)]="wizard_data.VestingType" formControlName="VestingType">
                               <option>Select Type Of Vesting</option>
-                              <option value="Y">Yes</option>
-                              <option value="N">No</option>
+                              <option value="1">Single</option>
+                              <option value="2">Granded</option>
                             </select>
                         </div>
-                         <div class="form-group col-md-6">
+                         <div class="form-group col-md-6" id="single" style="display:none;">
                          <label class="col-md-6" for="Grant">Date Of Vesting:</label>
                          <!-- [(ngModel)]="wizard_data.VestingDate" -->
                         <input type="text" id="txtBoardApprovalDate2" name="txtBoardApprovalDate"  formControlName="VestingDate" value="1/1/2009" class="form-control" style="width: 62%;">
                         </div>
                          </div>
 
-                         <div class="col-md-12">
+                         <div class="col-md-12" id="granded" style="display:none;">
 
                           <div class="form-group col-md-6">
                         <label class="control-label col-md-2" for="Vesting"></label>
@@ -180,12 +184,23 @@
                             <th>% of Options</th>
                            </tr></thead>
                             <tbody>
-                              <tr>
-                                <td class="col-xs-1">Grade1</td>
+
+                                <tr *ngFor="let xml_data of getschemewizard_table_xml.Results">
+                                   <td class="td" > {{xml_data.GradeNo}}
+</td>
+                                    <td class="td" > <input type="text" id="" name="txtBoardApprovalDate"value={{xml_data.VestingDate}} class="form-control" style="width: 62%;">
+</td>
+                                     <td class="td" >
+                                       <input type="text" id="" name="txtBoardApprovalDate"value={{xml_data.PercentOptions}} class="form-control" style="width: 62%;">
+</td>
+
+                                </tr>
+                              <!-- <tr style="display:none;">
+                                <td class="col-xs-1">1</td>
                                 <td> <input type="text" id="" name="txtBoardApprovalDate" value="" class="form-control" style="width: 62%;"></td>
                                 <td><input type="text" class="form-control"></td>
 
-                              </tr>
+                              </tr> -->
                                <!-- <tr>
                                 <td class="col-xs-1">Grade2</td>
                                 <td> <input type="text" id="" name="txtBoardApprovalDate" value="d" class="form-control" style="width: 62%;"></td>
@@ -225,7 +240,7 @@
                            <input type="checkbox"  id="checkbox_valueN" (change)="logCheckboxN($event.target.value)" checked value="N"  />No
 
                         </div>
-                        <div class="form-group col-md-6"  *ngIf="wizard_data.VestingCondition == ''  " >
+                        <div class="form-group col-md-6"  *ngIf="wizard_data.VestingCondition == ' '  " >
          <label class="control-label" for="Vesting"> Is vesting attached to any condition?</label>
                           <!-- <input type="checkbox" [(ngModel)]="wizard_data.VestingCondition" formControlName="VestingCondition" name="VestingCondition" *ngIf="wizard_data.VestingConditions == 'Y' " checked value="Y">Yes
                           <input type="checkbox" [(ngModel)]="wizard_data.VestingCondition" formControlName="VestingCondition" name="VestingCondition"  *ngIf="wizard_data.VestingConditions == 'N' " checked value="N" >No -->
@@ -242,29 +257,90 @@
                               <option>No. Of Conditions</option>
                               <option value="1">1</option>
                              <option value="2">2</option>
+                             <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                           <option value="6">6</option>
                             </select>
                          </div>
 
                          <div class="col-md-12" id="condition_details">
                          <br>
 
+                         <div  *ngIf="wizard_data.VestingCondition1 == ' '  " >
+
+                         {{ "VestingCondition1" | objngfor22 }}
+
+               </div>
+               <div  *ngIf="wizard_data.VestingCondition2 == ' '  " >
+
+                 {{"VestingCondition2" | objngfor22}}
+            </div>
+            <div  *ngIf="wizard_data.VestingCondition3 == ' '  " >
+
+              {{"VestingCondition3" | objngfor22}}
+         </div>
+         <div  *ngIf="wizard_data.VestingCondition4 == ' '  " >
+
+           {{"VestingCondition4" | objngfor22}}
+      </div>
+      <div  *ngIf="wizard_data.VestingCondition5 == ' '  " >
+
+        {{"VestingCondition5" | objngfor22}}
+   </div>
+   <div  *ngIf="wizard_data.VestingCondition6 == ' '  " >
+
+     {{"VestingCondition6" | objngfor22}}
+</div>
+<!-- {{wizard_data.VestingCondition1 | objngfor22}}
+{{wizard_data.VestingCondition2 ==' ' | objngfor22}}
+{{wizard_data.VestingCondition3 ==' ' |objngfor22}}
+{{wizard_data.VestingCondition4 ==' ' |objngfor22}}
+{{wizard_data.VestingCondition5 ==' ' |objngfor22}}
+{{wizard_data.VestingCondition6 ==' ' | objngfor22}} -->
                             <table id="conditiontable" class=" table table-responsive table-bordered" style="width:100%">
 
-                              <tbody><tr>
+                              <tbody>
+                                <!-- <tr style="display:none;">
+                                <td class="col-xs-1">Condition</td>
+                                <td><textarea type="text"  formControlName="VestingCondition1"  value=""  class="form-control"></textarea></td>
+
+                              </tr> -->
+                                <tr id="VestingCondition1">
                                 <td class="col-xs-1">Condition1</td>
-                                <td><textarea type="text" [(ngModel)]="wizard_data.VestingCondition1" formControlName="VestingCondition1"  value="{{wizard_data.VestingCondition1}}" id="" class="form-control"></textarea></td>
+                                <td><textarea type="text" [(ngModel)]="wizard_data.VestingCondition1" formControlName="VestingCondition1"  value="{{wizard_data.VestingCondition1}}" id="VestingCondition1" class="form-control"></textarea></td>
 
                               </tr>
-                              <tr>
+                              <tr id="VestingCondition2">
                                 <td class="col-xs-1">Condition2</td>
-                                 <td><textarea type="text" [(ngModel)]="wizard_data.VestingCondition2" formControlName="VestingCondition2"  value="{{wizard_data.VestingCondition2}}" id="" class="form-control"></textarea></td>
+                                 <td><textarea type="text" [(ngModel)]="wizard_data.VestingCondition2" formControlName="VestingCondition2"  value="{{wizard_data.VestingCondition2}}"  class="form-control"></textarea></td>
 
                               </tr>
-                              <tr>
+                              <tr id="VestingCondition3">
                                 <td class="col-xs-1">Condition3</td>
-                                <td><textarea [(ngModel)]="wizard_data.VestingCondition3" formControlName="VestingCondition3"  value="{{wizard_data.VestingCondition3}}" type="text" id="" class="form-control"></textarea></td>
+                                <td><textarea [(ngModel)]="wizard_data.VestingCondition3" formControlName="VestingCondition3"  value="{{wizard_data.VestingCondition3}}" type="text"  class="form-control"></textarea></td>
 
                               </tr>
+                              <tr  id="VestingCondition4">
+                                <td class="col-xs-1">Condition4</td>
+                                 <td><textarea type="text" trim [(ngModel)]="wizard_data.VestingCondition4" formControlName="VestingCondition4"  value="{{wizard_data.VestingCondition4}}" class="form-control"></textarea></td>
+
+                              </tr>
+                              <tr id="VestingCondition5">
+                                <td class="col-xs-1">Condition5</td>
+                                <td><textarea [(ngModel)]="wizard_data.VestingCondition5" formControlName="VestingCondition5"  value="{{wizard_data.VestingCondition5}}" type="text"  class="form-control"></textarea></td>
+
+                              </tr>
+                              <tr  id="VestingCondition6">
+                                <td class="col-xs-1">Condition6</td>
+                                 <td><textarea type="text" [(ngModel)]="wizard_data.VestingCondition6" formControlName="VestingCondition6"  value="{{wizard_data.VestingCondition6}}" class="form-control"></textarea></td>
+
+                              </tr>
+                              <!-- <tr  id="">
+                                <td class="col-xs-1">Condition</td>
+                                 <td><textarea type="text"   value="" class="form-control"></textarea></td>
+
+                              </tr> -->
 
                          </tbody></table>
 

@@ -61,13 +61,99 @@ TR=[];
         console.log("Accepted_Condition");
    }
 
+   }
+
+}
 
 
+@Pipe({ name: 'objngfor222' })
+export class ObjNgFor222 implements PipeTransform {
+TR=[];
+  transform(v, args) {
+    console.log(v);
+    //console.log(`${v.toString().split('#')[0]}`);
+      console.log("Vesting_condition");
+      var single:any="1";
+      var granded:any="2";
+                if(v==parseInt(single))
+                {
+                  console.log("single");
+                $("#single").show();
+                $("#granded").hide();
+      }
+      if(v==parseInt(granded)){
+        console.log("granded");
+        $("#granded").show();
+        $("#single").hide();
+      }
 
    }
 
+}
+
+
+
+// ,VestingCondition2: string,VestingCondition3: string,
+//   VestingCondition4: string,VestingCondition5: string,
+// VestingCondition6: string
+@Pipe({ name: 'objngfor22' })
+export class ObjNgFor22 implements PipeTransform {
+TR=[];
+  transform(v, args):any {
+    console.log(v);
+    //console.log(`${v.toString().split('#')[0]}`);
+      console.log("Accepted_Condition_test");
+      //var jsLang = 'jquery';
+
+    if (v=="VestingCondition1")
+    {
+      console.log("VestingCondition1");
+      $("#conditiontable tbody tr#VestingCondition6").remove();
+      // $("#condition_details").hide();
+        console.log("Accepted_Condition");
+   }
+   if (v=="VestingCondition2")
+   {
+     //console.log(VestingCondition2);
+     console.log("VestingCondition2");
+     $("#conditiontable tbody tr#VestingCondition2").remove();
+     // $("#condition_details").hide();
+       console.log("Accepted_Condition");
+  }
+  if (v=="VestingCondition3")
+  {
+    console.log("VestingCondition3");
+    $("#conditiontable tbody tr#VestingCondition3").remove();
+    // $("#condition_details").hide();
+      console.log("Accepted_Condition");
+ }
+ if (v=="VestingCondition4")
+ {
+   console.log("VestingCondition4");
+   $("#conditiontable tbody tr#VestingCondition4").remove();
+   // $("#condition_details").hide();
+     console.log("Accepted_Condition");
+}
+if (v=="VestingCondition5")
+{
+  console.log("VestingCondition5");
+  $("#conditiontable tbody tr#VestingCondition5").remove();
+  // $("#condition_details").hide();
+    console.log("Accepted_Condition");
+}
+if (v=="VestingCondition6")
+{
+  console.log("VestingCondition6");
+  $("#conditiontable tbody tr#VestingCondition6").remove();
+  // $("#condition_details").hide();
+    console.log("Accepted_Condition");
+}
+
+   }
 
 }
+
+
 @Component({
   selector: 'app-manage-grantee',
   templateUrl: './manage-grantee.component.html',
@@ -85,6 +171,7 @@ export class ManageGranteeComponent implements OnInit {
 edit_plan:Array<any>=[];
   edit_data:FormGroup;
   getschemewizarddetails:Array<any>=[];
+  getschemewizard_table_xml:Array<any>=[];
   constructor(private formBuilder: FormBuilder,private managegranteeService: ManageGranteeService ,private localStorageService: LocalStorageService) { }
 
   ngOnInit() {
@@ -139,7 +226,7 @@ edit_plan:Array<any>=[];
        VestingCondition4:'',VestingCondition5:'',VestingCondition6:'',
        ExercisePrice:'',ExerciseCurrency:'',
        ExercisePaymentOptions:'',ExerciseLastDate:'1/1/2009',
-       ExerciseWithinOfVesting:'',Status:'',ClosureRemarks:''
+       ExerciseWithinOfVesting:'',Status:'',ClosureRemarks:'',VestingSchedule:""
     });
 
 
@@ -448,18 +535,43 @@ $("#condition_details").hide();
           }
 
 
+          onchange_typevesting(element: HTMLInputElement): void {
+                //  this.log += `Checkbox ${element.value} was ${element.checked ? '' : 'un'}checked\n`
+          console.log("onchange_typevesting");
+          console.log(element);
+        //  (<HTMLInputElement>document.getElementById('checkbox_value')).value = "N";
+          //this.edit_data.controls['VestingCondition'].setValue("N");
+//let single= "single";
+var single:any="1";
+var granded:any="2";
+          if(element==single)
+          {
+            console.log("single");
+          $("#single").show();
+          $("#granded").hide();
+}
+if(element==granded){
+  console.log("granded");
+  $("#granded").show();
+  $("#single").hide();
+}
+              }
+
+
+
+
   dynamic_table(value)
   {
 console.log("value");
 console.log(value);
 console.log("value");
-  for (var i = 1; i <=parseInt(value); i++) {
+  for (var i = 1; i <parseInt(value); i++) {
   $('#mtable tbody').append($("#mtable tbody tr:first").clone());
   //$('#mtable tbody tr:last :checkbox').attr('checked',false);
   var rowCount = $('#mtable tr').length;
   console.log(rowCount);
   var count_add_grade=parseInt(rowCount)-1;
-  $('#mtable tbody tr:last td:first').html("Grade"+ count_add_grade);
+  $('#mtable tbody tr:last td:first').html(count_add_grade);
 }
 $('#mtable tr').each(function(i) {
       //  if (i === 1)
@@ -467,6 +579,10 @@ $('#mtable tr').each(function(i) {
 
        var textarea = $(this).find('input');
        textarea.eq(0).attr('id', 'txtBoardApprovalDate' + (i+1));
+       var textarea = $(this).find('textarea');
+       textarea.eq(0).attr('formControlName', 'Vestingcondition' + (i+1));
+      //  var textarea = $(this).find('textarea');
+      //  textarea.eq(0).attr('value');
    });
 
   //      var xml = "";
@@ -537,35 +653,92 @@ console.log("xml");
   //  console.log( $("#txtBoardApprovalDate").datepicker({ dateFormat: 'dd,MM,yyyy' }).val());
       //return (<HTMLInputElement>document.getElementById('txtBoardApprovalDate')).value;
   //this.postdata.controls['joiningdate'].value = 'dsd';
-  this.edit_data.controls['Status'].setValue((<HTMLInputElement>document.getElementById('grant_details')).value);
+  this.edit_data.controls['VestingSchedule'].setValue((<HTMLInputElement>document.getElementById('grant_details')).value);
   console.log((<HTMLInputElement>document.getElementById('checkbox_value')).value);
   this.edit_data.controls['VestingCondition'].setValue((<HTMLInputElement>document.getElementById('checkbox_value')).value);
+  this.edit_data.controls['VestingCondition1'].setValue((<HTMLInputElement>document.getElementById('condition1')).value);
+
+  this.edit_data.controls['VestingCondition2'].setValue((<HTMLInputElement>document.getElementById('condition2')).value);
+
+  this.edit_data.controls['VestingCondition3'].setValue((<HTMLInputElement>document.getElementById('condition3')).value);
+
+  this.edit_data.controls['VestingCondition4'].setValue((<HTMLInputElement>document.getElementById('condition4')).value);
+  this.edit_data.controls['VestingCondition5'].setValue((<HTMLInputElement>document.getElementById('condition5')).value);
+  this.edit_data.controls['VestingCondition6'].setValue((<HTMLInputElement>document.getElementById('condition6')).value);
+
+
+
+
 
   };
 
 
-
+  //var rowCount = $('#conditiontable tr:visible').length;
 
   dynamic_table_condition(value)
     {
+localStorage.setItem('rowCount2', $('#conditiontable tr:visible').length);
+    let rowCount1= localStorage.getItem('rowCount2');
+
   console.log("value");
   console.log(value);
-  console.log("value");
+  console.log(rowCount1);
   var condition="condition";
+var count=parseInt(value);
+  // $('#conditiontable tr:visible').each(function(count) {
+  //   $('#conditiontable tbody tr ').html("<tr  ><td class='col-xs-1'> </td>    <td><textarea type='text;  value='' class='form-control'> </textarea></td> </tr>");
+  //
+  // });
+
     for (var i = 1; i <=parseInt(value); i++) {
-    $('#conditiontable tbody').append($("#conditiontable tbody tr:last").clone());
+      var rowCount = $('#conditiontable tr:visible').length;
+      // if()
+
+if(parseInt(rowCount) <6)
+{
+  $('#conditiontable tbody').append("<tr  ><td class='col-xs-1'> </td>    <td><textarea type='text;  value='fdf' class='form-control ' > </textarea></td> </tr>");
+
+//  $('#conditiontable tbody').append($("#conditiontable tbody tr:last").clone());
+
     //$('#mtable tbody tr:last :checkbox').attr('checked',false);
-    var rowCount = $('#conditiontable tr').length;
-    console.log(rowCount);
-    var count_add_grade=parseInt(rowCount);
-    $('#conditiontable tbody tr:last td:first').html("Condition"+ count_add_grade);
+var rowCount_v = $('#conditiontable tr:visible').length;
+    console.log(rowCount_v);
+    var count_add_grade=parseInt(rowCount_v);
+
+      console.log("rowCount");
+          $('#conditiontable tbody tr:last td:first').html("Condition"+ count_add_grade);
+          console.log("Condition"+ count_add_grade);
+}
+// if((parseInt(rowCount)>parseInt(value))&&(parseInt(rowCount) <6))
+else
+//if((parseInt(rowCount)>parseInt(value)))
+{
+  // var slice_number_new=parseInt(rowCount)-6;
+  // var slice_number=6-parseInt(value);
+  //   console.log("slice_number");
+  // console.log(slice_number);
+  //   console.log("slice_number_new");
+  //   console.log(slice_number_new);
+  // $('#conditiontable tbody tr').slice(-slice_number_new).remove();
+  //
+  //alert("Condition options available only 6 ");
+}
+
+
+
   }
-  $('#conditiontable tr').each(function(i) {
+  $('#conditiontable tr:visible').each(function(i) {
         //  if (i === 1)
         //      return;
 
          var textarea = $(this).find('textarea');
          textarea.eq(0).attr('id', 'condition' + (i+1));
+         var textarea = $(this).find('textarea');
+         textarea.eq(0).attr('formControlName', 'Vestingcondition' + (i+1));
+        // $("#id").css("display", "block");
+        //  var textarea = $(this).find('tr');
+        //  textarea.eq(0).attr('id', 'VestingCondition' + (i+1));
+
      });
 
     }
@@ -718,6 +891,16 @@ this.postdata.controls['RecordDate'].setValue((<HTMLInputElement>document.getEle
        console.log(this.getschemewizarddetails);
 
        });
+
+       this.managegranteeService.getschemewizard_table_xml(getschemewizard).subscribe((data: Array<Object>)=> {
+
+          this.getschemewizard_table_xml = data;
+
+           console.log("getschemewizard_table_xml");
+           console.log(this.getschemewizard_table_xml);
+
+           });
+
 
    }
 

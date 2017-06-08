@@ -40,6 +40,13 @@ import { ManageGranteeComponent } from './manage-grantee/manage-grantee.componen
 import { ObjNgFor11 } from './manage-grantee/manage-grantee.component';
 
 import { ObjNgFor111 } from './manage-grantee/manage-grantee.component';
+import { ObjNgFor22 } from './manage-grantee/manage-grantee.component';
+import { ObjNgFor222 } from './manage-grantee/manage-grantee.component';
+import { ObjNgForValue1 } from './schemedoosier/schemedoosier.component';
+import { objngforvalue2 } from './schemedoosier/schemedoosier.component';
+import { ObjNgForValue3 } from './schemedoosier/schemedoosier.component';
+
+import { ObjNgForValue4 } from './schemedoosier/schemedoosier.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,11 +60,17 @@ import { ObjNgFor111 } from './manage-grantee/manage-grantee.component';
     MapFromKeyValuePipe,
     ObjNgFor,
     ObjNgFor11,
+    ObjNgFor22,
+    ObjNgForValue4,
     ObjNgFor111,
+    objngforvalue2,
+    ObjNgForValue3,
     ObjNgForNew,
     ObjNgForValues,
+    ObjNgFor222,
     ObjNgFor1,
     ObjNgForNew1,
+    ObjNgForValue1,
     SchemedoosierComponent,
     NumberTodatePipe,
     NumberTomonthPipe,

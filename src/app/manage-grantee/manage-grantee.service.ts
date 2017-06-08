@@ -107,7 +107,15 @@ export class ManageGranteeService {
          .map((res:Response) => JSON.parse(res.json()));
        }
 
+       getschemewizard_table_xml(getschemewizard_table_xml) {
 
+       let headers = new Headers();
+         headers.append('Content-Type',
+            'application/json');
+           this.createAuthorizationHeader(headers);
+           return this.http.get(this.base_url + "api/Grants/getvestinggrade/"+getschemewizard_table_xml, {headers:headers})
+           .map((res:Response) => JSON.parse(res.json()));
+         }
 
 
 }
